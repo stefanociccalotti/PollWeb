@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [06/Aug/2019:16:04:27 +0200] "GET /web-engineering-pollweb/ HTTP/1.1" 200 56 http-bio-8080-exec-1 511
+0:0:0:0:0:0:0:1 - - [06/Aug/2019:16:04:28 +0200] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-2 0
