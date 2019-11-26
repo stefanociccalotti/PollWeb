@@ -1,3 +1,9 @@
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\SondaggioDao.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\model\Sondaggio.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\Interface\SondaggioInterface.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\loginController.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\ConnectionClass.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\model\UserModel.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\UserDao.java
-C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\getUserController.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\getUserController.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\Interface\UserInterface.java
