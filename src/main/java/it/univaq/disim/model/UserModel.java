@@ -9,6 +9,17 @@ public class UserModel {
     private String name;
     private String surname;
 
+    public UserModel() {}
+
+    public UserModel(int id, String username, String password, String mail, String name, String surname) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.mail = mail;
+        this.name = name;
+        this.surname= surname;
+    }
+
     public int getId() {
         return id;
     }

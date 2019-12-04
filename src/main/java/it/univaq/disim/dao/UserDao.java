@@ -8,7 +8,7 @@ import it.univaq.disim.model.UserModel;
 public class UserDao implements UserInterface {
 
     @Override
-    public Boolean loginQuery(String u, String p) {
+    public Integer loginQuery(String u, String p) {
 
         try
         {
@@ -25,16 +25,16 @@ public class UserDao implements UserInterface {
             ResultSet rs = stmt.executeQuery();
 
            while(rs.next()){
-               System.out.println(rs.getInt("code"));
-               System.out.println(rs.getInt("aid"));
-               return true;
+               if(rs.getInt("code") == 200){
+                   return rs.getInt("aid");
+               }
            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
     public UserModel getUserModel(int id) {

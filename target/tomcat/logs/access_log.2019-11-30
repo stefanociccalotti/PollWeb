@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:36:59 +0100] "GET /web-engineering-pollweb HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:37:00 +0100] "GET /web-engineering-pollweb/ HTTP/1.1" 200 5627 http-bio-8080-exec-2 50
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:37:03 +0100] "POST /web-engineering-pollweb/login HTTP/1.1" 404 1009 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:37:03 +0100] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:38:09 +0100] "GET /web-engineering-pollweb HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:38:09 +0100] "GET /web-engineering-pollweb/ HTTP/1.1" 200 5627 http-bio-8080-exec-2 35
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:38:14 +0100] "POST /web-engineering-pollweb/login HTTP/1.1" 200 12274 http-bio-8080-exec-3 565
+0:0:0:0:0:0:0:1 - - [30/Nov/2019:15:38:14 +0100] "GET /web-engineering-pollweb/resources/assets/images/users/admin.png HTTP/1.1" 404 1077 http-bio-8080-exec-4 2

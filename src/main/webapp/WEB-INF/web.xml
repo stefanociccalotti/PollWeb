@@ -4,23 +4,25 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <display-name>getUserController</display-name>
-    <servlet-name>getUserController</servlet-name>
-    <servlet-class>it.univaq.disim.controller.getUserController</servlet-class>
-  </servlet>
+
   <servlet>
     <display-name>loginController</display-name>
     <servlet-name>loginController</servlet-name>
     <servlet-class>it.univaq.disim.controller.loginController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>getUserController</servlet-name>
-    <url-pattern>/getUser</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>loginController</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>homeController</display-name>
+    <servlet-name>homeController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.homeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>homeController</servlet-name>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
 </web-app>
