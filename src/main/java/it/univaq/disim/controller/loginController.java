@@ -30,7 +30,7 @@ public class loginController extends HttpServlet {
         if(result != null){
             HttpSession session=request.getSession();
             session.setAttribute("userID",result);
-            session.setAttribute("page","frame.jsp");
+            session.setAttribute("user",user);
         }
 
         //RequestDispatcher rd = request.getRequestDispatcher("jsp/frame.jsp");

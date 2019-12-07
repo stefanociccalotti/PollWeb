@@ -7,5 +7,5 @@ import java.sql.SQLException;
 public interface UserInterface {
 
     Integer loginQuery(String u, String p);
-    UserModel getUserModel(int id);
+    UserModel getUserInfo(Integer id);
 }

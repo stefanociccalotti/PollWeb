@@ -5,19 +5,23 @@ public class UserModel {
     private int id;
     private String username;
     private String password;
+    private String type;
     private String mail;
     private String name;
     private String surname;
+    private String birthday;
 
     public UserModel() {}
 
-    public UserModel(int id, String username, String password, String mail, String name, String surname) {
+    public UserModel(int id, String username, String password, String type, String mail, String name, String surname, String birthday) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.type = type;
         this.mail = mail;
         this.name = name;
-        this.surname= surname;
+        this.surname = surname;
+        this.birthday = birthday;
     }
 
     public int getId() {
@@ -44,6 +48,14 @@ public class UserModel {
         this.password = password;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getMail() {
         return mail;
     }
@@ -66,6 +78,14 @@ public class UserModel {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     @Override
