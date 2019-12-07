@@ -4,3 +4,4 @@ it\univaq\disim\model\UserModel.class
 it\univaq\disim\model\SurveyModel.class
 it\univaq\disim\controller\homeController.class
 it\univaq\disim\dao\SurveyDao.class
+it\univaq\disim\controller\profileController.class

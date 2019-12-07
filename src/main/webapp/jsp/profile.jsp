@@ -66,35 +66,41 @@
                 <div class="col-lg-10 col-xlg-9 col-md-7">
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-horizontal form-material">
+                            <form class="form-horizontal form-material" method="post" action="${pageContext.request.contextPath}/profile">
                                 <div class="form-group">
-                                    <label class="col-md-12">Full Name</label>
+                                    <label class="col-md-12">Nome</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="<c:out value="${userinfo.name}" />" class="form-control form-control-line">
+                                        <input name="nome" type="text" value="<c:out value="${userinfo.name} " />" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Cognome</label>
+                                    <div class="col-md-12">
+                                        <input name="cognome" type="text" value="<c:out value="${userinfo.surname} " />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
                                     <div class="col-md-12">
-                                        <input type="email" placeholder="<c:out value="${userinfo.mail}" />" class="form-control form-control-line" name="example-email" id="example-email">
+                                        <input name="email" type="email" value="<c:out value="${userinfo.mail}" />" class="form-control form-control-line" name="example-email" id="example-email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Password</label>
                                     <div class="col-md-12">
-                                        <input type="password" value="<c:out value="${userinfo.password}" />" class="form-control form-control-line">
+                                        <input name="password" type="password" value="<c:out value="${userinfo.password}" />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Phone No</label>
+                                    <label class="col-md-12">Data Di Nascita</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
+                                        <input name="datanascita" type="text" value="<c:out value="${userinfo.birthday}" />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Message</label>
                                     <div class="col-md-12">
-                                        <textarea rows="5" class="form-control form-control-line"> <c:out value="${userinfo.birthday}" /></textarea>
+                                        <textarea rows="5" class="form-control form-control-line"> </textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">

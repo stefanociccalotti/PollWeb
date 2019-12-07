@@ -68,4 +68,22 @@ public class UserDao implements UserInterface {
 
         return u;
     }
+
+    @Override
+    public Integer updateUser(UserModel u) throws SQLException {
+
+            String sql="UPDATE user SET password=?, mail=?, name=?, surname=?, birthdate=? WHERE id=? ";
+            st = conn.prepareStatement(sql);
+            st.setString(1,u.getPassword());
+            st.setString(2,u.getMail());
+            st.setString(3,u.getName());
+            st.setString(4,u.getSurname());
+            st.setString(5,u.getBirthday());
+            st.setInt(6,u.getId());
+
+            int resultSet = st.executeUpdate();
+
+            return resultSet;
+
+    }
 }

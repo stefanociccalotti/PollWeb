@@ -8,4 +8,5 @@ public interface UserInterface {
 
     Integer loginQuery(String u, String p);
     UserModel getUserInfo(Integer id);
+    Integer updateUser(UserModel u) throws SQLException;
 }

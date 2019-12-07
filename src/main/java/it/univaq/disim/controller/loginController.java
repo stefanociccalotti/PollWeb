@@ -25,11 +25,11 @@ public class loginController extends HttpServlet {
         String pass = request.getParameter("pass");
 
         UserInterface dao = new UserDao();
-        Integer result = dao.loginQuery(user,pass);
+        Integer iduser = dao.loginQuery(user,pass);
 
-        if(result != null){
+        if(iduser != null){
             HttpSession session=request.getSession();
-            session.setAttribute("userID",result);
+            session.setAttribute("userID",iduser);
             session.setAttribute("user",user);
         }
 

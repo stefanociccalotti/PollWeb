@@ -25,4 +25,14 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <display-name>profileController</display-name>
+    <servlet-name>profileController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.profileController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>profileController</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+
 </web-app>
