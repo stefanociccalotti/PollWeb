@@ -10,7 +10,7 @@ public class SurveyDao implements SurveyInterface {
     private ArrayList<SurveyModel> listsurvey = new ArrayList<>();
 
     @Override
-    public ArrayList<SurveyModel> getSurveyByUser(int id) throws SQLException {
+    public ArrayList<SurveyModel> getSurveyByUser(int id, String page) throws SQLException {
         ConnectionClass connectionClass = new ConnectionClass();
         Connection conn = connectionClass.getConnection();
 
@@ -24,9 +24,12 @@ public class SurveyDao implements SurveyInterface {
 
         while(rs.next()) {
 
-           listsurvey.add(new SurveyModel(rs.getInt("id"),rs.getString("url"),rs.getString("privacy"),
-                   rs.getString("status"),rs.getString("title"),rs.getString("opening"),rs.getString("closing"),rs.getInt("user")));
+            listsurvey.add(new SurveyModel(rs.getInt("id"),rs.getString("url"),rs.getString("privacy"),rs.getString("status"),
+                    rs.getString("title"),rs.getString("opening"),rs.getString("closing"),rs.getInt("user"),page));
+
         }
+
         return listsurvey;
+
     }
 }

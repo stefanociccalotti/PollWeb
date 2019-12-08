@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface SurveyInterface {
 
-    ArrayList<SurveyModel> getSurveyByUser(int id)throws SQLException;
+    ArrayList<SurveyModel> getSurveyByUser(int id, String page)throws SQLException;
 
 }

@@ -35,4 +35,14 @@
     <url-pattern>/profile</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <display-name>ViewSurveysController</display-name>
+    <servlet-name>ViewSurveysController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.ViewSurveysController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewSurveysController</servlet-name>
+    <url-pattern>/viewSurveys</url-pattern>
+  </servlet-mapping>
+
 </web-app>

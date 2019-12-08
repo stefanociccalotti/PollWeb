@@ -2,70 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccdd72ae-2730-4430-9dc1-7b923702cf9a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/animate/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/animsition/css/animsition.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/animsition/css/animsition.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/animsition/js/animsition.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/animsition/js/animsition.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/js/popper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/bootstrap/js/tooltip.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/countdowntime/countdowntime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/css-hamburgers/hamburgers.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/css-hamburgers/hamburgers.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/daterangepicker/daterangepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/daterangepicker/daterangepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/daterangepicker/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/daterangepicker/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/jquery/jquery-3.2.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/perfect-scrollbar/perfect-scrollbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/select2/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/select2/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/vendor/select2/select2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/getUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SondaggioInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SondaggioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/Sondaggio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/oldHome.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/getUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/loginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/loginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/Interface/SondaggioInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/Interface/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/Interface/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/SondaggioDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/model/Sondaggio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/model/UserModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/model/UserModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/SESSIONS.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/index_jsp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/index_jsp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/index_jsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/index_jsp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/jsp/home_jsp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/jsp/home_jsp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/jsp/home_jsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/web-engineering-pollweb/org/apache/jsp/jsp/home_jsp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/ContentLoaderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/ContentLoaderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/profileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/it/univaq/disim/controller/profileController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -79,9 +25,9 @@
     <session id="-109213767">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="23" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.10" value="3" />
-          <entry key="project.open.time.11" value="3" />
+          <entry key="project.open.time.11" value="4" />
           <entry key="project.open.time.12" value="4" />
           <entry key="project.open.time.13" value="4" />
           <entry key="project.open.time.14" value="5" />
@@ -89,72 +35,72 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="25" />
+          <entry key="project.opened" value="26" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
+          <entry key="class" value="2" />
           <entry key="css" value="1" />
           <entry key="html" value="3" />
           <entry key="iml" value="3" />
-          <entry key="java" value="69" />
+          <entry key="java" value="111" />
           <entry key="js" value="2" />
-          <entry key="jsp" value="31" />
-          <entry key="xml" value="26" />
+          <entry key="jsp" value="49" />
+          <entry key="xml" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
+          <entry key="CLASS" value="2" />
           <entry key="CSS" value="1" />
           <entry key="HTML" value="3" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="69" />
-          <entry key="JSP" value="31" />
+          <entry key="JAVA" value="111" />
+          <entry key="JSP" value="49" />
           <entry key="JavaScript" value="2" />
-          <entry key="XML" value="26" />
+          <entry key="XML" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="72" />
+          <entry key="dummy" value="73" />
           <entry key="html" value="52" />
-          <entry key="java" value="5397" />
-          <entry key="jsp" value="2379" />
-          <entry key="xml" value="430" />
+          <entry key="java" value="6724" />
+          <entry key="jsp" value="2551" />
+          <entry key="xml" value="461" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="52" />
-          <entry key="JAVA" value="5397" />
-          <entry key="JSP" value="2379" />
-          <entry key="PLAIN_TEXT" value="72" />
-          <entry key="XML" value="430" />
+          <entry key="JAVA" value="6724" />
+          <entry key="JSP" value="2551" />
+          <entry key="PLAIN_TEXT" value="73" />
+          <entry key="XML" value="461" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home.jsp">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+            <state relative-caret-position="680">
+              <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="636">
+              <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -162,56 +108,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
-              <folding>
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#776#777#0" expanded="true" />
-                <element signature="e#813#814#0" expanded="true" />
-                <element signature="e#841#842#0" expanded="true" />
-                <element signature="e#871#872#0" expanded="true" />
-                <element signature="e#897#898#0" expanded="true" />
-                <element signature="e#935#936#0" expanded="true" />
-                <element signature="e#965#966#0" expanded="true" />
-                <element signature="e#999#1000#0" expanded="true" />
-                <element signature="e#1029#1030#0" expanded="true" />
-                <element signature="e#1075#1076#0" expanded="true" />
-                <element signature="e#1113#1114#0" expanded="true" />
-                <element signature="e#1146#1147#0" expanded="true" />
-                <element signature="e#1175#1176#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1255#1256#0" expanded="true" />
-                <element signature="e#1287#1288#0" expanded="true" />
-                <element signature="e#1315#1316#0" expanded="true" />
-                <element signature="e#1357#1358#0" expanded="true" />
-                <element signature="e#1391#1392#0" expanded="true" />
-                <element signature="e#1425#1426#0" expanded="true" />
-                <element signature="e#1455#1456#0" expanded="true" />
-                <element signature="e#1501#1502#0" expanded="true" />
-                <element signature="e#1539#1540#0" expanded="true" />
-                <element signature="e#1573#1574#0" expanded="true" />
-                <element signature="e#1603#1604#0" expanded="true" />
-                <element signature="e#1649#1650#0" expanded="true" />
-                <element signature="e#1687#1688#0" expanded="true" />
-                <element signature="e#1719#1720#0" expanded="true" />
-                <element signature="e#1746#1747#0" expanded="true" />
-                <element signature="e#1787#1788#0" expanded="true" />
-                <element signature="e#1819#1820#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="687">
+              <caret line="132" column="42" lean-forward="true" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/viewSurveys.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="27" column="112" lean-forward="true" selection-start-line="27" selection-start-column="112" selection-end-line="27" selection-end-column="112" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="281">
+              <caret line="20" column="43" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="53" column="40" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -242,6 +158,8 @@
       <find>page wra</find>
       <find>page-wrapp</find>
       <find>setstat</find>
+      <find>giudizio</find>
+      <find>src</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -260,7 +178,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/view/index.jsp" />
         <option value="$PROJECT_DIR$/target/tomcat/conf/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/userModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/showUserModel.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/getUserController.java" />
@@ -274,20 +191,26 @@
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/UserModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SondaggioInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SondaggioDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/UserInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/jspController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/homeContent.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/footer.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/loginController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/survey.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/homeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModelForViewSurvey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/viewSurvey.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ViewSurveyController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ViewSurveysController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/homeController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home.jsp" />
       </list>
     </option>
   </component>
@@ -308,6 +231,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,28 +310,10 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="pollweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pollweb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pollweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pollweb" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -415,22 +322,16 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575478737456" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575828678199" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp" />
-      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\jsp" />
-      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\resources" />
-      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\resources\css" />
-      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\resources" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="it.univaq.disim.controller" />
       <recent name="it.univaq.disim" />
@@ -438,6 +339,13 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\resources" />
       <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp" />
+      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\jsp" />
+      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\resources" />
+      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\webapp\resources\css" />
+      <recent name="C:\Users\Stefano\Dev\pollweb\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -486,12 +394,13 @@
       <workItem from="1575305319786" duration="8383000" />
       <workItem from="1575396199150" duration="4165000" />
       <workItem from="1575400821375" duration="1148000" />
-      <workItem from="1575474973967" duration="3559000" />
+      <workItem from="1575474973967" duration="3781000" />
+      <workItem from="1575799955527" duration="14493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93590000" />
+    <option name="totallyTimeSpent" value="108305000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -504,9 +413,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.15458423" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.15618336" />
       <window_info id="Structure" order="1" sideWeight="0.5010846" side_tool="true" weight="0.2553305" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -558,13 +466,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/it/univaq/disim/model/userModel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/LoginController.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar!/javax/servlet/http/HttpServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="55" column="25" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/LoginModel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/main.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -580,27 +481,12 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/vendor/jquery/jquery-3.2.1.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/homeContent.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/jspController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/UserModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="34" column="74" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -611,61 +497,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/UserDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/footer.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/homeContent.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/jspController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="34" column="74" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+        <state relative-caret-position="306">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/homeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        <state>
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/footer.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/UserModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        <state relative-caret-position="-231">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModelForViewSurvey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="111" column="94" selection-start-line="111" selection-start-column="94" selection-end-line="111" selection-end-column="94" />
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/Interface/SurveyInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="53" column="60" lean-forward="true" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar!/javax/servlet/http/HttpServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/ConnectionClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/profileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/loginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="39" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="39" />
+        <state relative-caret-position="459">
+          <caret line="27" column="51" lean-forward="true" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="710">
+          <caret line="43" column="54" lean-forward="true" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ViewSurveysController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -674,71 +619,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/controller/ContentLoaderController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state relative-caret-position="680">
+          <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/dao/SurveyDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/frame.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="27" column="112" lean-forward="true" selection-start-line="27" selection-start-column="112" selection-end-line="27" selection-end-column="112" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="636">
+          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/univaq/disim/model/SurveyModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
-          <folding>
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#841#842#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-            <element signature="e#897#898#0" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#965#966#0" expanded="true" />
-            <element signature="e#999#1000#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
-            <element signature="e#1075#1076#0" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1146#1147#0" expanded="true" />
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1219#1220#0" expanded="true" />
-            <element signature="e#1255#1256#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1391#1392#0" expanded="true" />
-            <element signature="e#1425#1426#0" expanded="true" />
-            <element signature="e#1455#1456#0" expanded="true" />
-            <element signature="e#1501#1502#0" expanded="true" />
-            <element signature="e#1539#1540#0" expanded="true" />
-            <element signature="e#1573#1574#0" expanded="true" />
-            <element signature="e#1603#1604#0" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-            <element signature="e#1687#1688#0" expanded="true" />
-            <element signature="e#1719#1720#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-            <element signature="e#1819#1820#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="687">
+          <caret line="132" column="42" lean-forward="true" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/viewSurveys.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+        <state relative-caret-position="281">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/profile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="53" column="40" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="40" />
         </state>
       </provider>
     </entry>

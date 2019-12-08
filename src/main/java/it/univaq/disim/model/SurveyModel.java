@@ -14,7 +14,7 @@ public class SurveyModel {
 
     public SurveyModel() {}
 
-    public SurveyModel(Integer id, String url, String privacy, String status, String title, String opening, String closing, Integer user) {
+    public SurveyModel(Integer id, String url, String privacy, String status, String title, String opening, String closing, Integer user, String page) {
         this.id = id;
         this.url = url;
         this.privacy = privacy;
@@ -23,7 +23,10 @@ public class SurveyModel {
         this.opening = opening;
         this.closing = closing;
         this.user = user;
-        setStatusCss(status);
+
+        if(page.equals("home")) setStatusCss(status);
+        else setStatusCss(status,privacy);
+
     }
 
     public String getStatusCss() {
@@ -106,5 +109,29 @@ public class SurveyModel {
             default:
                 this.statusCss = "info";
         }
+
+    }
+
+    private void setStatusCss(String status, String privacy) {
+
+        String statusPrivacy = status + "-" + privacy;
+
+        switch(statusPrivacy) {
+            case "pubblicato-pubblico":
+                this.statusCss = "success";
+                break;
+            case "chiuso-pubblico":
+                this.statusCss = "danger";
+                break;
+            case "pubblicato-riservato":
+                this.statusCss = "primary";
+                break;
+            case "chiuso-riservato":
+                this.statusCss = "danger";
+                break;
+            default:
+                this.statusCss = "active";
+        }
+
     }
 }

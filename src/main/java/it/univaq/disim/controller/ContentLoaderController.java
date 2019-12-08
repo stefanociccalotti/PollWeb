@@ -20,7 +20,7 @@ public class ContentLoaderController {
 
         SurveyInterface surveydao = new SurveyDao();
 
-        return listsurvey = surveydao.getSurveyByUser(id);
+        return listsurvey = surveydao.getSurveyByUser(id, "home");
 
     }
 
@@ -31,6 +31,14 @@ public class ContentLoaderController {
         UserInterface userdao = new UserDao();
 
         return u = userdao.getUserInfo(id);
+
+    }
+
+    public static ArrayList<SurveyModel> loadViewSurvey(Integer id) throws SQLException {
+
+        SurveyInterface surveydao = new SurveyDao();
+
+        return surveydao.getSurveyByUser(id,"viewSurveys");
 
     }
 
