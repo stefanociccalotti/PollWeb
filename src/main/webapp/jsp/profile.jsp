@@ -3,11 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<%
-    UserModel userinfo = new ContentLoaderController().loadProfile((Integer) session.getAttribute("userID"));
-    request.setAttribute("userinfo",userinfo);
-%>
-
 <jsp:include page="frame.jsp" />
 
 
@@ -51,7 +46,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div style="display:flex;flex-direction:column;align-items:flex-start">
-                                <img src="../resources/assets/images/users/curator.png" class="" width="150" />
+                                <img src="./resources/assets/images/users/curator.png" class="" width="150" />
                                 <div>
                                     <h4 class="card-title m-t-10"><c:out value="${userinfo.username}" /></h4>
                                     <h6 class="card-subtitle"><c:out value="${userinfo.type}" /></h6>

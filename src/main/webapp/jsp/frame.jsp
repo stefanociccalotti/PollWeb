@@ -10,11 +10,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../resources/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/assets/images/favicon.png">
     <title>PollWeb - Sondaggi</title>
     <!-- Custom CSS -->
-    <link href="../resources/dist/css/style.min.css" rel="stylesheet">
-    <link href="../resources/dist/css/survey.css" rel="stylesheet">
+    <link href="./resources/dist/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,17 +33,17 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
 
-                            <img src="../resources/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="./resources/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="../resources/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="./resources/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="../resources/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                                <img src="./resources/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo text -->
-                                <img src="../resources/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                <img src="./resources/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
                             </span>
                     </a>
                 </div>
@@ -86,7 +85,7 @@
                             <i class="m-r-0 mdi mdi-menu-down"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a class="dropdown-item" href="profile.jsp"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                            <a class="dropdown-item" href="/web-engineering-pollweb/profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                             <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
                             <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                         </div>
@@ -111,21 +110,39 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="home.jsp" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./index.jsp" aria-expanded="false">
                             <i class="mdi mdi-av-timer"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.jsp" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html" aria-expanded="false">
                             <i class="mdi mdi-account-network"></i>
                             <span class="hide-menu">Profile</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys.jsp" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="table-basic.html" aria-expanded="false">
                             <i class="mdi mdi-border-none"></i>
-                            <span class="hide-menu">View Surveys</span>
+                            <span class="hide-menu">Table</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html" aria-expanded="false">
+                            <i class="mdi mdi-face"></i>
+                            <span class="hide-menu">Icon</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html" aria-expanded="false">
+                            <i class="mdi mdi-file"></i>
+                            <span class="hide-menu">Blank</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="error-404.html" aria-expanded="false">
+                            <i class="mdi mdi-alert-outline"></i>
+                            <span class="hide-menu">404</span>
                         </a>
                     </li>
                 </ul>

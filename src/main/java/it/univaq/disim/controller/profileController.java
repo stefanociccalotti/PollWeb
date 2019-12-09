@@ -16,6 +16,19 @@ import java.sql.SQLException;
 @WebServlet(name = "profileController")
 public class profileController extends HttpServlet {
 
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        try {
+            UserModel userinfo = ContentLoaderController.loadProfile((Integer) session.getAttribute("userID"));
+            System.out.println(1);
+            request.setAttribute("userinfo",userinfo);
+            request.getRequestDispatcher("jsp/profile.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
+        } catch (SQLException e) {
+            throw new ServletException("Retrieving products failed!", e);
+        }
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         HttpSession session=request.getSession();
@@ -36,13 +49,13 @@ public class profileController extends HttpServlet {
             if(result == 1){
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Update Avvenuto con successo!');");
-                out.println("location='jsp/profile.jsp';");
+                out.println("location='/web-engineering-pollweb/profile';");
                 out.println("</script>");
             }
             else{
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Errore durante l'update dei dati!!');");
-                out.println("location='jsp/profile.jsp';");
+                out.println("location='/web-engineering-pollweb/profile';");
                 out.println("</script>");
             }
         } catch (SQLException e) {
@@ -50,4 +63,5 @@ public class profileController extends HttpServlet {
         }
 
     }
+
 }

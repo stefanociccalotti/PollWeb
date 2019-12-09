@@ -44,12 +44,6 @@
                                 <th class="border-top-0">URL</th>
                             </tr>
                             </thead>
-
-                            <%
-                                ArrayList<SurveyModel> list = new ContentLoaderController().loadHome((Integer) session.getAttribute("userID"));
-                                request.setAttribute("list",list);
-                            %>
-
                             <tbody>
                             <c:forEach items="${list}" var="item">
                                 <tr>

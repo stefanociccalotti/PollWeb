@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -33,10 +34,12 @@ public class loginController extends HttpServlet {
             session.setAttribute("user",user);
         }
 
-        //RequestDispatcher rd = request.getRequestDispatcher("jsp/frame.jsp");
+        //RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
         //rd.forward(request,response);
 
-        response.sendRedirect("jsp/home.jsp");
+        response.sendRedirect("/web-engineering-pollweb/home");
+
+        //tetetdftet
 
     }
 }

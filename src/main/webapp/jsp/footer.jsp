@@ -3,17 +3,17 @@
             </footer>
         </div>
         <!--OBBLIGATORIO-->
-        <script src="../resources/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="./resources/assets/libs/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
-        <script src="../resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="../resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="./resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="../resources/assets/extra-libs/sparkline/sparkline.js"></script>
+        <script src="./resources/assets/extra-libs/sparkline/sparkline.js"></script>
         <!--Wave Effects -->
-        <script src="../resources/dist/js/waves.js"></script>
+        <script src="./resources/dist/js/waves.js"></script>
         <!--Menu sidebar -->
-        <script src="../resources/dist/js/sidebarmenu.js"></script>
+        <script src="./resources/dist/js/sidebarmenu.js"></script>
         <!--Custom JavaScript OBBLIGATORIO-->
-        <script src="../resources/dist/js/custom.min.js"></script>
+        <script src="./resources/dist/js/custom.min.js"></script>
     </body>
 </html>
