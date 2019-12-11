@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/AuthenticationFilter")
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     private ServletContext context;
@@ -19,11 +19,37 @@ public class AuthenticationFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (((HttpServletRequest) request).getSession().getAttribute("userid") == null) {
-            ((HttpServletResponse) response).sendRedirect(""); // Not logged in, redirect to login page.
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession session = req.getSession();
+
+        /* Check if the user within the session */
+        boolean loggedInUser = session.getAttribute("userID") != null;
+
+        /* Get the login uri, to avoid infinite loop */
+        String logInURI = req.getContextPath() + "/";
+
+        /* Current reuest */
+        String currentReq = req.getRequestURI();
+
+        /* Get LoginServlet req */
+        String loginServlet = req.getContextPath() + "/login";
+
+        /* Check if current request is for loginServlet */
+        boolean loginServletReq = currentReq.equals(loginServlet);
+
+        /* Check if the request is equal to login page */
+        boolean loginRequest = currentReq.equals(logInURI);
+
+        if (loginRequest) {
+            chain.doFilter(req, res);
+        } else if (loggedInUser) {
+            chain.doFilter(req, res);
+        } else if (loginServletReq) {
+            chain.doFilter(req, res);
         } else {
-            chain.doFilter(request, response); // Logged in, just continue request.
+            res.sendRedirect(logInURI);
         }
     }
 
