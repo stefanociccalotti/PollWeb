@@ -11,15 +11,13 @@ public class SurveyDao implements SurveyInterface {
 
     @Override
     public ArrayList<SurveyModel> getSurveyByUser(int id, String page) throws SQLException {
+
         ConnectionClass connectionClass = new ConnectionClass();
         Connection conn = connectionClass.getConnection();
 
         String sql ="{CALL spSurvey_getByUser(?)}";
-
         CallableStatement stmt = conn.prepareCall(sql);
-
         stmt.setInt(1,id);
-
         ResultSet rs = stmt.executeQuery();
 
         while(rs.next()) {

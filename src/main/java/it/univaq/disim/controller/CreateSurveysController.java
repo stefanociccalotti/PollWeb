@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ViewSurveysController")
-public class ViewSurveysController extends HttpServlet {
+@WebServlet(name = "CreateSurveyC")
+public class CreateSurveysController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,9 +26,6 @@ public class ViewSurveysController extends HttpServlet {
         try {
 
             ArrayList<SurveyModel> list = surveyDao.getSurveyByUser((Integer) session.getAttribute("userID"), "viewSurveys");
-            request.setAttribute("list", list);
-            request.setAttribute("pageCss", "./resources/dist/css/viewSurveys.css");
-            request.getRequestDispatcher("jsp/viewSurveys.jsp").forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();

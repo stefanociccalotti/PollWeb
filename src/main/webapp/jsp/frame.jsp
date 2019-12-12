@@ -14,6 +14,7 @@
     <title>PollWeb - Sondaggi</title>
     <!-- Custom CSS -->
     <link href="./resources/dist/css/style.min.css" rel="stylesheet">
+    <link href="${pageCss}" rel="stylesheet">
 </head>
 
 <body>
@@ -85,9 +86,8 @@
                             <i class="m-r-0 mdi mdi-menu-down"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a class="dropdown-item" href="/web-engineering-pollweb/profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                            <a class="dropdown-item" href="profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> Logout</a>
                         </div>
                     </li>
 
@@ -110,39 +110,21 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="./index.jsp" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="home" aria-expanded="false">
                             <i class="mdi mdi-av-timer"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile" aria-expanded="false">
                             <i class="mdi mdi-account-network"></i>
                             <span class="hide-menu">Profile</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="table-basic.html" aria-expanded="false">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys" aria-expanded="false">
                             <i class="mdi mdi-border-none"></i>
                             <span class="hide-menu">Table</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html" aria-expanded="false">
-                            <i class="mdi mdi-face"></i>
-                            <span class="hide-menu">Icon</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="starter-kit.html" aria-expanded="false">
-                            <i class="mdi mdi-file"></i>
-                            <span class="hide-menu">Blank</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="error-404.html" aria-expanded="false">
-                            <i class="mdi mdi-alert-outline"></i>
-                            <span class="hide-menu">404</span>
                         </a>
                     </li>
                 </ul>
