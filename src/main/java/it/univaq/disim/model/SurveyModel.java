@@ -134,4 +134,20 @@ public class SurveyModel {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "SurveyModel{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", privacy='" + privacy + '\'' +
+                ", status='" + status + '\'' +
+                ", title='" + title + '\'' +
+                ", opening='" + opening + '\'' +
+                ", closing='" + closing + '\'' +
+                ", statusCss='" + statusCss + '\'' +
+                ", user=" + user +
+                '}';
+    }
+
 }

@@ -8,4 +8,6 @@ public interface SurveyInterface {
 
     ArrayList<SurveyModel> getSurveyByUser(int id, String page)throws SQLException;
 
+    ArrayList<Object> getSurveyAndQuestionsById(Integer surveyId) throws SQLException;
+
 }

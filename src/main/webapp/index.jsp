@@ -36,7 +36,6 @@
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
-
                 <span class="login100-form-title p-b-34 p-t-27">
 						Log in
 					</span>

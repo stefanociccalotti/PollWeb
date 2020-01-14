@@ -1,5 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
 <jsp:include page="frame.jsp" />
 
 <div class="page-wrapper">
@@ -14,9 +14,11 @@
 
     <div class="container-fluid">
 
-        <a href="create-survey.html">
-            <img class="new-survey-img" src="../resources/images/add-icon.png"/>
-        </a>
+        <div class="addSurvey-button">
+            <a href="surveyEditor">
+                <img class="new-survey-img" src="./resources/images/icons/addSurvey.png"/>
+            </a>
+        </div>
 
         <div class="row">
             <div class="col-12">
@@ -51,7 +53,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-agenda m-r-5 m-l-5"></i> Modifica Partecipanti</a>
-                                                <a class="dropdown-item" href="modifySurvey?id=${item.id}"><i class="ti-write m-r-5 m-l-5"></i> Modifica Contenuto</a>
+                                                <a class="dropdown-item" href="surveyEditor?survey=${item.id}"><i class="ti-write m-r-5 m-l-5"></i> Modifica Contenuto</a>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-eye m-r-5 m-l-5"></i> Preview Sondaggio</a>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-search m-r-5 m-l-5"></i> Vedi Risultato</a>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-close m-r-5 m-l-5"></i> Chiudi Sondaggio</a>

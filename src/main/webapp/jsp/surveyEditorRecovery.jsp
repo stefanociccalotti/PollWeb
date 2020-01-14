@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -267,5 +266,8 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    const array = "${printAll}".split("_&_");
+    array.forEach(element => console.log(element));
+</script>
 <jsp:include page="footer.jsp" />

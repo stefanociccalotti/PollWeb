@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -118,13 +119,13 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile" aria-expanded="false">
                             <i class="mdi mdi-account-network"></i>
-                            <span class="hide-menu">Profile</span>
+                            <span class="hide-menu">Profilo</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys" aria-expanded="false">
                             <i class="mdi mdi-border-none"></i>
-                            <span class="hide-menu">Table</span>
+                            <span class="hide-menu">Sondaggi</span>
                         </a>
                     </li>
                 </ul>

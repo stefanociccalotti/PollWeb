@@ -42,11 +42,15 @@ public class AuthenticationFilter implements Filter {
         /* Check if the request is equal to login page */
         boolean loginRequest = currentReq.equals(logInURI);
 
+        String path = req.getRequestURI();
+
         if (loginRequest) {
             chain.doFilter(req, res);
         } else if (loggedInUser) {
             chain.doFilter(req, res);
         } else if (loginServletReq) {
+            chain.doFilter(req, res);
+        } else if(path.matches(".*(css|jpg|png|gif|js|svg|ttf|eot|woff|woff2|map)$")) {
             chain.doFilter(req, res);
         } else {
             res.sendRedirect(logInURI);

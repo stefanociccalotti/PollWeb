@@ -52,7 +52,7 @@ footer {
 }
 .new-survey-img{
     position:fixed;
-    bottom:9%;
+    bottom:13%;
     right:13%;
     z-index:2;
     height:8em;
@@ -90,3 +90,13 @@ html[dir="ltr"] body .p-t-20{
     color: black !important;
     border: 1px solid #4CAF50 !important;
   }
+.addSurvey-button {
+    position: fixed;
+    bottom: 13%;
+    right: 13%;
+    z-index: 2;
+    height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    box-shadow: 2px 1px 5px 1px;
+}

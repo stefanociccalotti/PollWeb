@@ -30,9 +30,12 @@ h5 {
 .single-answers{
     margin:1em 0 0 0;
 }
+.multiple-answers{
+    margin: 1em 0 0 0;
+}
 .m-icon{
     padding:0;
-    width:11em;
+    width:12em;
     display:flex;
     flex-direction:row;
     justify-content: space-evenly;
@@ -66,4 +69,9 @@ hr.hr-heavy-separation{
 }
 hr.hr-soft-separation {
     border:1px dashed #2332427a;
+}
+.addQuestion{
+    margin: 1em 0 0 0;
+    font-size: 1.5em;
+    color: #000000;
 }
