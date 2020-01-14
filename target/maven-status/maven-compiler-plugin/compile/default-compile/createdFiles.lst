@@ -1,5 +1,7 @@
 it\univaq\disim\dao\UserDao.class
 it\univaq\disim\dao\Interface\SurveyInterface.class
+it\univaq\disim\security\SecurityLayer.class
+it\univaq\disim\security\AuthenticationFilter.class
 it\univaq\disim\model\UserModel.class
 it\univaq\disim\model\SurveyModel.class
 it\univaq\disim\controller\homeController.class

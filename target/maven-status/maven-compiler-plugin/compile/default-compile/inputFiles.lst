@@ -1,4 +1,5 @@
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\model\SurveyModel.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\SurveyEditorController.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\model\UserModel.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\SurveyDao.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\security\AuthenticationFilter.java
@@ -10,5 +11,6 @@ C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\ViewSurvey
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\UserDao.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\ContentLoaderController.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\controller\profileController.java
+C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\model\QuestionModel.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\dao\Interface\SurveyInterface.java
 C:\Users\Stefano\Dev\pollweb\src\main\java\it\univaq\disim\security\SecurityLayer.java
