@@ -17,5 +17,7 @@
         <!--Custom JavaScript OBBLIGATORIO-->
         <script src="./resources/dist/js/custom.min.js"></script>
         <script src="${pageJs}"></script>
+        <!--Manage User -->
+        <script src="./resources/dist/js/usermanage.js"></script>
     </body>
 </html>

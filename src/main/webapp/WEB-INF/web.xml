@@ -54,6 +54,26 @@
     <url-pattern>/surveyEditor</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <display-name>CuratorsController</display-name>
+    <servlet-name>CuratorsController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.CuratorsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CuratorsController</servlet-name>
+    <url-pattern>/curators</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ParticipantsController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.ParticipantsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ParticipantsController</servlet-name>
+    <url-pattern>/participantsEditor</url-pattern>
+  </servlet-mapping>
+
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>it.univaq.disim.security.AuthenticationFilter</filter-class>

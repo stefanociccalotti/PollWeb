@@ -124,8 +124,14 @@
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys" aria-expanded="false">
-                            <i class="mdi mdi-border-none"></i>
+                            <i class="mdi mdi-newspaper"></i>
                             <span class="hide-menu">Sondaggi</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="curators" aria-expanded="false">
+                            <i class="mdi mdi-account-key"></i>
+                            <span class="hide-menu">Modifica Gestori</span>
                         </a>
                     </li>
                 </ul>
