@@ -16,6 +16,17 @@
   </servlet-mapping>
 
   <servlet>
+    <display-name>LogoutController</display-name>
+    <servlet-name>LogoutController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.LogoutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutController</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
     <display-name>homeController</display-name>
     <servlet-name>homeController</servlet-name>
     <servlet-class>it.univaq.disim.controller.homeController</servlet-class>

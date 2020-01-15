@@ -83,12 +83,12 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><c:out value="${sessionScope.user}" /></span>
+                            <span><c:out value="${sessionScope.user}"/></span>
                             <i class="m-r-0 mdi mdi-menu-down"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
                             <a class="dropdown-item" href="profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> Logout</a>
+                            <a class="dropdown-item" href="logout"><i class="ti-wallet m-r-5 m-l-5"></i> Logout</a>
                         </div>
                     </li>
 
@@ -96,7 +96,7 @@
 
                 <ul class="navbar-nav float-right">
                     <li>
-                        <img src="" alt="user" class="rounded-circle" width="31">
+                        <img src="https://image.flaticon.com/icons/svg/21/21104.svg" alt="user" class="rounded-circle" width="31">
                     </li>
                 </ul>
 
