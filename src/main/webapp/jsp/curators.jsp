@@ -57,7 +57,7 @@
                                                             <form method="post" action="curators?id=${item.id}">
                                                                 <a class="dropdown-item" href="javascript:;" onclick="parentNode.submit();"><i class="ti-close m-r-5 m-l-5"></i> Rimuovi Gestore </a>
                                                                 <input type="hidden" name="userid" value="${item.id}"/>
-                                                                <input type="hidden" name="action" value="remove"/>
+                                                                <input type="hidden" name="action" value="delete"/>
                                                             </form>
                                                         </div>
                                                     </li>                            
