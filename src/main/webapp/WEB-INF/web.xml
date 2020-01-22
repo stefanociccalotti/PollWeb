@@ -25,7 +25,6 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 
-
   <servlet>
     <display-name>homeController</display-name>
     <servlet-name>homeController</servlet-name>
@@ -64,7 +63,6 @@
     <servlet-name>SurveyEditorController</servlet-name>
     <url-pattern>/surveyEditor</url-pattern>
   </servlet-mapping>
-
 
   <servlet>
     <display-name>CuratorsController</display-name>
