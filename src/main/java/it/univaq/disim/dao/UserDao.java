@@ -48,6 +48,36 @@ public class UserDao implements UserInterface {
         return null;
     }
 
+    @Override
+    public Integer loginClientQuery(String m, String p) {
+        try
+        {
+
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+
+            String sql ="{CALL spParticipant_checkAuth(?,?)}";
+
+            CallableStatement stmt = conn.prepareCall(sql);
+
+            stmt.setString(1,m);
+            stmt.setString(2,p);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()){
+                if(rs.getInt("code") == 200){
+                    return rs.getInt("asurvey");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public UserModel getUserInfo(Integer id) {
 
         UserModel u = new UserModel();

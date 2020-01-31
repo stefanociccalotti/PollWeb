@@ -83,6 +83,15 @@
     <url-pattern>/participantsEditor</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>surveyClientController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.surveyClientController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>surveyClientController</servlet-name>
+    <url-pattern>/surveyClient</url-pattern>
+  </servlet-mapping>
+
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>it.univaq.disim.security.AuthenticationFilter</filter-class>

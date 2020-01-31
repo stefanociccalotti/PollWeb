@@ -36,17 +36,32 @@ public class AuthenticationFilter implements Filter {
         /* Get LoginServlet req */
         String loginServlet = req.getContextPath() + "/login";
 
+        /* Get surveyClient req */
+        String surveyClient = req.getContextPath() + "/surveyClient";
+
         /* Check if current request is for loginServlet */
         boolean loginServletReq = currentReq.equals(loginServlet);
 
         /* Check if the request is equal to login page */
         boolean loginRequest = currentReq.equals(logInURI);
 
+        /* Check if current request is for loginServlet */
+        boolean surveyclientreq = currentReq.equals(surveyClient);
+
+        /* Check if current request is for loginServlet */
+        boolean loginClient = currentReq.equals(req.getContextPath() + "/jsp/loginClient.jsp");
+
         //cosi non blocca la resources
         String path= req.getRequestURI();
 
 
         if (loginRequest) {
+            chain.doFilter(req, res);
+            return;
+        }else if (loginClient) {
+            chain.doFilter(req, res);
+            return;
+        } else if (surveyclientreq) {
             chain.doFilter(req, res);
             return;
         } else if (loggedInUser) {
