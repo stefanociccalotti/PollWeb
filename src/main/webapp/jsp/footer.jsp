@@ -19,5 +19,7 @@
         <script src="${pageJs}"></script>
         <!--Manage User -->
         <script src="./resources/dist/js/usermanage.js"></script>
+        <!--Script Survey Client -->
+        <script src="./resources/dist/js/pages/view-survey/view-survey.js"></script>
     </body>
 </html>
