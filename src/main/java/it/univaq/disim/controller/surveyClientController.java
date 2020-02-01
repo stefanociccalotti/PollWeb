@@ -2,6 +2,7 @@ package it.univaq.disim.controller;
 
 import it.univaq.disim.dao.Interface.SurveyInterface;
 import it.univaq.disim.dao.SurveyDao;
+import it.univaq.disim.model.QuestionModel;
 import it.univaq.disim.model.SurveyModel;
 
 import javax.servlet.ServletException;
@@ -22,9 +23,6 @@ public class surveyClientController extends HttpServlet {
         HttpSession session=request.getSession();
         String logCheck = (String) session.getAttribute("client");
 
-        System.out.println(surveyURL);
-        System.out.println(logCheck);
-
             try {
                 Integer surveyId = surveyDao.getSurveyId(surveyURL);
                 ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById(surveyId);
@@ -39,6 +37,17 @@ public class surveyClientController extends HttpServlet {
                     //response.sendRedirect("loginclient?url="+surveyURL);
 
                 }else{
+                    Integer idsurv = surveyDao.getSurveyId(surveyURL);
+                    ArrayList<Object> totalsurvey = surveyDao.getSurveyAndQuestionsById(idsurv);
+
+                    request.setAttribute("survey", totalsurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
+                    request.setAttribute("questions",totalsurvey.get(1));
+                    request.setAttribute("numberOfQuestions", totalsurvey.get(2));
+                    request.setAttribute("code",totalsurvey.get(3));//TODO: vedere se code serve e terminare la modifica aggiungendo error.jsp
+                    request.setAttribute("pageCss", "./resources/dist/css/viewSurvey.css");
+                    request.setAttribute("pageJs","./resources/dist/js/pages/view-survey/view-survey.js");
+                    request.setAttribute("printAll",printFullSurvey(totalsurvey));
+
                     request.getRequestDispatcher("jsp/surveyClient.jsp").forward(request, response);
                 }
 
@@ -49,6 +58,27 @@ public class surveyClientController extends HttpServlet {
 
             //request.getRequestDispatcher("jsp/surveyClient.jsp").forward(request, response);
         }
+
+    private String printFullSurvey(ArrayList<Object> fullSurvey) {
+
+        String surveyP = "";
+        String questionsP = "";
+        SurveyModel surveyInfo = (SurveyModel) fullSurvey.get(0);
+        ArrayList<QuestionModel> questionList = (ArrayList<QuestionModel>) fullSurvey.get(1);
+        Integer codeP = (Integer) fullSurvey.get(3);
+
+        if(surveyInfo != null) {
+            surveyP = "Survey info: " + fullSurvey.get(0).toString();
+        }
+        if(questionList != null) {
+            for (QuestionModel item : questionList) {
+                questionsP += "_&_Question: " + item.toString();
+            }
+        }
+
+        return surveyP + questionsP + "_&_Code = " + codeP;
+
+    }
 
 
 

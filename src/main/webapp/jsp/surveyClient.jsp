@@ -3,15 +3,24 @@
 
 <jsp:include page="frame.jsp" />
 
+<style>
+    .card{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid transparent;
+        border-radius: 0;
+        !important;
+    }
+
+</style>
+
 <div class="page-wrapper">
 
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-5 align-self-center">
-                <h4 class="page-title">Titolo del sondaggio che ho creato: cosa sto chiedendo?</h4>
-            </div>
-        </div>
-    </div>
 
     <div class="container-fluid">
 
@@ -21,102 +30,61 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Questa è la mia domanda a risposta singola?</h4>
                             <div class="form-group">
-                                <div class="">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1">Questa è la prima opzione alla domanda a risposta singola</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2">Seconda opzione</label>
-                                    </div>
-                                </div>
+                                <label>Titolo *</label>
+                                <input type="text" class="form-control" placeholder="titolo del sondaggio ..." value="${survey.title}">
                             </div>
-                            <h5 class="card-subtitle"> Questa è la nota della domanda </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Questa è la mia domanda a risposta multipla?</h4>
-                            <div class="form-group row p-t-20">
-                                <div class="">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Questa è una possibile risposta, lunga e con molti caratteri (numero uno)</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                        <label class="custom-control-label" for="customCheck2">Risposta 2</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                        <label class="custom-control-label" for="customCheck3">Risposta 3</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <h5 class="card-subtitle"> Questa è la nota della domanda </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Questa è la mia domanda con risposta aperta?</h4>
                             <div class="form-group">
-                                <label>Scrivi una risposta con un numero di caratteri compreso tra x e y</label>
-                                <textarea class="form-control" rows="5" placeholder="La mia risposta ..."></textarea>
+                                <label>Testo di apertura</label>
+                                <textarea class="form-control" rows="5" placeholder="visualizzato dall'utente prima di compilare il sondaggio ...">${survey.opening}</textarea>
                             </div>
-                            <h5 class="card-subtitle"> Questa è la nota della domanda </h5>
+                            <div class="form-group survey-closing">
+                                <label>Testo di chiusura</label>
+                                <textarea class="form-control" rows="5" placeholder="visualizzato dopo la compilazione ...">${survey.closing}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+                            <c:if test="${questions != null}">
+                                <c:forEach items="${questions}" var="item">
+                                    <div class="col-12">
+                                    <div class="col-6">
+                                    <div class="card">
+                                    <div class="card-body">
+                                    <c:set var="question" scope="request" value="${item}"/>
+                                    <jsp:include page="surveyEditorQuestions/${item.type}.jsp"/>
+                                    <hr class="hr-soft-separation">
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </c:forEach>
 
-            <div class="col-12">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Questa è la mia domanda con risposta a numero?</h4>
-                            <div class="form-group number-answer">
-                                <input type="number" class="form-control number-answer" placeholder="...">
-                            </div>
-                            <h5 class="card-subtitle"> Questa è la nota della domanda </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Questa è la mia domanda con risposta con data?</h4>
-                            <div class="form-group date-answer">
-                                <input type="date" class="form-control" placeholder="...">
-                            </div>
-                            <h5 class="card-subtitle"> Questa è la nota della domanda </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                            </c:if>
+                            <c:if test="${numberOfQuestions < 5}">
+                                <c:set var="index" value="${5 - numberOfQuestions}"></c:set>
+                                <c:forEach begin="0" end="${index-1}" varStatus="loop">
+                                    <div class="col-12">
+                                        <div class="col-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div>
+                                </c:forEach>
+                            </c:if>
         </div>
-
         <div class="button-container" id="button-container">
             <input type="button" id="backbutton" value="Precedente"/>
             <input type="button" id="nextbutton" value="Successiva"/>
         </div>
-
     </div>
 </div>
+<script type="text/javascript">
+    const array = "${printAll}".split("_&_");
+    array.forEach(element => console.log(element));
+</script>
 <jsp:include page="footer.jsp" />
