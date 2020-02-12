@@ -25,7 +25,6 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 
-
   <servlet>
     <display-name>homeController</display-name>
     <servlet-name>homeController</servlet-name>

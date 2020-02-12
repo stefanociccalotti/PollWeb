@@ -19,7 +19,7 @@ public class ConnectionPool {
 
     // JDBC Database Credentials
     static final String JDBC_USER = "root";
-    static final String JDBC_PASS = "fofo";
+    static final String JDBC_PASS = "root";
 
     private static GenericObjectPool gPool = null;
 

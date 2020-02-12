@@ -1,100 +1,143 @@
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
 
+
+        let selections;
+        let singAnswers;
+        let multAnswers;
+        let  idGenerator = 0;
+
         setAddQuestion();
+        setQuestionsToSelect();
         setAddSingAns();
         setAddMultAns();
 
         document.getElementById('submit').onclick = updateSurvey;
 
+        //TODO - NOTA: QUI' IMPOSTO LA SELECT PER AGGIUNGERE UNA DOMANDA, POI RICHIAMO setQuestionsToSelect()
+
         function setAddQuestion() {
 
-            document.getElementById('addQuestion').onclick = () => {
-                document.getElementById('addQuestion').outerHTML =
-                    '<div class="create-question-container">\n' +
-                    '    <div class="choose-question-type">\n' +
-                    '        <div class="form-group select-question-container">\n' +
-                    '            <label>Scegli il tipo di domanda</label>\n' +
-                    '            <select class="custom-select col-12">\n' +
-                    '                <option selected>Scegli...</option>\n' +
-                    '                <option value="1">Risposta singola</option>\n' +
-                    '                <option value="2">Risposta multipla</option>\n' +
-                    '                <option value="3">Domanda Aperta</option>\n' +
-                    '                <option value="4">Numero</option>\n' +
-                    '                <option value="5">Data</option>\n' +
-                    '            </select>\n' +
-                    '        </div>\n' +
-                    '        <input type="button" value="Reset"/>\n' +
-                    '    </div>\n' +
-                    '</div>\n' +
-                    '\n' +
-                    '<hr class="hr-soft-separation">\n' +
-                    '<div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>\n'
-                ;
+            let addQuestion = document.getElementById('addQuestion');
+
+            addQuestion.onclick = function() {
+                addQuestion.outerHTML = getChooseQuestion();
+                setQuestionsToSelect();
                 setAddQuestion();
             }
 
         }
 
-        function setAddSingAns() {//TODO: sistemare id in singAns e multAns, quando aggiungo una risposta genero degli id non univoci
+        //TODO - NOTA: QUI' IMPOSTO LA SELECT PER OGNI TIPO DI DOMANDA
 
-            let singAnswers = document.getElementsByClassName('addSingAns');
+        function setQuestionsToSelect() {
 
+            selections = document.getElementsByClassName('custom-select');
+
+            for(let i = 0; i < selections.length; i++) {
+                selections[i].onchange = function() {
+                    let newQuestionType = this.options[this.selectedIndex].getAttribute('newQuestionType');
+                    let newID = idGenerator;
+                    idGenerator++;
+
+                    let newElement = document.createElement('div');
+                    newElement.className = 'form-group selected-question';
+                    newElement.setAttribute('questionType',getQuestionType(newQuestionType));
+                    newElement.setAttribute('questionId','new');
+                    newElement.innerHTML = getQuestionFrame(newQuestionType,newID);
+
+                    let div1 = selections[i].parentNode.parentNode.parentNode.parentNode;
+                    let div2 = div1.children[1];
+
+                    div1.replaceChild(newElement,div2);
+
+                    if(newQuestionType === 'singAns') {
+                        setAddSingAns();
+                    } else if(newQuestionType === 'multAns') {
+                        setAddMultAns();
+                    }
+                }
+            }
+        }
+
+        function setAddSingAns() {
+            singAnswers = document.getElementsByClassName('addSingAns');
             for (let i = 0; i < singAnswers.length; i++) {
                 singAnswers[i].onclick = () => {
-                    singAnswers[i].outerHTML =
-                        '<div class="custom-control custom-radio single-answer-text-radio">\n' +
-                        '   <input type="radio" id="s-a-new-sa" name="customRadio" class="custom-control-input">\n' +
-                        '   <label class="custom-control-label" for="s-a-new-sa"><input type="text" class="answerText" placeholder=" Testo della risposta ..."></label>\n' +
-                        '</div>\n' +
-                        '<div class="m-icon addSingAns"><i class="m-r-10 mdi mdi-plus-circle-outline"></i><span>Aggiungi Risposta</span></div>'
-                    ;
-                    setAddSingAns();
+                    let nodeParent = singAnswers[i].parentNode;
+                    let newID = idGenerator;
+                    idGenerator++;
+                    let newElements = getSingAnsBox(newID);
+                    nodeParent.getElementsByClassName('singAnsMarker')[0].outerHTML = newElements;
                 }
             }
         }
 
         function setAddMultAns() {
 
-            let multAnswers = document.getElementsByClassName('addMultAns');
+            multAnswers = document.getElementsByClassName('addMultAns');
 
-            for (let j = 0; j < multAnswers.length; j++) {
-                multAnswers[j].onclick = () => {
-                    multAnswers[j].outerHTML =
-                        '<div class="custom-control custom-checkbox multiple-answer-text-checkbox">\n' +
-                        '   <input type="checkbox" class="custom-control-input" id="m-a-new-ma">\n' +
-                        '   <label class="custom-control-label" for="m-a-new-ma"><input type="text" class="answerText" placeholder=" Testo della risposta ..."></label>\n' +
-                        '</div>\n' +
-                        '<div class="m-icon addMultAns"><i class="m-r-10 mdi mdi-plus-circle-outline"></i><span>Aggiungi Risposta</span></div>'
-                    ;
-                    setAddMultAns();
+            for (let i = 0; i < multAnswers.length; i++) {
+                multAnswers[i].onclick = () => {
+                    let nodeParent = multAnswers[i].parentNode;
+                    let newID = idGenerator;
+                    idGenerator++;
+                    let newElements = getMultAnsBox(newID);
+                    nodeParent.getElementsByClassName('multAnsMarker')[0].outerHTML = newElements;
                 }
             }
         }
 
         function updateSurvey() {
             let questionsCollection = document.getElementsByClassName('selected-question');
-            let questions = [];
+            let questions = new Object();
+            let j = 1;
 
             for(let i = 0; i < questionsCollection.length; i++) {
 
                 let questionsItem = questionsCollection.item(i);
-                let question = [];
+                let questionType = questionsItem.getAttribute('questionType');
+                let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
 
-                question[0] = questionsItem.getAttribute('questionId');
-                question[1] = checkMandatoryQuestion(questionsItem);
-                question[2] = questionsItem.getElementsByClassName('questionText').item(0).getAttribute('number');
-                question[3] = getJsonStr(questionsItem);
-                question[4] = questionsItem.getElementsByClassName('questionNote').item(0).value;
-
-                questions[i] = question;
+                if(typesOfQuestion.includes(questionType)) {
+                    questions["Question " + (j)] = new Question(questionsItem);
+                    j++;
+                }
+                //TODO: si può comunicare all'utente che alcune domande non sono selezionate.
             }
 
-            console.log(questions);
+            console.log(JSON.stringify(questions));
 
         }
 
-        //FUNZIONI PER PULIRE IL CODICE
+        function Question(questionsItem) {
+            this.questionID = questionsItem.getAttribute('questionId');
+            this.mandatory = checkMandatoryQuestion(questionsItem);
+            this.number = questionsItem.getElementsByClassName('questionText').item(0).getAttribute('number');;
+            this.text = getJsonStr(questionsItem);
+            this.note = questionsItem.getElementsByClassName('questionNote').item(0).value;
+        }
+
+
+//====================================================FUNZIONI PER PULIRE IL CODICE====================================================//
+
+
+        function getQuestionType(newQuestionType) {
+            switch(newQuestionType) {
+                case 'singAns':
+                    return 'type-single-answer';
+                case 'multAns':
+                    return 'type-multiple-answer';
+                case 'openQuest':
+                    return 'type-open-question';
+                case 'number':
+                    return 'type-number-question';
+                case 'date':
+                    return 'type-date-question';
+                default:
+                    return 'none';
+            }
+        }
 
         function checkMandatoryQuestion(questionsItem) {
             if(questionsItem.getElementsByClassName('mandatoryCheckbox').item(0).checked) return 1;
@@ -102,17 +145,19 @@ document.onreadystatechange = () => {
         }
 
         function getJsonStr(questionsItem) {
-            switch(questionsItem.classList.item(1)) {//TODO: cambiare questionsItem.classList.item(1), troppo "preciso"
+            switch(questionsItem.getAttribute('questionType')) {
                 case 'type-single-answer':
-                    return '{"type": "singAns", ' + getQuestionAnswers(questionsItem) + '"question": "' + questionsItem.getElementsByClassName('questionText').item(0).value + '"}';
+                    return {type: "singAns", answers: getQuestionAnswers(questionsItem), question: questionsItem.getElementsByClassName('questionText').item(0).value};
                 case 'type-multiple-answer':
-                    return '{"type": "multAns", ' + getQuestionAnswers(questionsItem) + '"question": "' + questionsItem.getElementsByClassName('questionText').item(0).value + '"}';
+                    return {type: "multAns", answers: getQuestionAnswers(questionsItem), question: questionsItem.getElementsByClassName('questionText').item(0).value};
                 case 'type-number-question':
-                    return '{"type": "number", ' + '"question": "' + questionsItem.getElementsByClassName('questionText').item(0).value + '"}';
+                    return {type: "number", question: questionsItem.getElementsByClassName('questionText').item(0).value};
                 case 'type-open-question':
-                    return '{"type": "openQuest", ' + '"question": "' + questionsItem.getElementsByClassName('questionText').item(0).value + '"}';
+                    return {type: "openQuest", question: questionsItem.getElementsByClassName('questionText').item(0).value};
                 case 'type-date-question':
-                    return '{"type": "date", ' + '"question": "' + questionsItem.getElementsByClassName('questionText').item(0).value + '"}';
+                    return {type: "date", question: questionsItem.getElementsByClassName('questionText').item(0).value};
+                case 'none':
+                    return {type: "No question type.", question: "Question unselected."};
                 default:
                     alert('Errore riscontrato nel tipo di domanda');
                     return;
@@ -121,15 +166,177 @@ document.onreadystatechange = () => {
 
         function getQuestionAnswers(questionsItem) {
             let answers = questionsItem.getElementsByClassName('answerText');
-            let answersString = '"answers":["'+ answers.item(0).value + '"';
+            let answersArray = [answers.item(0).value];
 
             for(let i = 1; i < answers.length; i++) {
-                answersString += ',"' + answers.item(i).value +'"';
+                answersArray.push(answers.item(i).value);
             }
+            return answersArray;
+        }
 
-            answersString += '], '
+        function getQuestionFrame(newQuestionType,newID) {
 
-            return answersString;
+            let res;
+
+            switch(newQuestionType) {
+                case 'singAns':
+                    res = getSingAns(newID);
+                    return res;
+                case 'multAns':
+                    res = getMultAns(newID);
+                    return res;
+                case 'openQuest':
+                    res = getOpenQuest(newID);
+                    return res;
+                case 'number':
+                    res = getNumber(newID);
+                    return res;
+                case 'date':
+                    res = getDate(newID);
+                    return res;
+                default:
+                    return '';
+            }
+        }
+
+        function getSingAns(newID) {
+            return `<div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="${newID}-new-question" class="custom-control-input mandatoryCheckbox">
+                                <label class="custom-control-label" for="${newID}-new-question">Obbligatoria</label>
+                                <br/>
+                                <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control questionText" placeholder="Testo della domanda ..." value="" number="${newID}">
+                    <div class="col-sm-4 single-answers">
+                        <div class="custom-control custom-radio single-answer-text-radio">
+                            <input type="radio" id="s-a-new-${newID}" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="s-a-new-${newID}">
+                                <input type="text" class="answerText" placeholder=" Testo della risposta ...">
+                            </label>
+                        </div>
+                        <div class="singAnsMarker"></div>
+                        <div class="m-icon addSingAns"><i class="m-r-10 mdi mdi-plus-circle-outline"></i><span>Aggiungi Risposta</span></div>
+                    </div>
+                    <input type="text" class="form-control questionNote" placeholder="Scrivi una nota se lo desideri ..." value="">`;
+        }
+
+        function getMultAns(newID) {
+            return `<div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input mandatoryCheckbox" id="${newID}-new-question">
+                                <label class="custom-control-label" for="${newID}-new-question">Obbligatoria</label>
+                                <br/>
+                                <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control questionText" placeholder="Testo della domanda ..." value="" number="${newID}">
+                    <div class="col-sm-4 multiple-answers">
+                        <div class="custom-control custom-checkbox multiple-answer-text-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="m-a-new-${newID}">
+                            <label class="custom-control-label" for="m-a-new-${newID}"><input type="text" class="answerText" placeholder=" Testo della risposta ..."></label>
+                        </div>
+                        <div class="multAnsMarker"></div>
+                        <div class="m-icon addMultAns"><i class="m-r-10 mdi mdi-plus-circle-outline"></i><span>Aggiungi Risposta</span></div>
+                    </div>
+                    <input type="text" class="form-control questionNote" placeholder="Scrivi una nota se lo desideri ..." value="">`;
+        }
+
+        function getOpenQuest(newID) {
+            return `<div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input mandatoryCheckbox" id="${newID}-new-question">
+                                <label class="custom-control-label" for="${newID}-new-question">Obbligatoria</label>
+                                <br/>
+                                <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control questionText" placeholder="Testo della domanda ..." value="" number="${newID}">
+                    <span class="help-block"><small>Non è presente alcun tool per le risposte perché stai creando una domanda aperta.</small></span>
+                    <input type="text" class="form-control questionNote" placeholder="Scrivi una nota se lo desideri ..." value="" >`;
+        }
+
+        function getNumber(newID) {
+            return `<div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input mandatoryCheckbox" id="${newID}-new-question">
+                                <label class="custom-control-label" for="${newID}-new-question">Obbligatoria</label>
+                                <br/>
+                                <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control questionText" placeholder="Testo della domanda ..." value="" number="${newID}">
+                    <span class="help-block"><small>Non è presente alcun tool per le risposte perché stai creando una domanda con un numero come risposta.</small></span>
+                    <input type="text" class="form-control questionNote" placeholder="Scrivi una nota se lo desideri ..." value="">`;
+        }
+
+        function getDate(newID) {
+            return `<div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input mandatoryCheckbox" id="${newID}-new-question">
+                                <label class="custom-control-label" for="${newID}-new-question">Obbligatoria</label>
+                                <br/>
+                                <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control questionText" placeholder="Testo della domanda ..." value="" number="${newID}">
+                    <span class="help-block"><small>Non è presente alcun tool per le risposte perché stai creando una domanda con una data come risposta.</small></span>
+                    <input type="text" class="form-control questionNote" placeholder="Scrivi una nota se lo desideri ..." value="" >`;
+        }
+
+        function getChooseQuestion() {
+            return `<div>
+                        <div class="create-question-container">
+                            <div class="choose-question-type">
+                                <div class="form-group select-question-container">
+                                    <label>Scegli il tipo di domanda</label>
+                                    <select class="custom-select col-12">
+                                        <option selected>Scegli...</option>
+                                        <option value="1" newQuestionType="singAns">Risposta singola</option>
+                                        <option value="2" newQuestionType="multAns">Risposta multipla</option>
+                                        <option value="3" newQuestionType="openQuest">Domanda Aperta</option>
+                                        <option value="4" newQuestionType="number">Numero</option>
+                                        <option value="5" newQuestionType="date">Data</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input class="delete-question" type="button" value="Elimina domanda" style="height: 2em;align-self: flex-end;margin-bottom: 1rem;">
+                        </div>
+                        <div class="form-group selected-question" questionType="none" questionId="new"></div>
+                    </div>                    
+                    <hr class="hr-soft-separation">
+                    <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>`;
+        }
+
+        function getSingAnsBox(newID) {
+
+            return `<div class="custom-control custom-radio single-answer-text-radio">
+                        <input type="radio" id="s-a-new-${newID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="s-a-new-${newID}">
+                            <input type="text" class="answerText" placeholder=" Testo della risposta ...">
+                        </label>
+                    </div>
+                    <div class="singAnsMarker"></div>`;
+        }
+
+        function getMultAnsBox(newID) {
+
+            return `<div class="custom-control custom-checkbox multiple-answer-text-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="m-a-new-${newID}">
+                        <label class="custom-control-label" for="m-a-new-${newID}"><input type="text" class="answerText" placeholder=" Testo della risposta ..."></label>
+                    </div>
+                    <div class="multAnsMarker"></div>`;
         }
     }
 }

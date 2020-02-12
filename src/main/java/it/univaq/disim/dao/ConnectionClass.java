@@ -11,7 +11,7 @@ public class ConnectionClass {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            connection= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/pollweb?useLegacyDatetimeCode=false&serverTimezone=Europe/Rome","root","fofo");
+            connection= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/pollweb?useLegacyDatetimeCode=false&serverTimezone=Europe/Rome","root","root");
 
         }catch (Exception e){
             e.printStackTrace();

@@ -50,28 +50,40 @@
 
                             <hr class="hr-soft-separation">
 
+                            <c:choose>
+                                <c:when test="${questions != null}">
+                                    <c:forEach items="${questions}" var="item">
+                                        <c:set var="question" scope="request" value="${item}"/>
+                                        <jsp:include page="surveyEditorQuestions/${item.type}.jsp"/>
+                                        <hr class="hr-soft-separation">
+                                    </c:forEach>
+                                    <c:if test="${numberOfQuestions < 5}">
+                                        <c:set var="index" value="${5 - numberOfQuestions}"></c:set>
+                                        <c:forEach begin="0" end="${index-1}" varStatus="loop">
+                                            <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                        </c:forEach>
+                                    </c:if>
+                                    <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>
 
-                            <c:if test="${questions != null}">
-                                <c:forEach items="${questions}" var="item">
-                                    <c:set var="question" scope="request" value="${item}"/>
-                                    <jsp:include page="surveyEditorQuestions/${item.type}.jsp"/>
-                                    <hr class="hr-soft-separation">
-                                </c:forEach>
-                            </c:if>
-                            <c:if test="${numberOfQuestions < 5}">
-                                <c:set var="index" value="${5 - numberOfQuestions}"></c:set>
-                                <c:forEach begin="0" end="${index-1}" varStatus="loop">
-                                    <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
-                                </c:forEach>
-                            </c:if>
+                                    <div class="form-group">
+                                        <div class="col-sm-12" style="display:flex;justify-content: center;">
+                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="Aggiorna Sondaggio"/>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach begin="0" end="4" varStatus="loop">
+                                        <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                    </c:forEach>
+                                    <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>
 
-                            <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>
-
-                            <div class="form-group">
-                                <div class="col-sm-12" style="display:flex;justify-content: center;">
-                                    <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="Aggiorna Sondaggio"/>
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12" style="display:flex;justify-content: center;">
+                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="Crea Sondaggio"/>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
 
                         </form>
                     </div>
@@ -81,6 +93,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    window.numberOfQuestions = "${numberOfQuestions}";
     const array = "${printAll}".split("_&_");
     array.forEach(element => console.log(element));
 </script>
