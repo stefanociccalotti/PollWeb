@@ -7,83 +7,112 @@ import it.univaq.disim.model.SurveyModel;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.json.*;
+import javax.sql.DataSource;
 import java.io.StringReader;
 
 public class SurveyDao implements SurveyInterface {
 
     private ArrayList<SurveyModel> listsurvey = new ArrayList<>();
+    ConnectionPool connectionPool = new ConnectionPool();
+    Connection conn = null;
+    PreparedStatement st;
 
     @Override
     public ArrayList<SurveyModel> getSurveyByUser(int id, String page) throws SQLException {
+        try {
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
 
-        ConnectionClass connectionClass = new ConnectionClass();
-        Connection conn = connectionClass.getConnection();
+            String sql = "{CALL spSurvey_getByUser(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
 
-        String sql ="{CALL spSurvey_getByUser(?)}";
-        CallableStatement stmt = conn.prepareCall(sql);
-        stmt.setInt(1,id);
-        ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
 
-        while(rs.next()) {
+                listsurvey.add(new SurveyModel(rs.getInt("id"), rs.getString("url"), rs.getString("privacy"), rs.getString("status"),
+                        rs.getString("title"), rs.getString("opening"), rs.getString("closing"), rs.getInt("user"), page));
 
-            listsurvey.add(new SurveyModel(rs.getInt("id"),rs.getString("url"),rs.getString("privacy"),rs.getString("status"),
-                    rs.getString("title"),rs.getString("opening"),rs.getString("closing"),rs.getInt("user"),page));
-
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
         return listsurvey;
-
     }
 
     @Override
     public ArrayList<Object> getSurveyAndQuestionsById(Integer surveyId) throws SQLException {
 
-        ConnectionClass connectionClass = new ConnectionClass();
-        Connection conn = connectionClass.getConnection();
+        try {
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
 
-        String sql = "{CALL pollweb.spQuestion_getBySurvey(?)}";
-        CallableStatement stmt = conn.prepareCall(sql);
-        stmt.setInt(1,surveyId);
-        ResultSet rs = stmt.executeQuery();
+            String sql = "{CALL pollweb.spQuestion_getBySurvey(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setInt(1, surveyId);
+            ResultSet rs = stmt.executeQuery();
 
-        ArrayList<Object> fullSurvey = new ArrayList<>();
-        ArrayList<QuestionModel> questionsList = new ArrayList<>();
-        Integer numberOfQuestions = 0;
+            ArrayList<Object> fullSurvey = new ArrayList<>();
+            ArrayList<QuestionModel> questionsList = new ArrayList<>();
+            Integer numberOfQuestions = 0;
 
-        rs.next();
+            rs.next();
 
-        Integer code = rs.getInt("code");
+            Integer code = rs.getInt("code");
 
-        switch(code) {
-            case 2:
-                //CODICE 2: SONDAGGIO ESISTE E CI SONO DOMANDE. INOLTRE SALVO IL SONDAGGIO SOLO QUANDO CICLO SULLA PRIMA ROW.
-                fullSurvey.add(getSurvey(rs));
-                questionsList.add(getQuestion(rs));
-                numberOfQuestions++;
-                //NELLE ALTRE ROWS SI DEVONO SALVARE SOLO LE INFORMAZIONI DELLE DOMANDE (SE CI SONO)
-                while(rs.next()) {
+            switch (code) {
+                case 2:
+                    //CODICE 2: SONDAGGIO ESISTE E CI SONO DOMANDE. INOLTRE SALVO IL SONDAGGIO SOLO QUANDO CICLO SULLA PRIMA ROW.
+                    fullSurvey.add(getSurvey(rs));
                     questionsList.add(getQuestion(rs));
                     numberOfQuestions++;
-                }
-                fullSurvey.add(questionsList);
-                break;
-            case 1:
-                //CODICE 1: IL SONDAGGIO ESISTE MA NON CI SONO DOMANDE(AGGIUNGO null PER FAR COMBACIARE GLI INDICI IN SurveyEditorController).
-                fullSurvey.add(getSurvey(rs));
-                fullSurvey.add(null);
-                break;
-            case 0:
-                //CODICE 0: IL SONDAGGIO NON ESISTE E NON CI SONO DOMANDE.
-                fullSurvey.add(null);
-                fullSurvey.add(null);
-                break;
+                    //NELLE ALTRE ROWS SI DEVONO SALVARE SOLO LE INFORMAZIONI DELLE DOMANDE (SE CI SONO)
+                    while (rs.next()) {
+                        questionsList.add(getQuestion(rs));
+                        numberOfQuestions++;
+                    }
+                    fullSurvey.add(questionsList);
+                    break;
+                case 1:
+                    //CODICE 1: IL SONDAGGIO ESISTE MA NON CI SONO DOMANDE(AGGIUNGO null PER FAR COMBACIARE GLI INDICI IN SurveyEditorController).
+                    fullSurvey.add(getSurvey(rs));
+                    fullSurvey.add(null);
+                    break;
+                case 0:
+                    //CODICE 0: IL SONDAGGIO NON ESISTE E NON CI SONO DOMANDE.
+                    fullSurvey.add(null);
+                    fullSurvey.add(null);
+                    break;
+            }
+
+            fullSurvey.add(numberOfQuestions);
+            fullSurvey.add(code);
+
+            return fullSurvey;
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        return null;
+    }
 
-        fullSurvey.add(numberOfQuestions);
-        fullSurvey.add(code);
+    @Override
+    public Integer getSurveyId(String url) throws SQLException {
 
-        return fullSurvey;
+        try{
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+            String sql="SELECT * from survey s join question q on(s.id=q.survey) WHERE s.url=?";
+            st = conn.prepareStatement(sql);
+            st.setString(1,url);
 
+            //ritorno il sisultato della query
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            return rs.getInt("id");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

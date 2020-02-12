@@ -64,7 +64,6 @@
     <url-pattern>/surveyEditor</url-pattern>
   </servlet-mapping>
 
-
   <servlet>
     <display-name>CuratorsController</display-name>
     <servlet-name>CuratorsController</servlet-name>
@@ -82,6 +81,15 @@
   <servlet-mapping>
     <servlet-name>ParticipantsController</servlet-name>
     <url-pattern>/participantsEditor</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>surveyClientController</servlet-name>
+    <servlet-class>it.univaq.disim.controller.surveyClientController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>surveyClientController</servlet-name>
+    <url-pattern>/surveyClient</url-pattern>
   </servlet-mapping>
 
   <filter>

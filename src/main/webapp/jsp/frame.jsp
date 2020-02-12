@@ -78,18 +78,19 @@
                     </li>
                 </ul>
 
-
                 <ul class="navbar-nav float-right">
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><c:out value="${sessionScope.user}"/></span>
+                            <span><c:choose><c:when test="${sessionScope.user!=null}"><c:out value="${sessionScope.user}"/></c:when><c:otherwise><c:out value="Guest"/></c:otherwise></c:choose></span>
                             <i class="m-r-0 mdi mdi-menu-down"></i>
                         </a>
+                        <c:if test="${sessionScope.user != null}">
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
                             <a class="dropdown-item" href="profile"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                             <a class="dropdown-item" href="logout"><i class="ti-wallet m-r-5 m-l-5"></i> Logout</a>
                         </div>
+                        </c:if>
                     </li>
 
                 </ul>
@@ -106,6 +107,7 @@
 
     <aside class="left-sidebar" data-sidebarbg="skin5">
         <!-- Sidebar scroll-->
+        <c:if test="${sessionScope.user != null}">
         <div class="scroll-sidebar">
             <!-- Sidebar navigation-->
             <nav class="sidebar-nav">
@@ -138,6 +140,7 @@
             </nav>
             <!-- End Sidebar navigation -->
         </div>
+        </c:if>
         <!-- End Sidebar scroll-->
     </aside>
 
