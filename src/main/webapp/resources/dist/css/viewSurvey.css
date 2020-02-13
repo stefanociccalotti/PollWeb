@@ -13,7 +13,7 @@
 .date-answer{
     width:12em;
 }
-input[type=button]{
+input[type=button],[type=submit]{
     cursor:pointer;
     border-style:hidden;
     background-color:rgba(26, 46, 77, 0.747);
@@ -22,7 +22,7 @@ input[type=button]{
     width:8em;
     margin:0 1em 0 0;
 }
-input[type=button]:hover{
+input[type=button],[type=submit]:hover{
     background-color:rgba(26, 46, 77, 0.911);
 }
 .button-container{

@@ -18,8 +18,11 @@
     }
 
 </style>
+<form method="post" action="surveyClient">
 
 <div class="page-wrapper">
+
+    <label id="sizesurvey" hidden>${numberOfQuestions}</label>
 
 
     <div class="container-fluid">
@@ -38,15 +41,13 @@
                                 <label>Testo di apertura</label>
                                 <textarea class="form-control" rows="5" placeholder="visualizzato dall'utente prima di compilare il sondaggio ...">${survey.opening}</textarea>
                             </div>
-                            <div class="form-group survey-closing">
-                                <label>Testo di chiusura</label>
-                                <textarea class="form-control" rows="5" placeholder="visualizzato dopo la compilazione ...">${survey.closing}</textarea>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-                            <c:if test="${questions != null}">
+            <input type="hidden" name="idans" value="${surveyid}">
+
+            <c:if test="${questions != null}">
                                 <c:forEach items="${questions}" var="item">
                                     <div class="col-12">
                                     <div class="col-6">
@@ -61,28 +62,31 @@
                                     </div>
                                 </c:forEach>
 
-                            </c:if>
-                            <c:if test="${numberOfQuestions < 5}">
-                                <c:set var="index" value="${5 - numberOfQuestions}"></c:set>
-                                <c:forEach begin="0" end="${index-1}" varStatus="loop">
-                                    <div class="col-12">
-                                        <div class="col-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                    <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                <div class="col-12">
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group survey-closing">
+                                                    <label>Testo di chiusura</label>
+                                                    <textarea class="form-control" rows="5" placeholder="visualizzato dopo la compilazione ...">${survey.closing}</textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                     </div>
-                                </c:forEach>
+                                    </div>
+                                </div>
+
                             </c:if>
+
         </div>
-        <div class="button-container" id="button-container">
-            <input type="button" id="backbutton" value="Precedente"/>
-            <input type="button" id="nextbutton" value="Successiva"/>
-        </div>
+                    <div class="button-container" id="button-container">
+                        <input type="button" id="backbutton" value="Precedente"/>
+                        <input type="button" id="nextbutton" value="Successiva"/>
+                     </div>
+
     </div>
+
 </div>
+</form>
 <script type="text/javascript">
     const array = "${printAll}".split("_&_");
     array.forEach(element => console.log(element));

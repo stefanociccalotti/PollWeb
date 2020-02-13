@@ -3,6 +3,7 @@ package it.univaq.disim.dao;
 import it.univaq.disim.dao.Interface.SurveyInterface;
 import it.univaq.disim.model.QuestionModel;
 import it.univaq.disim.model.SurveyModel;
+import org.json.JSONObject;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -115,6 +116,25 @@ public class SurveyDao implements SurveyInterface {
         return null;
     }
 
+    @Override
+    public Integer setAnswerUser(JSONObject json,Integer ids) throws SQLException {
+        Integer rs =0;
+        try{
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+            String sql="INSERT INTO answer (id_compiler,text,question,survey) values(1,?,1,?)";
+            st = conn.prepareStatement(sql);
+            st.setString(1, String.valueOf(json));
+            st.setInt(2, ids);
+
+            //ritorno il sisultato della query
+            rs = st.executeUpdate();
+            //return rs.getInt("id");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
     private SurveyModel getSurvey(ResultSet rs) throws SQLException {
 

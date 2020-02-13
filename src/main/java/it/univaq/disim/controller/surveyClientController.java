@@ -4,7 +4,11 @@ import it.univaq.disim.dao.Interface.SurveyInterface;
 import it.univaq.disim.dao.SurveyDao;
 import it.univaq.disim.model.QuestionModel;
 import it.univaq.disim.model.SurveyModel;
+import org.json.JSONObject;
 
+import javax.json.JsonObject;
+import javax.json.JsonString;
+import javax.json.JsonValue;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,13 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 @WebServlet(name = "surveyClientController")
 public class surveyClientController extends HttpServlet {
+    SurveyInterface surveyDao = new SurveyDao();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SurveyInterface surveyDao = new SurveyDao();
         String surveyURL = request.getParameter("url");
         HttpSession session=request.getSession();
         String logCheck = (String) session.getAttribute("client");
@@ -40,6 +46,7 @@ public class surveyClientController extends HttpServlet {
                     Integer idsurv = surveyDao.getSurveyId(surveyURL);
                     ArrayList<Object> totalsurvey = surveyDao.getSurveyAndQuestionsById(idsurv);
 
+                    request.setAttribute("surveyid",idsurv);
                     request.setAttribute("survey", totalsurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
                     request.setAttribute("questions",totalsurvey.get(1));
                     request.setAttribute("numberOfQuestions", totalsurvey.get(2));
@@ -82,7 +89,30 @@ public class surveyClientController extends HttpServlet {
 
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
+        Enumeration<String> parameterNames = request.getParameterNames();
+
+        JSONObject jsonObj = new JSONObject(parameterNames);
+
+        while (parameterNames.hasMoreElements()) {
+
+            String paramName = parameterNames.nextElement();
+            System.out.println(paramName + ": ");
+
+            String[] paramValues = request.getParameterValues(paramName);
+            jsonObj.put(paramName, paramValues);
+            for (int i = 0; i < paramValues.length; i++) {
+                String paramValue = paramValues[i];
+                System.out.println(paramValue);
+            }
+        }
+        System.out.println(jsonObj);
+        //mando tutto al db
+        try {
+            surveyDao.setAnswerUser(jsonObj, Integer.valueOf(request.getParameter("idans")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

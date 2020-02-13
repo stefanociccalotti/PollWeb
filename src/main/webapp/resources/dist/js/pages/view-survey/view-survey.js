@@ -5,10 +5,19 @@ document.onreadystatechange = function () {
 
         let backbutton = document.getElementById('backbutton');
         let nextbutton = document.getElementById('nextbutton');
+        let sizesurvey = document.getElementById('sizesurvey').textContent;
+        console.log(sizesurvey);
+
+        console.log(-sizesurvey *100 -100);
         let currentMargin = 0;
-        let questionNumber =  5 - 2; //prendi il numero di domande e sottrai 2 per avere il limite alla possibilità di andare avanti con le domande.
+        //let questionNumber =  6; //prendi il numero di domande e sottrai 2 per avere il limite alla possibilità di andare avanti con le domande.(!!!!!)
 
         backbutton.onclick = () => {
+            var btninvia = document.getElementById('nextbutton');
+            if(btninvia.value == "Invia"){
+                btninvia.value = 'Successiva';
+                btninvia.type = 'button';
+            }
             if(currentMargin <= -100) {
                 let margin = currentMargin + 100;
                 currentMargin = margin;
@@ -18,11 +27,20 @@ document.onreadystatechange = function () {
         }
 
         nextbutton.onclick = () => {
-            if(currentMargin >= -questionNumber * 100) {
+            if(currentMargin >= -sizesurvey * 100) {
                 let margin = currentMargin - 100;
                 currentMargin = margin;
                 document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
                 console.log(currentMargin+'%');
+            }else{
+                var btninvia = document.getElementById('nextbutton');
+                btninvia.type = 'submit';
+                btninvia.size = 40;
+            }
+            if(currentMargin == -sizesurvey *100 -100){
+                var btninvia = document.getElementById('nextbutton');
+                btninvia.value = 'Invia';
+
             }
         }
 
@@ -38,5 +56,5 @@ function stylize() {
     buttonContainer.setProperty('display','flex');
     buttonContainer.setProperty('flex-direction','row');
     buttonContainer.setProperty('justify-content','center');
-    
+
 }

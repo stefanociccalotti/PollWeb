@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div>
-    <div class="create-question-container">
+    <div class="create-question-container" hidden>
         <div class="choose-question-type">
             <div class="form-group select-question-container">
                 <label>Scegli il tipo di domanda</label>
@@ -19,10 +19,10 @@
         <input type="button" value="Elimina domanda" style="height: 2em;align-self: flex-end;margin-bottom: 1rem;">
     </div>
     <div class="form-group selected-question" questionType="type-multiple-answer" questionId="${requestScope.question.id}">
-        <div class="form-group">
+        <div class="form-group" hidden>
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input mandatoryCheckbox" id="${requestScope.question.number}-m-a-m" <c:if test="${requestScope.question.mandatory == 1}">checked</c:if> >
+                    <input type="checkbox"  class="custom-control-input mandatoryCheckbox" id="${requestScope.question.number}-m-a-m" <c:if test="${requestScope.question.mandatory == 1}">checked</c:if> >
                     <label class="custom-control-label" for="${requestScope.question.number}-m-a-m">Obbligatoria</label>
                     <br/>
                     <span class="help-block"><small>Seleziona questa casella se la domanda è obbligatoria.</small></span>
@@ -34,7 +34,7 @@
             <c:set var="answers" value="${requestScope.question.answers}"/>
             <c:forEach begin="0" end="${fn:length(answers)-1}" var="index">
                 <div class="custom-control custom-checkbox multiple-answer-text-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="m-a-${requestScope.question.number}-${index}">
+                    <input type="checkbox" class="custom-control-input" name="${requestScope.question.question}" id="m-a-${requestScope.question.number}-${index}" value="${answers[index]}" >
                     <label class="custom-control-label" for="m-a-${requestScope.question.number}-${index}"><input type="text" class="answerText" placeholder=" Testo della risposta ..." value="${answers[index]}"></label>
                 </div>
             </c:forEach>
