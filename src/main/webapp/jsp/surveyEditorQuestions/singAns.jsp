@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div>
-    <div class="create-question-container" hidden>
+    <div class="create-question-container" >
         <div class="choose-question-type">
             <div class="form-group select-question-container">
                 <label>Scegli il tipo di domanda</label>
@@ -19,7 +19,7 @@
         <input type="button" value="Elimina domanda" style="height: 2em;align-self: flex-end;margin-bottom: 1rem;">
     </div>
     <div class="form-group selected-question" questionType="type-single-answer" questionId="${requestScope.question.id}">
-        <div class="form-group" hidden>
+        <div class="form-group" >
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox"  id="${requestScope.question.id}-s-a-m" class="custom-control-input mandatoryCheckbox" value="${requestScope.question.question}"  <c:if test="${requestScope.question.mandatory == 1}">checked</c:if> >
