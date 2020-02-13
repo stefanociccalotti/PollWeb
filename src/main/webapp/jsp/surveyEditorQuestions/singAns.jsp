@@ -34,7 +34,7 @@
             <c:set var="answers" value="${requestScope.question.answers}"/>
             <c:forEach begin="0" end="${fn:length(answers)-1}" var="index">
                 <div class="custom-control custom-radio single-answer-text-radio">
-                    <input type="radio" id="s-a-${requestScope.question.number}-${index}" name="customRadio" name="${requestScope.question.question}" class="custom-control-input" value="${answers[index]}">
+                    <input type="radio" id="s-a-${requestScope.question.number}-${index}" name="customRadio" class="custom-control-input">
                     <label class="custom-control-label" for="s-a-${requestScope.question.number}-${index}"><input type="text"class="answerText" placeholder=" Testo della risposta ..." value="${answers[index]}"></label>
                 </div>
             </c:forEach>
