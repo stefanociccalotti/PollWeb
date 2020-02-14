@@ -136,6 +136,25 @@ public class SurveyDao implements SurveyInterface {
         return rs;
     }
 
+    @Override
+    public Integer surveyClose(Integer idsurvey) throws SQLException {
+        Integer rs =0;
+        try{
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+            String sql="UPDATE survey SET status='chiuso' where id=?";
+            st = conn.prepareStatement(sql);
+            st.setInt(1,idsurvey);
+
+            //ritorno il sisultato della query
+            rs = st.executeUpdate();
+            //return rs.getInt("id");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     private SurveyModel getSurvey(ResultSet rs) throws SQLException {
 
         return new SurveyModel(rs.getInt("surveyid"),rs.getString("url"),rs.getString("privacy"),rs.getString("status"),

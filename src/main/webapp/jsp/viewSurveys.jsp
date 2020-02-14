@@ -56,7 +56,7 @@
                                                 <a class="dropdown-item" href="surveyEditor?survey=${item.id}"><i class="ti-write m-r-5 m-l-5"></i> Modifica Contenuto</a>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-eye m-r-5 m-l-5"></i> Preview Sondaggio</a>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-search m-r-5 m-l-5"></i> Vedi Risultato</a>
-                                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-close m-r-5 m-l-5"></i> Chiudi Sondaggio</a>
+                                                <form action="viewSurveys" method="POST"><input type="hidden" name="surveyid" value="${item.id}" /><a class="dropdown-item" href="javascript:void(0)" onclick="this.parentNode.submit()"><i class="ti-close m-r-5 m-l-5"></i> Chiudi Sondaggio</a></form>
                                             </div>
                                         </li>
                                     </ul>

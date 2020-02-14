@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ViewSurveysController")
 public class ViewSurveysController extends HttpServlet {
+    SurveyInterface surveyDao = new SurveyDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -31,6 +32,19 @@ public class ViewSurveysController extends HttpServlet {
             request.getRequestDispatcher("jsp/viewSurveys.jsp").forward(request, response);
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response){
+        Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
+        try {
+            surveyDao.surveyClose(idsurvey);
+            response.sendRedirect("viewSurveys");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
