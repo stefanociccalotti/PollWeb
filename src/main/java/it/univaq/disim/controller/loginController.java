@@ -41,7 +41,6 @@ public class loginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response,String action) throws IOException, ServletException {
 
         switch(action){
-
             case "loginclient":
                 action_loginclient(request,response);
                 break;
