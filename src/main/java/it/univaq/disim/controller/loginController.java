@@ -61,7 +61,7 @@ public class loginController extends HttpServlet {
         if(iduser != null){
             //vai alla compilazione del sondaggio
             HttpSession session=request.getSession();
-            session.setAttribute("client","guest");
+            session.setAttribute("client",mail);
             response.sendRedirect("surveyClient?url=" + url);
 
         }else{

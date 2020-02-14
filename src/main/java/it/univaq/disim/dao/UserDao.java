@@ -242,4 +242,24 @@ public class UserDao implements UserInterface {
         return result;
 
     }
+
+    @Override
+    public Integer deleteParticipant(String p) throws SQLException {
+
+        try {
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        String sql="DELETE from participant WHERE mail =?";
+        st = conn.prepareStatement(sql);
+        st.setString(1,p);
+
+        int result = st.executeUpdate();
+
+        return result;
+
+    }
 }

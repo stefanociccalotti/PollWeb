@@ -16,4 +16,5 @@ public interface UserInterface {
     ArrayList<UserModel> getSelParticipants(Integer questid) throws SQLException;
     Integer updateParticipants(UserModel participants,Integer questid) throws SQLException;
     Integer newUser(UserModel newuser) throws SQLException;
+    Integer deleteParticipant(String p)throws SQLException;
 }
