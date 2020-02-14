@@ -87,8 +87,6 @@ public class surveyClientController extends HttpServlet {
 
     }
 
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
 
         Enumeration<String> parameterNames = request.getParameterNames();
