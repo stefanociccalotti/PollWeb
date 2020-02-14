@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div style="display:flex;flex-direction:column;align-items:flex-start">
-                                <img src="./resources/assets/images/users/curator.png" class="" width="150" />
+                                <img src="./resources/images/icons/userIcon.jpg" class="" width="150" />
                                 <div>
                                     <h4 class="card-title m-t-10"><c:out value="${userinfo.username}" /></h4>
                                     <h6 class="card-subtitle"><c:out value="${userinfo.type}" /></h6>
@@ -87,25 +87,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Data Di Nascita</label>
                                     <div class="col-md-12">
-                                        <input name="datanascita" type="text" value="<c:out value="${userinfo.birthday}" />" class="form-control form-control-line">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Message</label>
-                                    <div class="col-md-12">
-                                        <textarea rows="5" class="form-control form-control-line"> </textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Select Country</label>
-                                    <div class="col-sm-12">
-                                        <select class="form-control form-control-line">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
-                                        </select>
+                                        <input name="datanascita" type="date" value="<c:out value="${userinfo.birthday}" />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">

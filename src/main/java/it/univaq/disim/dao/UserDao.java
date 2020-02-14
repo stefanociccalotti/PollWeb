@@ -112,6 +112,7 @@ public class UserDao implements UserInterface {
 
     @Override
     public Integer updateUser(UserModel u) throws SQLException {
+        String sql="UPDATE user SET password=?, mail=?, name=?, surname=?, birthdate=? WHERE id=? ";
 
         try {
             DataSource dataSource = connectionPool.setUpPool();
@@ -120,7 +121,16 @@ public class UserDao implements UserInterface {
             System.out.println(e);
         }
 
-            String sql="UPDATE user SET password=?, mail=?, name=?, surname=?, birthdate=? WHERE id=? ";
+        if(u.getPassword() == null){
+            sql="UPDATE user SET mail=?, name=?, surname=?, birthdate=? WHERE id=? ";
+            st = conn.prepareStatement(sql);
+            st.setString(1,u.getMail());
+            st.setString(2,u.getName());
+            st.setString(3,u.getSurname());
+            st.setString(4,u.getBirthday());
+            st.setInt(5,u.getId());
+        }
+        else{
             st = conn.prepareStatement(sql);
             st.setString(1,u.getPassword());
             st.setString(2,u.getMail());
@@ -128,7 +138,7 @@ public class UserDao implements UserInterface {
             st.setString(4,u.getSurname());
             st.setString(5,u.getBirthday());
             st.setInt(6,u.getId());
-
+        }
             int resultSet = st.executeUpdate();
 
             return resultSet;

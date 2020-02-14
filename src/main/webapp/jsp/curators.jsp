@@ -15,9 +15,11 @@
             </div>
 
             <div class="container-fluid">
+                <div class="addSurvey-button">
                     <a href="#creategestore">
-                            <img class="new-survey-img" src="./resources/images/add-icon.png"/>
-                        </a>
+                        <img class="new-survey-img" src="./resources/images/icons/addUser.png"/>
+                    </a>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
