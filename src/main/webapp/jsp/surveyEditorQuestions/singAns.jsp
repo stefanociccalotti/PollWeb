@@ -2,22 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div>
-    <div class="create-question-container" >
-        <div class="choose-question-type">
-            <div class="form-group select-question-container">
-                <label>Scegli il tipo di domanda</label>
-                <select class="custom-select col-12">
-                    <option selected>Scegli...</option>
-                    <option value="1" newQuestionType="singAns">Risposta singola</option>
-                    <option value="2" newQuestionType="multAns">Risposta multipla</option>
-                    <option value="3" newQuestionType="openQuest">Domanda Aperta</option>
-                    <option value="4" newQuestionType="number">Numero</option>
-                    <option value="5" newQuestionType="date">Data</option>
-                </select>
-            </div>
-        </div>
-        <input type="button" value="Elimina domanda" style="height: 2em;align-self: flex-end;margin-bottom: 1rem;">
-    </div>
+    <jsp:include page="selectQuestion.html"/>
     <div class="form-group selected-question" questionType="type-single-answer" questionId="${requestScope.question.id}">
         <div class="form-group" >
             <div class="col-sm-4">

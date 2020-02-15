@@ -60,7 +60,7 @@
                                     <c:if test="${numberOfQuestions < 5}">
                                         <c:set var="index" value="${5 - numberOfQuestions}"></c:set>
                                         <c:forEach begin="0" end="${index-1}" varStatus="loop">
-                                            <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                            <jsp:include page="surveyEditorQuestions/chooseQuestion.jsp"/>
                                         </c:forEach>
                                     </c:if>
                                     <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>
@@ -73,7 +73,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach begin="0" end="4" varStatus="loop">
-                                        <jsp:include page="surveyEditorQuestions/chooseQuestion.html"/>
+                                        <jsp:include page="surveyEditorQuestions/chooseQuestion.jsp"/>
                                     </c:forEach>
                                     <div class="m-icon addQuestion" id="addQuestion"><span>Aggiungi Domanda</span><i class="m-r-10 mdi mdi-plus-circle-outline"></i></div>
 

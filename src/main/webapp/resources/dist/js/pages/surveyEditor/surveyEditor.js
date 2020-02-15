@@ -11,6 +11,7 @@ document.onreadystatechange = () => {
         setQuestionsToSelect();
         setAddSingAns();
         setAddMultAns();
+        toggleQuestions();
 
         document.getElementById('submit').onclick = updateSurvey;
 
@@ -24,6 +25,7 @@ document.onreadystatechange = () => {
                 addQuestion.outerHTML = getChooseQuestion();
                 setQuestionsToSelect();
                 setAddQuestion();
+                toggleQuestions();
             }
 
         }
@@ -50,7 +52,7 @@ document.onreadystatechange = () => {
                     let div2 = div1.children[1];
 
                     div1.replaceChild(newElement,div2);
-
+                    //TODO: imposta bottone toggle su elimina domanda
                     if(newQuestionType === 'singAns') {
                         setAddSingAns();
                     } else if(newQuestionType === 'multAns') {
@@ -88,18 +90,39 @@ document.onreadystatechange = () => {
             }
         }
 
+        function toggleQuestions() {//TODO: richiamare toggleQuestions in tutte le parti dove è necessario (forse basta setQuestionsToSelect)
+
+            toggleQuestions = document.getElementsByClassName('toggleQuestion');
+
+            for (let i = 0; i < toggleQuestions.length; i++) {
+                toggleQuestions[i].onclick = () => {
+                    let nodeToHide = toggleQuestions[i].parentNode.nextElementSibling;
+                    if(nodeToHide.style.display === 'none') {
+                        nodeToHide.style.display = '';
+                        toggleQuestions[i].value = 'Elimina domanda';
+                        toggleQuestions[i].style.backgroundColor = 'rgba(255, 0, 0, 0.65)';
+                    } else {
+                        nodeToHide.style.display = 'none';
+                        toggleQuestions[i].value = 'Ripristina domanda';
+                        toggleQuestions[i].style.backgroundColor = 'green';
+                    }
+                }
+            }
+        }
+
         function updateSurvey() {
             let questionsCollection = document.getElementsByClassName('selected-question');
             let questions = new Object();
+            let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
             let j = 1;
 
             for(let i = 0; i < questionsCollection.length; i++) {
 
                 let questionsItem = questionsCollection.item(i);
                 let questionType = questionsItem.getAttribute('questionType');
-                let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
+                let toggle = questionsItem.style.display;
 
-                if(typesOfQuestion.includes(questionType)) {
+                if(toggle != 'none' && typesOfQuestion.includes(questionType)) {
                     questions["Question " + (j)] = new Question(questionsItem);
                     j++;
                 }
@@ -311,7 +334,7 @@ document.onreadystatechange = () => {
                                     </select>
                                 </div>
                             </div>
-                            <input class="delete-question" type="button" value="Elimina domanda" style="height: 2em;align-self: flex-end;margin-bottom: 1rem;">
+                            <input class="toggleQuestion" type="button" value="Elimina domanda" style="height:2em;margin-bottom:1.2rem;">
                         </div>
                         <div class="form-group selected-question" questionType="none" questionId="new"></div>
                     </div>                    
