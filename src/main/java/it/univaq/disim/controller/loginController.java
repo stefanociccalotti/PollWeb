@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "loginController")
 public class loginController extends HttpServlet {
 
     private UserInterface dao = new UserDao();
+    String uri ="";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String surveyURL = request.getParameter("url");
@@ -48,7 +50,10 @@ public class loginController extends HttpServlet {
         String pass = request.getParameter("pass");
         String url = request.getParameter("url");
 
-        Integer iduser = dao.loginClientQuery(mail,pass);
+        //mi segno la uri della richiesta per poi riutilizzarla in caso di errore.
+        uri = "http://localhost:8080/web-engineering-pollweb/surveyClient?url="+url;
+
+        Integer iduser = dao.loginClientQuery(mail,pass,url);
         System.out.println(mail + " " +pass + " " + url);
 
         if(iduser != null){
@@ -60,7 +65,26 @@ public class loginController extends HttpServlet {
         }else{
             //errore nella login con messaggio
             //request.getRequestDispatcher("errore").forward(request, response);
-            System.out.println("ERRORE USERNAME E PASSWORD DB");
+
+            PrintWriter out = null;
+            try {
+                out = response.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            out.println("<html>\n" +
+                    "<body onload=\"myFunction()\">\n" +
+                    "\n" +
+                    "<script>\n" +
+                    "function myFunction() {\n" +
+                    "  alert(\"ERRORE USERNAME/PASSWORD ERRATI!\");\n" +
+                    "  window.location.href =\""+uri+"\";\n" +
+                    "}\n" +
+                    "</script>\n" +
+                    "\n" +
+                    "</body>\n" +
+                    "</html>");
         }
 
     }

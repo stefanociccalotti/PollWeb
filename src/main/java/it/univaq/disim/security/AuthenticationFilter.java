@@ -51,6 +51,9 @@ public class AuthenticationFilter implements Filter {
         /* Check if current request is for loginServlet */
         boolean loginClient = currentReq.equals(req.getContextPath() + "/jsp/loginClient.jsp");
 
+        /* Check if current request is for success */
+        boolean successClient = currentReq.equals(req.getContextPath() + "/jsp/success.jsp");
+
         //cosi non blocca la resources
         String path= req.getRequestURI();
 
@@ -59,6 +62,9 @@ public class AuthenticationFilter implements Filter {
             chain.doFilter(req, res);
             return;
         }else if (loginClient) {
+            chain.doFilter(req, res);
+            return;
+        }else if (successClient) {
             chain.doFilter(req, res);
             return;
         } else if (surveyclientreq) {

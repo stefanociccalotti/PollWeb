@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface UserInterface {
 
     Integer loginQuery(String u, String p);
-    Integer loginClientQuery(String m,String p);
+    Integer loginClientQuery(String m,String p,String u);
     UserModel getUserInfo(Integer id);
     Integer updateUser(UserModel u) throws SQLException;
     ArrayList<UserModel> getCurators() throws SQLException;

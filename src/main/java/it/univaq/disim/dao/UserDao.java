@@ -49,19 +49,20 @@ public class UserDao implements UserInterface {
     }
 
     @Override
-    public Integer loginClientQuery(String m, String p) {
+    public Integer loginClientQuery(String m, String p,String u) {
         try
         {
 
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
 
-            String sql ="{CALL spParticipant_checkAuth(?,?)}";
+            String sql ="{CALL spParticipant_checkAuth(?,?,?)}";
 
             CallableStatement stmt = conn.prepareCall(sql);
 
             stmt.setString(1,m);
             stmt.setString(2,p);
+            stmt.setString(3,u);
 
             ResultSet rs = stmt.executeQuery();
 
