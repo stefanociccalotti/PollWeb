@@ -11,7 +11,6 @@ document.onreadystatechange = () => {
         setQuestionsToSelect();
         setAddSingAns();
         setAddMultAns();
-        toggleQuestions();
 
         document.getElementById('submit').onclick = updateSurvey;
 
@@ -25,7 +24,6 @@ document.onreadystatechange = () => {
                 addQuestion.outerHTML = getChooseQuestion();
                 setQuestionsToSelect();
                 setAddQuestion();
-                toggleQuestions();
             }
 
         }
@@ -38,21 +36,24 @@ document.onreadystatechange = () => {
 
             for(let i = 0; i < selections.length; i++) {
                 selections[i].onchange = function() {
-                    let newQuestionType = this.options[this.selectedIndex].getAttribute('newQuestionType');
-                    let newID = idGenerator;
-                    idGenerator++;
 
+                    let newQuestionType = this.options[this.selectedIndex].getAttribute('newQuestionType');
                     let newElement = document.createElement('div');
+                    let div1 = selections[i].parentNode.parentNode.parentNode.parentNode;
+                    let div2 = div1.children[1];
+                    let toggleButton = selections[i].parentNode.parentNode.nextElementSibling;
+                    let newID = idGenerator;
+
+                    idGenerator++;
                     newElement.className = 'form-group selected-question';
                     newElement.setAttribute('questionType',getQuestionType(newQuestionType));
                     newElement.setAttribute('questionId','new');
                     newElement.innerHTML = getQuestionFrame(newQuestionType,newID);
 
-                    let div1 = selections[i].parentNode.parentNode.parentNode.parentNode;
-                    let div2 = div1.children[1];
-
                     div1.replaceChild(newElement,div2);
-                    //TODO: imposta bottone toggle su elimina domanda
+                    toggleButton.value = 'Elimina domanda';
+                    toggleButton.style.backgroundColor = 'rgba(255, 0, 0, 0.65)';
+
                     if(newQuestionType === 'singAns') {
                         setAddSingAns();
                     } else if(newQuestionType === 'multAns') {
@@ -60,6 +61,7 @@ document.onreadystatechange = () => {
                     }
                 }
             }
+            toggleQuestions();
         }
 
         function setAddSingAns() {
@@ -90,7 +92,7 @@ document.onreadystatechange = () => {
             }
         }
 
-        function toggleQuestions() {//TODO: richiamare toggleQuestions in tutte le parti dove è necessario (forse basta setQuestionsToSelect)
+        function toggleQuestions() {
 
             toggleQuestions = document.getElementsByClassName('toggleQuestion');
 
@@ -111,6 +113,52 @@ document.onreadystatechange = () => {
         }
 
         function updateSurvey() {
+
+            let surveyObj = createSurveyJson();
+            let data = JSON.stringify(surveyObj);
+            let http_request;
+
+            if (window.XMLHttpRequest) { // Mozilla, Safari,...
+                http_request = new XMLHttpRequest();
+                if (http_request.overrideMimeType) {
+                    http_request.overrideMimeType('text/xml');
+                }
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {}
+                }
+            }
+
+            if (!http_request) {
+                alert('Errore: non è stato possibile creare una istanza XMLHTTP');
+                return false;
+            }
+
+            http_request.open('POST', 'http://localhost:8080/web-engineering-pollweb/surveyEditor', true);
+            http_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            http_request.onreadystatechange = function() { alertContents(http_request); };
+            http_request.send('data='+encodeURIComponent(data));
+
+        }
+
+        function alertContents(http_request) {
+
+            if (http_request.readyState == 4) {
+                if (http_request.status == 200) {
+                    alert(http_request.responseText);
+                } else {
+                    alert('Si è verificato un problema con la richiesta');
+                }
+            }
+
+        }
+
+        function createSurveyJson() {
+
             let questionsCollection = document.getElementsByClassName('selected-question');
             let questions = new Object();
             let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
@@ -129,14 +177,14 @@ document.onreadystatechange = () => {
                 //TODO: si può comunicare all'utente che alcune domande non sono selezionate.
             }
 
-            console.log(JSON.stringify(questions));
+            return questions;
 
         }
 
         function Question(questionsItem) {
             this.questionID = questionsItem.getAttribute('questionId');
             this.mandatory = checkMandatoryQuestion(questionsItem);
-            this.number = questionsItem.getElementsByClassName('questionText').item(0).getAttribute('number');;
+            this.number = parseInt(questionsItem.getElementsByClassName('questionText').item(0).getAttribute('number'));
             this.text = getJsonStr(questionsItem);
             this.note = questionsItem.getElementsByClassName('questionNote').item(0).value;
         }

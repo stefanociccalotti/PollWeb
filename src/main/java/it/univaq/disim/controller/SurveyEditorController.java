@@ -54,6 +54,41 @@ public class SurveyEditorController extends HttpServlet {
 
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+
+        String data = request.getParameter("data");
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.setStatus(200);
+        try {
+            response.getWriter().write(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private String printFullSurvey(ArrayList<Object> fullSurvey) {
 
         String surveyP = "";
