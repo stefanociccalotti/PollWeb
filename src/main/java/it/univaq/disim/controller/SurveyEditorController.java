@@ -27,8 +27,8 @@ public class SurveyEditorController extends HttpServlet {
 
             request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
             request.setAttribute("numberOfQuestions", 0);
-            request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
             request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
+            request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
 
         } else {
 

@@ -155,6 +155,26 @@ public class SurveyDao implements SurveyInterface {
         return rs;
     }
 
+    @Override
+    public ArrayList<String> getSurveyResult(Integer idsurvey) throws SQLException {
+        ArrayList<String> listanswer = new ArrayList<>();
+        try{
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+            String sql = "{CALL pollweb.spAnswer_getBySurvey(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setInt(1, idsurvey);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                listanswer.add(rs.getString("text"));
+                listanswer.add("\n");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listanswer;
+    }
+
     private SurveyModel getSurvey(ResultSet rs) throws SQLException {
 
         return new SurveyModel(rs.getInt("surveyid"),rs.getString("url"),rs.getString("privacy"),rs.getString("status"),

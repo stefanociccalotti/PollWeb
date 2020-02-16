@@ -13,5 +13,6 @@ public interface SurveyInterface {
     Integer getSurveyId(String url) throws SQLException;
     Integer setAnswerUser(JSONObject json, Integer idsurvey) throws SQLException;
     Integer surveyClose(Integer idsurvey)throws SQLException;
+    ArrayList<String> getSurveyResult(Integer idsurvey)throws SQLException;
 
 }

@@ -1,6 +1,10 @@
 package it.univaq.disim.controller;
 
+import it.univaq.disim.dao.Interface.SurveyInterface;
+import it.univaq.disim.dao.SurveyDao;
 import it.univaq.disim.model.SurveyModel;
+import it.univaq.disim.security.SecurityLayer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +17,26 @@ import java.util.ArrayList;
 
 @WebServlet(name = "homeController")
 public class homeController extends HttpServlet {
+    SurveyInterface surveydao = new SurveyDao();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        processRequest(request,response);
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response){
         HttpSession session=request.getSession();
         try {
-            ArrayList<SurveyModel> list = new ContentLoaderController().loadHome((Integer) session.getAttribute("userID"));
+            ArrayList<SurveyModel> list = surveydao.getSurveyByUser((Integer) session.getAttribute("userID"), "home");
             request.setAttribute("list",list);
             request.getRequestDispatcher("jsp/home.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
+            list.clear();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (SQLException e) {
-            throw new ServletException("Retrieving products failed!", e);
+            e.printStackTrace();
         }
     }
 

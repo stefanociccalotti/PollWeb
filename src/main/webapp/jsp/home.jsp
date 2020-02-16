@@ -2,7 +2,6 @@
 <%@ page import="it.univaq.disim.controller.homeController" %>
 <%@ page import="it.univaq.disim.model.SurveyModel" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.univaq.disim.controller.ContentLoaderController" %>
 
 <jsp:include page="frame.jsp" />
 
