@@ -114,7 +114,8 @@ document.onreadystatechange = () => {
 
         function updateSurvey() {
 
-            let surveyObj = createSurveyJson();
+            let surveyObj = createSurveyObj();
+
             let data = JSON.stringify(surveyObj);
             let http_request;
 
@@ -157,9 +158,19 @@ document.onreadystatechange = () => {
 
         }
 
-        function createSurveyJson() {
+        function createSurveyObj() {
 
             let questionsCollection = document.getElementsByClassName('selected-question');
+            let survey = new Object();
+
+            survey.id = getSurveyId();
+            survey.url = '';
+            survey.privacy = checkSurveyPrivacy();
+            survey.status = 'salvato';
+            survey.title = document.getElementById('surveyTitle').value;
+            survey.opening = document.getElementById('surveyOpening').value;
+            survey.closing = document.getElementById('surveyClosing').value;
+
             let questions = new Object();
             let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
             let j = 1;
@@ -177,7 +188,9 @@ document.onreadystatechange = () => {
                 //TODO: si può comunicare all'utente che alcune domande non sono selezionate.
             }
 
-            return questions;
+            survey.questions = questions;
+
+            return survey;
 
         }
 
@@ -188,7 +201,6 @@ document.onreadystatechange = () => {
             this.text = getJsonStr(questionsItem);
             this.note = questionsItem.getElementsByClassName('questionNote').item(0).value;
         }
-
 
 //====================================================FUNZIONI PER PULIRE IL CODICE====================================================//
 
@@ -213,6 +225,17 @@ document.onreadystatechange = () => {
         function checkMandatoryQuestion(questionsItem) {
             if(questionsItem.getElementsByClassName('mandatoryCheckbox').item(0).checked) return 1;
             else return 0;
+        }
+
+        function checkSurveyPrivacy() {
+            if(document.getElementById('surveyPrivacy').checked) return 1;
+            else return 0;
+        }
+
+        function getSurveyId() {
+            let url_string = window.location.href;
+            let url = new URL(url_string);
+            return parseInt(url.search.split('=')[1]);
         }
 
         function getJsonStr(questionsItem) {

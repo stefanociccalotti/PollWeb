@@ -42,7 +42,7 @@ public class SurveyEditorController extends HttpServlet {
                 request.setAttribute("code",fullSurvey.get(3));//TODO: vedere se code serve e terminare la modifica aggiungendo error.jsp
                 request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
                 request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
-                request.setAttribute("printAll",printFullSurvey(fullSurvey));
+                //request.setAttribute("printAll",printFullSurvey(fullSurvey));
 
                 request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
 
@@ -57,39 +57,27 @@ public class SurveyEditorController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
         String data = request.getParameter("data");
+        SurveyInterface surveyDao = new SurveyDao();
 
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        response.setStatus(200);
         try {
-            response.getWriter().write(data);
-        } catch (IOException e) {
+            Integer statusCode = surveyDao.insertSurveyAndQuestions(data);//TODO: non fare update, cancella tutte le domande e mettile nuove
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(statusCode);
+
+            try {
+                response.getWriter().write(statusCode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private String printFullSurvey(ArrayList<Object> fullSurvey) {
+    /*private String printFullSurvey(ArrayList<Object> fullSurvey) {
 
         String surveyP = "";
         String questionsP = "";
@@ -108,7 +96,7 @@ public class SurveyEditorController extends HttpServlet {
 
         return surveyP + questionsP + "_&_Code = " + codeP;
 
-    }
+    }*/
 
 }
 

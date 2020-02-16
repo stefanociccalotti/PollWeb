@@ -32,15 +32,15 @@
 
                             <div class="form-group">
                                 <label>Titolo *</label>
-                                <input type="text" class="form-control" placeholder="titolo del sondaggio ..." value="${survey.title}">
+                                <input id="surveyTitle" type="text" class="form-control" placeholder="titolo del sondaggio ..." value="${survey.title}">
                             </div>
                             <div class="form-group">
                                 <label>Testo di apertura</label>
-                                <textarea class="form-control" rows="5" placeholder="visualizzato dall'utente prima di compilare il sondaggio ...">${survey.opening}</textarea>
+                                <textarea id="surveyOpening" class="form-control" rows="5" placeholder="visualizzato dall'utente prima di compilare il sondaggio ...">${survey.opening}</textarea>
                             </div>
                             <div class="form-group survey-closing">
                                 <label>Testo di chiusura</label>
-                                <textarea class="form-control" rows="5" placeholder="visualizzato dopo la compilazione ...">${survey.closing}</textarea>
+                                <textarea id="surveyClosing" class="form-control" rows="5" placeholder="visualizzato dopo la compilazione ...">${survey.closing}</textarea>
                             </div>
 
                             <hr class="hr-heavy-separation">

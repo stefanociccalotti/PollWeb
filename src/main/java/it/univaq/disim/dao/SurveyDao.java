@@ -19,6 +19,26 @@ public class SurveyDao implements SurveyInterface {
     PreparedStatement st;
 
     @Override
+    public Integer insertSurveyAndQuestions(String data) throws SQLException {
+
+        Integer statusCode = 200;
+        JsonObject jsonData = jsonFromString(data);
+
+        try {
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+
+            String sql = "{CALL spSurvey_update(?,?,?,?,?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return statusCode;
+    }
+
+    @Override
     public ArrayList<SurveyModel> getSurveyByUser(int id, String page) throws SQLException {
         try {
             DataSource dataSource = connectionPool.setUpPool();
