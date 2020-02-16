@@ -6,12 +6,13 @@ import java.util.Calendar;
 
 public class SecurityLayer {
 
-    public static HttpSession createSesion(HttpServletRequest request, String username, Integer userid){
+    public static HttpSession createSession(HttpServletRequest request, String username,String type, Integer userid){
 
         HttpSession s = request.getSession(true);
 
         s.setAttribute("userID",userid);
         s.setAttribute("user",username);
+        s.setAttribute("type",type);
         s.setAttribute("ip", request.getRemoteHost());
         s.setAttribute("inizio-sessione", Calendar.getInstance());
         s.setMaxInactiveInterval(20*60);

@@ -273,4 +273,24 @@ public class UserDao implements UserInterface {
         return result;
 
     }
+
+    @Override
+    public String getTypeUser(String u) throws SQLException {
+        try {
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        String sql="SELECT type from user WHERE username=?";
+        st = conn.prepareStatement(sql);
+        st.setString(1,u);
+
+        ResultSet result = st.executeQuery();
+        result.next();
+        String type = result.getString("type");
+
+        return type;
+    }
 }

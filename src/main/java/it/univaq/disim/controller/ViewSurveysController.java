@@ -3,14 +3,18 @@ package it.univaq.disim.controller;
 import it.univaq.disim.dao.Interface.SurveyInterface;
 import it.univaq.disim.dao.SurveyDao;
 import it.univaq.disim.model.SurveyModel;
-
+import org.apache.commons.io.FileUtils;
+import org.json.*;
+import org.json.CDL;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -38,6 +42,38 @@ public class ViewSurveysController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
+        String action = request.getParameter("action");
+        processRequest(request,response, action);
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
+        switch(action){
+            case "viewresult":
+                action_viewResult(request,response);
+                break;
+            case "closesurvey":
+                action_closeSurvey(request,response);
+                break;
+            default:
+        }
+
+    }
+
+    private void action_viewResult(HttpServletRequest request, HttpServletResponse response) {
+        Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
+        try {
+            ArrayList<String> listanswer = surveyDao.getSurveyResult(idsurvey);
+            JSON2CSV(listanswer,idsurvey);
+            response.sendRedirect("viewSurveys");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void action_closeSurvey(HttpServletRequest request, HttpServletResponse response) {
         Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
         try {
             surveyDao.surveyClose(idsurvey);
@@ -47,6 +83,17 @@ public class ViewSurveysController extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private void JSON2CSV(ArrayList<String> listanswer, Integer id){
+        File file=new File("C:/Users/cakes/Desktop/answerSurvey"+id+".csv");
+            try {
+                FileUtils.writeStringToFile(file, String.valueOf(listanswer), Charset.defaultCharset());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
     }
 }

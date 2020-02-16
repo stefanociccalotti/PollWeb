@@ -2,6 +2,8 @@ package it.univaq.disim.controller;
 
 import it.univaq.disim.dao.Interface.UserInterface;
 import it.univaq.disim.dao.UserDao;
+import it.univaq.disim.security.SecurityLayer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet(name = "loginController")
 public class loginController extends HttpServlet {
@@ -17,23 +20,41 @@ public class loginController extends HttpServlet {
     private UserInterface dao = new UserDao();
     String uri ="";
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String surveyURL = request.getParameter("url");
-        System.out.println(surveyURL);
+
         if(surveyURL == null){
-            response.sendRedirect("/web-engineering-pollweb/");
+            try {
+                response.sendRedirect("/web-engineering-pollweb/");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }else{
             request.setAttribute("url",surveyURL);
-            request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
+            try {
+                request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
         String action = request.getParameter("action");
-        processRequest(request,response,action);
+        try {
+            processRequest(request,response,action);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response,String action) throws IOException, ServletException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response,String action) throws IOException, ServletException, SQLException {
 
         switch(action){
             case "loginclient":
@@ -41,7 +62,6 @@ public class loginController extends HttpServlet {
                 break;
             default:
                 action_login(request,response);
-
         }
     }
 
@@ -88,16 +108,15 @@ public class loginController extends HttpServlet {
         }
 
     }
-    protected void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
 
         Integer iduser = dao.loginQuery(user,pass);
+        String type = dao.getTypeUser(user);
 
         if(iduser != null){
-            HttpSession session=request.getSession();
-            session.setAttribute("userID",iduser);
-            session.setAttribute("user",user);
+            SecurityLayer.createSession(request,user,type,iduser);
         }
 
         //RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");

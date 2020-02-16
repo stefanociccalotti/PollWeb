@@ -15,17 +15,19 @@ import java.sql.SQLException;
 
 @WebServlet(name = "profileController")
 public class profileController extends HttpServlet {
+   private UserInterface userdao = new UserDao();
 
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session=request.getSession();
+
+        UserModel userinfo = userdao.getUserInfo((Integer) session.getAttribute("userID"));
+        request.setAttribute("userinfo",userinfo);
         try {
-            UserModel userinfo = ContentLoaderController.loadProfile((Integer) session.getAttribute("userID"));
-            System.out.println(1);
-            request.setAttribute("userinfo",userinfo);
             request.getRequestDispatcher("jsp/profile.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
-        } catch (SQLException e) {
-            throw new ServletException("Retrieving products failed!", e);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
