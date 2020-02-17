@@ -34,7 +34,7 @@
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="login">
                 <input type="hidden" name="action" value="loginclient"/>
-                <input type="hidden" name="url" value="${url}"/>
+                <input type="hidden" name="survey" value="${survey}"/>
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>

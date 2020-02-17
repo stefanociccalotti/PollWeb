@@ -26,7 +26,7 @@ public class surveyClientController extends HttpServlet {
     UserInterface userDao = new UserDao();
     String uri ="";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String surveyURL = request.getParameter("url");
+        String surveyURL = request.getParameter("survey");
         HttpSession session=request.getSession();
         String logCheck = (String) session.getAttribute("client");
 
@@ -40,7 +40,7 @@ public class surveyClientController extends HttpServlet {
 
                 if (s.getPrivacy().equals("riservato") && logCheck == null) {
                     //il sondaggio è privato quindi mando l'utente alla pagina di login
-                    request.setAttribute("url", surveyURL);
+                    request.setAttribute("survey", surveyURL);
                     request.getRequestDispatcher("login").forward(request, response);
                     //response.sendRedirect("loginclient?url="+surveyURL);
 
