@@ -1,5 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ page import="it.univaq.disim.controller.homeController" %>
+<%@ page import="it.univaq.disim.controller.HomeController" %>
 <%@ page import="it.univaq.disim.model.SurveyModel" %>
 <%@ page import="java.util.ArrayList" %>
 

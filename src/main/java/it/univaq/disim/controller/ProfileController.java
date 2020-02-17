@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "profileController")
-public class profileController extends HttpServlet {
+public class ProfileController extends HttpServlet {
    private UserInterface userdao = new UserDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {

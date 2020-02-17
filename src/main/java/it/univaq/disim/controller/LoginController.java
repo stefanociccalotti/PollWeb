@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "loginController")
-public class loginController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     private UserInterface dao = new UserDao();
     String uri ="";

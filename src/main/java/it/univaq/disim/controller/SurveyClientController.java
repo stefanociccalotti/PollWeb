@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 @WebServlet(name = "surveyClientController")
-public class surveyClientController extends HttpServlet {
+public class SurveyClientController extends HttpServlet {
     SurveyInterface surveyDao = new SurveyDao();
     UserInterface userDao = new UserDao();
     String uri ="";
