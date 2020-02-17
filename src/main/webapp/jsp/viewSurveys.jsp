@@ -52,7 +52,7 @@
                                                 <i class="m-r-0 mdi mdi-menu-down"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                                <c:if test="${!item.privacymvn tomcat7:run.equals('pubblico')}"><a class="dropdown-item" href="participantsEditor?surveyid=${item.id}"><i class="ti-agenda m-r-5 m-l-5"></i> Modifica Partecipanti</a></c:if>
+                                                <c:if test="${!item.privacy.equals('pubblico')}"><a class="dropdown-item" href="participantsEditor?surveyid=${item.id}"><i class="ti-agenda m-r-5 m-l-5"></i> Modifica Partecipanti</a></c:if>
                                                 <c:if test="${!item.status.equals('pubblicato')}"><a class="dropdown-item" href="surveyEditor?survey=${item.id}"><i class="ti-write m-r-5 m-l-5"></i> Modifica Contenuto</a></c:if>
                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-eye m-r-5 m-l-5"></i> Preview Sondaggio</a>
                                                 <form action="viewSurveys" method="POST"><input type="hidden" name="surveyid" value="${item.id}" /><input type="hidden" name="action" value="viewresult" /><a class="dropdown-item" href="javascript:void(0)" onclick="this.parentNode.submit()"><i class="ti-search m-r-5 m-l-5"></i> Vedi Risultato</a></form>
