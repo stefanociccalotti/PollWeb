@@ -21,7 +21,6 @@ public class SurveyDao implements SurveyInterface {
     @Override
     public Integer insertSurveyAndQuestions(String data) throws SQLException {
 
-        Integer statusCode = 200;
         JsonObject jsonData = jsonFromString(data);
 
         try {
@@ -30,12 +29,55 @@ public class SurveyDao implements SurveyInterface {
 
             String sql = "{CALL spSurvey_update(?,?,?,?,?,?)}";
             CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setInt(1,jsonData.getInt("id"));
+            stmt.setInt(2,jsonData.getInt("privacy"));
+            stmt.setString(3,jsonData.getString("status"));
+            stmt.setString(4,jsonData.getString("title"));
+            stmt.setString(5,jsonData.getString("opening"));
+            stmt.setString(6,jsonData.getString("closing"));
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+
+            Integer code = rs.getInt("code");
+
+                if(code == 200) {
+
+                    String dsql = "{CALL spQuestion_deleteBySurvey(?)}";
+                    CallableStatement dstmt = conn.prepareCall(dsql);
+
+                    dstmt.setInt(1,jsonData.getInt("id"));
+
+                    dstmt.executeQuery();
+
+                    JsonArray jsonQuestions = jsonData.getJsonArray("questions");
+
+                    for(int i = 0; i < jsonQuestions.size(); i++) {
+                        JsonObject question = (JsonObject) jsonQuestions.get(i);
+
+                        String qsql = "{CALL spQuestion_insert(?,?,?,?,?)}";
+                        CallableStatement qstmt = conn.prepareCall(qsql);
+
+                        qstmt.setInt(1,question.getInt("mandatory"));
+                        qstmt.setInt(2,question.getInt("number"));
+                        qstmt.setString(3,question.getJsonObject("text").toString());
+                        qstmt.setString(4,question.getString("note"));
+                        qstmt.setInt(5,jsonData.getInt("id"));
+
+                        qstmt.executeQuery();
+
+                    }
+
+                }
+
+            return code;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return statusCode;
+        return 200;
+
     }
 
     @Override
@@ -80,7 +122,7 @@ public class SurveyDao implements SurveyInterface {
             rs.next();
 
             Integer code = rs.getInt("code");
-
+            System.out.println(code);
             switch (code) {
                 case 2:
                     //CODICE 2: SONDAGGIO ESISTE E CI SONO DOMANDE. INOLTRE SALVO IL SONDAGGIO SOLO QUANDO CICLO SULLA PRIMA ROW.

@@ -94,7 +94,7 @@ document.onreadystatechange = () => {
 
         function toggleQuestions() {
 
-            toggleQuestions = document.getElementsByClassName('toggleQuestion');
+            let toggleQuestions = document.getElementsByClassName('toggleQuestion');
 
             for (let i = 0; i < toggleQuestions.length; i++) {
                 toggleQuestions[i].onclick = () => {
@@ -115,6 +115,8 @@ document.onreadystatechange = () => {
         function updateSurvey() {
 
             let surveyObj = createSurveyObj();
+
+            console.log(surveyObj);
 
             let data = JSON.stringify(surveyObj);
             let http_request;
@@ -150,9 +152,11 @@ document.onreadystatechange = () => {
 
             if (http_request.readyState == 4) {
                 if (http_request.status == 200) {
+                    console.log(http_request);
                     alert(http_request.responseText);
                 } else {
-                    alert('Si è verificato un problema con la richiesta');
+                    console.log('Si è verificato un problema con la richiesta');
+                    console.log(http_request.responseText);
                 }
             }
 
@@ -164,16 +168,14 @@ document.onreadystatechange = () => {
             let survey = new Object();
 
             survey.id = getSurveyId();
-            survey.url = '';
             survey.privacy = checkSurveyPrivacy();
             survey.status = 'salvato';
             survey.title = document.getElementById('surveyTitle').value;
             survey.opening = document.getElementById('surveyOpening').value;
             survey.closing = document.getElementById('surveyClosing').value;
 
-            let questions = new Object();
+            let questions = [];
             let typesOfQuestion = ['type-single-answer','type-multiple-answer','type-open-question','type-number-question','type-date-question'];
-            let j = 1;
 
             for(let i = 0; i < questionsCollection.length; i++) {
 
@@ -182,8 +184,7 @@ document.onreadystatechange = () => {
                 let toggle = questionsItem.style.display;
 
                 if(toggle != 'none' && typesOfQuestion.includes(questionType)) {
-                    questions["Question " + (j)] = new Question(questionsItem);
-                    j++;
+                    questions[i] = new Question(questionsItem);
                 }
                 //TODO: si può comunicare all'utente che alcune domande non sono selezionate.
             }

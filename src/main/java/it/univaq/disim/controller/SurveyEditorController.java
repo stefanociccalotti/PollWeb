@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -61,15 +62,18 @@ public class SurveyEditorController extends HttpServlet {
 
         try {
             Integer statusCode = surveyDao.insertSurveyAndQuestions(data);//TODO: non fare update, cancella tutte le domande e mettile nuove
+            PrintWriter out = null;
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
             response.setStatus(statusCode);
 
             try {
-                response.getWriter().write(statusCode);
+                out = response.getWriter();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            if(out != null && statusCode == 200) out.write("Sondaggio modificato con successo");
 
         } catch (SQLException e) {
             e.printStackTrace();
