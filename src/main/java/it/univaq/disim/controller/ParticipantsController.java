@@ -84,6 +84,7 @@ public class ParticipantsController extends HttpServlet {
         try {
             lisparticipants = userdao.getSelParticipants(questid);
             request.setAttribute("lisparticipants",lisparticipants);
+            request.setAttribute("pageCss","./resources/dist/css/participants.css");
             request.getRequestDispatcher("jsp/participants.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
         } catch (SQLException e) {
             e.printStackTrace();

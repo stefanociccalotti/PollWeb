@@ -1,0 +1,14 @@
+.pro-pic {
+    display: flex;
+    flex-direction: row;
+    color: #4F5467!important;
+    font-size: 1.5em!important;
+    font-weight: 500;
+}
+.table{
+    font-size:1.2em!important;
+}
+.label{
+    padding: .3rem .8rem;
+    font-size:100%!important;
+}

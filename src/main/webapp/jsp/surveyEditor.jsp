@@ -93,9 +93,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    window.numberOfQuestions = "${numberOfQuestions}";
-    const array = "${printAll}".split("_&_");
-    array.forEach(element => console.log(element));
-</script>
 <jsp:include page="footer.jsp" />

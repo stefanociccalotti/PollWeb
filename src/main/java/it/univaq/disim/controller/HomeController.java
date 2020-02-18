@@ -29,6 +29,7 @@ public class HomeController extends HttpServlet {
         try {
             ArrayList<SurveyModel> list = surveydao.getSurveyByUser((Integer) session.getAttribute("userID"), "home");
             request.setAttribute("list",list);
+            request.setAttribute("pageCss","./resources/dist/css/home.css");
             request.getRequestDispatcher("jsp/home.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
             list.clear();
         } catch (ServletException e) {

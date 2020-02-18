@@ -44,6 +44,7 @@ public class ProfileController extends HttpServlet {
         UserModel userinfo = userdao.getUserInfo((Integer) session.getAttribute("userID"));
         request.setAttribute("userinfo",userinfo);
         try {
+            request.setAttribute("pageCss","./resources/dist/css/profile.css");
             request.getRequestDispatcher("jsp/profile.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
         } catch (ServletException e) {
             e.printStackTrace();

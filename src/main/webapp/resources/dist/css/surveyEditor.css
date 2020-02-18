@@ -92,3 +92,10 @@ hr.hr-soft-separation {
 .create-question-container input:hover {
     background-color: rgba(195, 0, 0, 0.65);
 }
+.pro-pic {
+    display: flex;
+    flex-direction: row;
+    color: #4F5467!important;
+    font-size: 1.5em!important;
+    font-weight: 500;
+}

@@ -141,6 +141,7 @@ public class CuratorsController extends HttpServlet {
         try {
             listcurators = userdao.getCurators();
             request.setAttribute("curatorslist",listcurators);
+            request.setAttribute("pageCss","./resources/dist/css/curators.css");
             request.getRequestDispatcher("jsp/curators.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
         } catch (SQLException e) {
             throw new ServletException("Retrieving products failed!", e);
