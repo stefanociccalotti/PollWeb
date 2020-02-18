@@ -59,9 +59,11 @@ public class SurveyEditorController extends HttpServlet {
 
         String data = request.getParameter("data");
         SurveyInterface surveyDao = new SurveyDao();
+        HttpSession s = request.getSession(true);
+        Integer userID = (Integer) s.getAttribute("userID");
 
         try {
-            Integer statusCode = surveyDao.insertSurveyAndQuestions(data);//TODO: non fare update, cancella tutte le domande e mettile nuove
+            Integer statusCode = surveyDao.submitSurveyAndQuestions(data,userID);//TODO: non fare update, cancella tutte le domande e mettile nuove
             PrintWriter out = null;
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
@@ -73,7 +75,7 @@ public class SurveyEditorController extends HttpServlet {
                 e.printStackTrace();
             }
 
-            if(out != null && statusCode == 200) out.write("Sondaggio modificato con successo");
+            if(out != null && statusCode == 200) out.write("Richiesta eseguita con successo!");
 
         } catch (SQLException e) {
             e.printStackTrace();

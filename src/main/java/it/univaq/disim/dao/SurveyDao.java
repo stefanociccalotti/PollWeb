@@ -19,15 +19,85 @@ public class SurveyDao implements SurveyInterface {
     PreparedStatement st;
 
     @Override
-    public Integer insertSurveyAndQuestions(String data) throws SQLException {
+    public Integer submitSurveyAndQuestions(String data, Integer userID) throws SQLException {
 
         JsonObject jsonData = jsonFromString(data);
+        Integer code = 500;
 
-        try {
+        try {//TODO: aggiungere controllo sull'utente (deve combaciare chi ha creato il sondaggio con l'id che si vuole modificare)
+
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
 
-            String sql = "{CALL spSurvey_update(?,?,?,?,?,?)}";
+            if(!jsonData.isNull("id")) {
+                code = updateSurvey(jsonData);
+                if(code == 200) updateQuestions(jsonData.getJsonArray("questions"),jsonData.getInt("id"));
+            } else {
+                ResultSet rs = insertSurvey(jsonData, userID);
+                rs.next();
+                code = rs.getInt("code");
+                if(code == 200) insertQuestions(jsonData.getJsonArray("questions"),rs.getInt("survey"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return code;
+
+    }
+
+    private void insertQuestions(JsonArray jsonQuestions, Integer survey) {
+        try {
+
+            for(int i = 0; i < jsonQuestions.size(); i++) {
+                JsonObject question = (JsonObject) jsonQuestions.get(i);
+
+                String sql = "{CALL spQuestion_insert(?,?,?,?,?)}";
+                CallableStatement stmt = conn.prepareCall(sql);
+
+                stmt.setInt(1,question.getInt("mandatory"));
+                stmt.setInt(2,question.getInt("number"));
+                stmt.setString(3,question.getJsonObject("text").toString());
+                stmt.setString(4,question.getString("note"));
+                stmt.setInt(5,survey);
+
+                stmt.executeQuery();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ResultSet insertSurvey(JsonObject jsonData, Integer userID) {
+
+        String sql = "{CALL spSurvey_insert(?,?,?,?,?,?,?)}";//url,privacy,status,title,opening,closing,user
+        ResultSet rs = null;
+
+        try {
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1,"");
+            stmt.setInt(2,jsonData.getInt("privacy"));
+            stmt.setString(3,jsonData.getString("status"));
+            stmt.setString(4,jsonData.getString("title"));
+            stmt.setString(5,jsonData.getString("opening"));
+            stmt.setString(6,jsonData.getString("closing"));
+            stmt.setInt(7,userID);
+            rs = stmt.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
+    private Integer updateSurvey(JsonObject jsonData) {
+
+        String sql = "{CALL spSurvey_update(?,?,?,?,?,?)}";
+        Integer code = 500;
+
+        try {
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setInt(1,jsonData.getInt("id"));
             stmt.setInt(2,jsonData.getInt("privacy"));
@@ -39,45 +109,28 @@ public class SurveyDao implements SurveyInterface {
 
             rs.next();
 
-            Integer code = rs.getInt("code");
+            code = rs.getInt("code");
 
-                if(code == 200) {
-
-                    String dsql = "{CALL spQuestion_deleteBySurvey(?)}";
-                    CallableStatement dstmt = conn.prepareCall(dsql);
-
-                    dstmt.setInt(1,jsonData.getInt("id"));
-
-                    dstmt.executeQuery();
-
-                    JsonArray jsonQuestions = jsonData.getJsonArray("questions");
-
-                    for(int i = 0; i < jsonQuestions.size(); i++) {
-                        JsonObject question = (JsonObject) jsonQuestions.get(i);
-
-                        String qsql = "{CALL spQuestion_insert(?,?,?,?,?)}";
-                        CallableStatement qstmt = conn.prepareCall(qsql);
-
-                        qstmt.setInt(1,question.getInt("mandatory"));
-                        qstmt.setInt(2,question.getInt("number"));
-                        qstmt.setString(3,question.getJsonObject("text").toString());
-                        qstmt.setString(4,question.getString("note"));
-                        qstmt.setInt(5,jsonData.getInt("id"));
-
-                        qstmt.executeQuery();
-
-                    }
-
-                }
-
-            return code;
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 200;
+        return code;
+    }
 
+    private void updateQuestions(JsonArray jsonQuestions, Integer survey) {
+
+        try {
+            String sql = "{CALL spQuestion_deleteBySurvey(?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setInt(1,survey);
+            stmt.executeQuery();
+
+            insertQuestions(jsonQuestions, survey);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

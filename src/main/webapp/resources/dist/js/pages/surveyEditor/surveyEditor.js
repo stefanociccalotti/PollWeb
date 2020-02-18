@@ -12,7 +12,7 @@ document.onreadystatechange = () => {
         setAddSingAns();
         setAddMultAns();
 
-        document.getElementById('submit').onclick = updateSurvey;
+        document.getElementById('submit').onclick = submitSurvey;
 
         //TODO - NOTA: QUI' IMPOSTO LA SELECT PER AGGIUNGERE UNA DOMANDA, POI RICHIAMO setQuestionsToSelect()
 
@@ -112,11 +112,9 @@ document.onreadystatechange = () => {
             }
         }
 
-        function updateSurvey() {
+        function submitSurvey() {
 
             let surveyObj = createSurveyObj();
-
-            console.log(surveyObj);
 
             let data = JSON.stringify(surveyObj);
             let http_request;
@@ -152,11 +150,9 @@ document.onreadystatechange = () => {
 
             if (http_request.readyState == 4) {
                 if (http_request.status == 200) {
-                    console.log(http_request);
                     alert(http_request.responseText);
                 } else {
-                    console.log('Si è verificato un problema con la richiesta');
-                    console.log(http_request.responseText);
+                    alert('Si è verificato un problema con la richiesta');
                 }
             }
 
@@ -234,9 +230,9 @@ document.onreadystatechange = () => {
         }
 
         function getSurveyId() {
-            let url_string = window.location.href;
-            let url = new URL(url_string);
-            return parseInt(url.search.split('=')[1]);
+            let url_search = new URL(window.location.href).search;
+            if(url_search) return parseInt(url_search.split('=')[1]);
+            else return null;
         }
 
         function getJsonStr(questionsItem) {
