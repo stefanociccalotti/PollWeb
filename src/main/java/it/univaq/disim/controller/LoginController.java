@@ -21,24 +21,15 @@ public class LoginController extends HttpServlet {
     String uri ="";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        String surveyURL = request.getParameter("survey");
-
-
-        if(surveyURL == null){
-            try {
-                response.sendRedirect("/web-engineering-pollweb/");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else{
-            request.setAttribute("survey",surveyURL);
-            try {
-                request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        String action = "";
+        try {
+            processRequest(request,response,action);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -61,8 +52,32 @@ public class LoginController extends HttpServlet {
             case "loginclient":
                 action_loginclient(request,response);
                 break;
-            default:
+            case "login":
                 action_login(request,response);
+                break;
+            default:
+                action_getLogin(request,response);
+        }
+    }
+
+    private void action_getLogin(HttpServletRequest request, HttpServletResponse response) {
+        String surveyURL = request.getParameter("survey");
+
+        if(surveyURL == null){
+            try {
+                response.sendRedirect("/web-engineering-pollweb/");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            request.setAttribute("survey",surveyURL);
+            try {
+                request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

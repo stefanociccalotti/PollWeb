@@ -23,7 +23,29 @@ public class ViewSurveysController extends HttpServlet {
     SurveyInterface surveyDao = new SurveyDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        processRequest(request,response,"");
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response){
+        String action = request.getParameter("action");
+        processRequest(request,response, action);
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
+        switch(action){
+            case "viewresult":
+                action_viewResult(request,response);
+                break;
+            case "closesurvey":
+                action_closeSurvey(request,response);
+                break;
+            default:
+                action_getViewSurvey(request,response);
+        }
+
+    }
+
+    private void action_getViewSurvey(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
         SurveyInterface surveyDao = new SurveyDao();
@@ -42,25 +64,6 @@ public class ViewSurveysController extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
-        String action = request.getParameter("action");
-        processRequest(request,response, action);
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
-        switch(action){
-            case "viewresult":
-                action_viewResult(request,response);
-                break;
-            case "closesurvey":
-                action_closeSurvey(request,response);
-                break;
-            default:
-        }
-
     }
 
     private void action_viewResult(HttpServletRequest request, HttpServletResponse response) {

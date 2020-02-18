@@ -3,6 +3,8 @@ package it.univaq.disim.controller;
 import it.univaq.disim.dao.Interface.UserInterface;
 import it.univaq.disim.dao.UserDao;
 import it.univaq.disim.model.UserModel;
+import it.univaq.disim.security.SecurityLayer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +20,25 @@ public class ProfileController extends HttpServlet {
    private UserInterface userdao = new UserDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        processRequest("",request,response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        String action = request.getParameter("action");
+        processRequest(action,request,response);
+    }
+
+    protected void processRequest(String action,HttpServletRequest request, HttpServletResponse response){
+        switch(action){
+            case "updateprofile":
+                action_updateprofile(request,response);
+                break;
+            default:
+                action_getProfile(request,response);
+        }
+    }
+
+    private void action_getProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session=request.getSession();
 
         UserModel userinfo = userdao.getUserInfo((Integer) session.getAttribute("userID"));
@@ -31,22 +52,23 @@ public class ProfileController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        PrintWriter out;
+    private void action_updateprofile(HttpServletRequest request, HttpServletResponse response) {
+
         try {
+            PrintWriter out;
             out = response.getWriter();
 
-        HttpSession session=request.getSession();
+            HttpSession session=request.getSession();
 
-        UserModel userup = new UserModel();
-        userup.setId((Integer) session.getAttribute("userID"));
-        userup.setName(request.getParameter("nome"));
-        userup.setSurname(request.getParameter("cognome"));
-        userup.setMail(request.getParameter("email"));
-        userup.setPassword(request.getParameter("password"));
-        userup.setBirthday(request.getParameter("datanascita"));
+            UserModel userup = new UserModel();
+            userup.setId((Integer) session.getAttribute("userID"));
+            userup.setName(request.getParameter("nome"));
+            userup.setSurname(request.getParameter("cognome"));
+            userup.setMail(request.getParameter("email"));
+            userup.setPassword(request.getParameter("password"));
+            userup.setBirthday(request.getParameter("datanascita"));
 
-        UserInterface userdao = new UserDao();
+            UserInterface userdao = new UserDao();
 
 
             Integer result = userdao.updateUser(userup);

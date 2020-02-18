@@ -60,16 +60,17 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material" method="post" action="${pageContext.request.contextPath}/profile">
+                                <input name="action" type="hidden" value="updateprofile" />
                                 <div class="form-group">
                                     <label class="col-md-12">Nome</label>
                                     <div class="col-md-12">
-                                        <input name="nome" type="text" value="<c:out value="${userinfo.name} " />" class="form-control form-control-line">
+                                        <input name="nome" type="text" value="<c:out value="${userinfo.name}" />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Cognome</label>
                                     <div class="col-md-12">
-                                        <input name="cognome" type="text" value="<c:out value="${userinfo.surname} " />" class="form-control form-control-line">
+                                        <input name="cognome" type="text" value="<c:out value="${userinfo.surname}" />" class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">

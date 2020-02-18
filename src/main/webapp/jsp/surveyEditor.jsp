@@ -30,6 +30,7 @@
                                 </div>
                             </div>
 
+                            <input name="action" type="hidden" value="updatesurvey"/>
                             <div class="form-group">
                                 <label>Titolo *</label>
                                 <input id="surveyTitle" type="text" class="form-control" placeholder="titolo del sondaggio ..." value="${survey.title}">
@@ -79,7 +80,7 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-12" style="display:flex;justify-content: center;">
-                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="Crea Sondaggio"/>
+                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="${namebtn}"/>
                                         </div>
                                     </div>
                                 </c:otherwise>

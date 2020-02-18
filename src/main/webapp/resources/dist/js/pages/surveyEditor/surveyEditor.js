@@ -144,7 +144,7 @@ document.onreadystatechange = () => {
             http_request.open('POST', 'http://localhost:8080/web-engineering-pollweb/surveyEditor', true);
             http_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             http_request.onreadystatechange = function() { alertContents(http_request); };
-            http_request.send('data='+encodeURIComponent(data));
+            http_request.send('data='+encodeURIComponent(data)+'&action=updatesurvey');
 
         }
 

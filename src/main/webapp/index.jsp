@@ -33,7 +33,7 @@
     <div class="container-login100" style="background-image: url('./resources/images/bg-01.jpg');">
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="login">
-                <input type="hidden" name="action" value=""/>
+                <input type="hidden" name="action" value="login"/>
                 <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>

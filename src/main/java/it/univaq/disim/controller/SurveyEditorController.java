@@ -20,24 +20,46 @@ import java.util.ArrayList;
 public class SurveyEditorController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+        processRequest(request,response,"");
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        String action = request.getParameter("action");
+        processRequest(request,response,action);
+    }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
+        switch(action){
+            case "updatesurvey":
+                action_updateSurvey(request,response);
+                break;
+            case "createsurvey":
+                action_createSurvey(request,response);
+                break;
+            default:
+                action_getSurveyEditor(request,response);
+        }
+
+    }
+
+    private void action_createSurvey(HttpServletRequest request, HttpServletResponse response) {
+    }
+
+    private void action_getSurveyEditor(HttpServletRequest request, HttpServletResponse response) {
         SurveyInterface surveyDao = new SurveyDao();
         String surveyId = request.getParameter("survey");
 
-        if (surveyId == null  || surveyId.equals("null") || surveyId.equals("")) {
+        if (surveyId == null ) {
 
             try {
-                request.setAttribute("mex","SONDAGGIO NON DISPONIBILE!!");
-                request.setAttribute("submex","IL SONDAGGIO NON E' PRESENTE NEL DATABASE!");
-                request.setAttribute("uri","http://localhost:8080/web-engineering-pollweb/viewSurveys");
-
-                request.getRequestDispatcher("jsp/message.jsp").forward(request, response);
+                request.setAttribute("namebtn","Crea Sondaggio");
+                request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
+                request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
+                request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
         } else {
 
@@ -45,6 +67,7 @@ public class SurveyEditorController extends HttpServlet {
 
                 ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById( Integer.parseInt(surveyId) );
 
+                request.setAttribute("namebtn","Modifica Sondaggio");
                 request.setAttribute("survey", fullSurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
                 request.setAttribute("questions",fullSurvey.get(1));
                 request.setAttribute("numberOfQuestions", fullSurvey.get(2));
@@ -64,11 +87,9 @@ public class SurveyEditorController extends HttpServlet {
             }
 
         }
-
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
+    private void action_updateSurvey(HttpServletRequest request, HttpServletResponse response) {
         String data = request.getParameter("data");
         SurveyInterface surveyDao = new SurveyDao();
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -41,41 +42,40 @@ public class CuratorsController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response,String action) throws IOException, ServletException {
 
         switch(action){
-
             case "delete":
-                Integer userid = Integer.valueOf(request.getParameter("userid"));
-                action_delete_gestore(userid,request,response);
+                action_delete_gestore(request,response);
                 break;
             case "update":
-                Integer userid2 = Integer.valueOf(request.getParameter("userid"));
-                UserModel ug = new UserModel();
-                ug.setId(userid2);
-                ug.setName(request.getParameter("nomeg"));
-                ug.setSurname(request.getParameter("cognomeg"));
-                ug.setUsername(request.getParameter("userg"));
-                ug.setMail(request.getParameter("mailg"));
-                action_update_gestore(ug,request,response);
+                action_update_gestore(request,response);
                 break;
             case "new":
-                UserModel newuser = new UserModel();
-                newuser.setUsername(request.getParameter("usernamen"));
-                newuser.setMail(request.getParameter("mailn"));
-                newuser.setPassword(request.getParameter("passwordn"));
-                action_create_gestore(newuser,request,response);
+                action_create_gestore(request,response);
                 break;
             default:
                 action_getgestori(request, response);
 
         }
     }
-    protected void action_create_gestore(UserModel newuser,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void action_create_gestore(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        UserModel newuser = new UserModel();
+        newuser.setUsername(request.getParameter("usernamen"));
+        newuser.setMail(request.getParameter("mailn"));
+        newuser.setPassword(request.getParameter("passwordn"));
         try{
+            PrintWriter out;
+            out = response.getWriter();
             Integer res = userdao.newUser(newuser);
             if(res == 1 ){
-                response.sendRedirect("curators");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Gestore Creato con successo!!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
+                //response.sendRedirect("curators");
             }else{
-                //STAMPO ERRORE A SCHERMO!!
-                System.out.println("errore!");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('ERRORE! Username/e-mail duplicata!!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
             }
         }catch(SQLException e){
             throw new ServletException("Retrieving products failed!", e);
@@ -83,28 +83,52 @@ public class CuratorsController extends HttpServlet {
 
     }
 
-    protected void action_delete_gestore(Integer userid,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void action_delete_gestore(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Integer userid = Integer.valueOf(request.getParameter("userid"));
         try{
+            PrintWriter out;
+            out = response.getWriter();
             Integer res = userdao.deleteUser(userid);
             if(res == 1 ){
-                response.sendRedirect("curators");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Gestore Eliminato con successo!!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
+                //response.sendRedirect("curators");
             }else{
-                //STAMPO ERRORE A SCHERMO!!
-                System.out.println("errore!");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('ERRORE INTERNO AL SERVER!!!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
             }
         }catch(SQLException e){
             throw new ServletException("Retrieving products failed!", e);
         }
 
     }
-    protected void action_update_gestore(UserModel gestoreup,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void action_update_gestore(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Integer userid2 = Integer.valueOf(request.getParameter("userid"));
+        UserModel ug = new UserModel();
+        ug.setId(userid2);
+        ug.setName(request.getParameter("nomeg"));
+        ug.setSurname(request.getParameter("cognomeg"));
+        ug.setUsername(request.getParameter("userg"));
+        ug.setMail(request.getParameter("mailg"));
         try{
-            Integer res = userdao.updateUser(gestoreup);
+            PrintWriter out;
+            out = response.getWriter();
+            Integer res = userdao.updateUser(ug);
             if(res == 1 ){
-                response.sendRedirect("curators");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Update Avvenuto con successo!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
+                //response.sendRedirect("curators");
             }else{
-                //STAMPO ERRORE A SCHERMO!!
-                System.out.println("errore!");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Errore durante l'update dei dati!!');");
+                out.println("location='/web-engineering-pollweb/curators';");
+                out.println("</script>");
             }
         }catch(SQLException e){
             throw new ServletException("Retrieving products failed!", e);
