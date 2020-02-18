@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.*;
 
 @WebServlet(name = "surveyClientController")
 public class SurveyClientController extends HttpServlet {
@@ -29,8 +28,6 @@ public class SurveyClientController extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         processRequest("sendanswer",request,response);
-
-
     }
 
     protected void processRequest(String action,HttpServletRequest request, HttpServletResponse response){
@@ -46,9 +43,11 @@ public class SurveyClientController extends HttpServlet {
     private void action_sendAnswer(HttpServletRequest request, HttpServletResponse response) {
         Enumeration<String> parameterNames = request.getParameterNames();
         HttpSession session = request.getSession();
+        TreeMap<String, JSONObject> answer = new TreeMap<>();
+        String idsurv = "";
+        Integer ids =0;
 
-        JSONObject jsonObj = new JSONObject(parameterNames);
-        jsonObj.put("user", session.getAttribute("client"));
+
         while (parameterNames.hasMoreElements()) {
 
             String paramName = parameterNames.nextElement();
@@ -56,22 +55,28 @@ public class SurveyClientController extends HttpServlet {
             String[] paramValues = request.getParameterValues(paramName);
 
             if (paramValues[0] == null || paramValues[0].equals("")) {
-                jsonObj = null;
                 break;
             }
-            jsonObj.put(paramName, paramValues);
+            if(paramName.equals("idans")){
+                idsurv = paramValues[0];
+                ids= Integer.parseInt(idsurv);
+            }else {
+                JSONObject jsonObj = new JSONObject(parameterNames);
+                jsonObj.put(paramName, paramValues);
+                answer.put(paramName, jsonObj);
+            }
+
             for (int i = 0; i < paramValues.length; i++) {
                 String paramValue = paramValues[i];
                 System.out.println(paramValue);
 
             }
         }
-        System.out.println(jsonObj);
         //mando tutto al db
 
-        if (jsonObj != null) {
+        if (answer != null) {
             try {
-                surveyDao.setAnswerUser(jsonObj, Integer.valueOf(request.getParameter("idans")));
+                surveyDao.setAnswerUser(answer, ids);
                 //cancello infine l'accesso visto che ha gia risposto al questionario
                 userDao.deleteParticipant((String) session.getAttribute("client"));
                 SecurityLayer.disposeSession(request);

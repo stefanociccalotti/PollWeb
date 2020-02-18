@@ -3,5 +3,5 @@
 
 <h4 class="card-title" style="font-weight: bolder"> ${requestScope.question.question}</h4>
 <div class="form-group date-answer">
-    <input type="date" name="${requestScope.question.question}" class="form-control" placeholder="...">
+    <input type="date" name="${requestScope.question.id}" class="form-control" placeholder="...">
 </div>

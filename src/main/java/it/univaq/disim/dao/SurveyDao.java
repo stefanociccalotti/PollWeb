@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.json.*;
 import javax.sql.DataSource;
 import java.io.StringReader;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SurveyDao implements SurveyInterface {
 
@@ -232,19 +235,40 @@ public class SurveyDao implements SurveyInterface {
     }
 
     @Override
-    public Integer setAnswerUser(JSONObject json,Integer ids) throws SQLException {
+    public Integer setAnswerUser(TreeMap<String,JSONObject> answer, Integer ids) {
         Integer rs =0;
+        String idcompiler ="";
+
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
-            String sql="INSERT INTO answer (id_compiler,text,question,survey) values(1,?,1,?)";
-            st = conn.prepareStatement(sql);
-            st.setString(1, String.valueOf(json));
-            st.setInt(2, ids);
-
-            //ritorno il sisultato della query
-            rs = st.executeUpdate();
-            //return rs.getInt("id");
+            String sql = "{CALL pollweb.spAnswer_insertFirst(?,?,?)}";
+            CallableStatement stmt = conn.prepareCall(sql);
+            stmt.setString(1, String.valueOf(answer.firstEntry().getValue()));
+            stmt.setInt(2, Integer.valueOf(answer.firstEntry().getKey()));
+            stmt.setInt(3, ids);
+            ResultSet resultSet = stmt.executeQuery();
+            while(resultSet.next()){
+                idcompiler = resultSet.getString("new_id_compiler");
+            }
+            if(idcompiler.equals("")){
+                return rs;
+            }else{
+                answer.pollFirstEntry();
+                for(Map.Entry<String,JSONObject> entry : answer.entrySet() ) {
+                    String key = entry.getKey();
+                    String value = String.valueOf(entry.getValue());
+                    System.out.println(value);
+                    String sql2 = "{CALL pollweb.spAnswer_insert(?,?,?,?)}";
+                    CallableStatement stmt2 = conn.prepareCall(sql2);
+                    stmt2.setInt(1, Integer.valueOf(idcompiler));
+                    stmt2.setString(2, value);
+                    stmt2.setInt(3, Integer.valueOf(key));
+                    stmt2.setInt(4, ids);
+                    stmt2.executeQuery();
+                     }
+                rs=1;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -271,8 +295,8 @@ public class SurveyDao implements SurveyInterface {
     }
 
     @Override
-    public ArrayList<String> getSurveyResult(Integer idsurvey) throws SQLException {
-        ArrayList<String> listanswer = new ArrayList<>();
+    public ArrayList<QuestionModel> getSurveyResult(Integer idsurvey){
+        ArrayList<QuestionModel> listanswer = new ArrayList<>();
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
@@ -281,8 +305,8 @@ public class SurveyDao implements SurveyInterface {
             stmt.setInt(1, idsurvey);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                listanswer.add(rs.getString("text"));
-                listanswer.add("\n");
+                QuestionModel tmp = new QuestionModel(rs.getInt("id_compiler"),0,0,"",null,rs.getString("text"),"",rs.getInt("number"));
+                listanswer.add(tmp);
             }
         }catch (Exception e){
             e.printStackTrace();

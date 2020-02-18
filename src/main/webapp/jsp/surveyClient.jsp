@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="idans" value="${surveyid}">
+            <input type="hidden" name="idans" value="${surveyid}"/>
 
             <c:if test="${questions != null}">
                                 <c:forEach items="${questions}" var="item">

@@ -2,6 +2,7 @@ package it.univaq.disim.controller;
 
 import it.univaq.disim.dao.Interface.SurveyInterface;
 import it.univaq.disim.dao.SurveyDao;
+import it.univaq.disim.model.QuestionModel;
 import it.univaq.disim.model.SurveyModel;
 import org.apache.commons.io.FileUtils;
 import org.json.*;
@@ -13,10 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @WebServlet(name = "ViewSurveysController")
 public class ViewSurveysController extends HttpServlet {
@@ -69,7 +73,7 @@ public class ViewSurveysController extends HttpServlet {
     private void action_viewResult(HttpServletRequest request, HttpServletResponse response) {
         Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
         try {
-            ArrayList<String> listanswer = surveyDao.getSurveyResult(idsurvey);
+            ArrayList<QuestionModel> listanswer = surveyDao.getSurveyResult(idsurvey);
             JSON2CSV(listanswer,idsurvey);
             response.sendRedirect("viewSurveys");
         } catch (IOException e) {
@@ -92,15 +96,41 @@ public class ViewSurveysController extends HttpServlet {
         }
     }
 
-    private void JSON2CSV(ArrayList<String> listanswer, Integer id){
+    private void JSON2CSV(ArrayList<QuestionModel> listanswer, Integer id){
         File file=new File("C:/Users/cakes/Desktop/answerSurvey"+id+".csv");
-            try {
+        Iterator<QuestionModel> itr = listanswer.iterator();
+          /*  try {
                 FileUtils.writeStringToFile(file, String.valueOf(listanswer), Charset.defaultCharset());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+            }*/
+        try (PrintWriter writer = new PrintWriter(file)) {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("ID compiler");
+            sb.append(',');
+            sb.append("Domanda");
+            sb.append(',');
+            sb.append("Risposta");
+            sb.append('\n');
+
+            while(itr.hasNext()){
+                QuestionModel tmp = itr.next();
+                sb.append(tmp.getId());
+                sb.append(',');
+                sb.append(tmp.getSurveyId());
+                sb.append(',');
+                sb.append(tmp.getQuestion());
+                sb.append('\n');
             }
+
+            writer.write(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

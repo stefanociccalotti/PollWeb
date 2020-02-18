@@ -7,7 +7,7 @@
     <c:set var="answers" value="${requestScope.question.answers}"/>
     <c:forEach begin="0" end="${fn:length(answers)-1}" var="index">
         <div class="custom-control custom-checkbox multiple-answer-text-checkbox">
-            <input type="checkbox" class="custom-control-input" id="m-a-${requestScope.question.number}-${index}" name="${requestScope.question.question}" value="${answers[index]}">
+            <input type="checkbox" class="custom-control-input" id="m-a-${requestScope.question.number}-${index}" name="${requestScope.question.id}" value="${answers[index]}">
             <label class="custom-control-label" for="m-a-${requestScope.question.number}-${index}">${answers[index]}</label>
         </div>
     </c:forEach>

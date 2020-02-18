@@ -3,5 +3,5 @@
 
 <h4 class="card-title" style="font-weight: bolder"> ${requestScope.question.question}</h4>
 <div class="form-group number-answer">
-    <input type="number" pattern="[0-9]*" name="${requestScope.question.question}" class="form-control number-answer">
+    <input type="number" pattern="[0-9]*" name="${requestScope.question.id}" class="form-control number-answer">
 </div>

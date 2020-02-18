@@ -143,7 +143,6 @@ document.onreadystatechange = () => {
             http_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             http_request.onreadystatechange = function() { alertContents(http_request); };
             http_request.send('data='+encodeURIComponent(data));
-
         }
 
         function alertContents(http_request) {
