@@ -22,23 +22,8 @@ import java.util.ArrayList;
 public class ViewSurveysController extends HttpServlet {
     SurveyInterface surveyDao = new SurveyDao();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-
-        SurveyInterface surveyDao = new SurveyDao();
-
-        try {
-
-            ArrayList<SurveyModel> list = surveyDao.getSurveyByUser((Integer) session.getAttribute("userID"), "viewSurveys");
-            request.setAttribute("list", list);
-            request.setAttribute("pageCss", "./resources/dist/css/viewSurveys.css");
-            request.getRequestDispatcher("jsp/viewSurveys.jsp").forward(request, response);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        processRequest(request,response,"");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
@@ -55,8 +40,30 @@ public class ViewSurveysController extends HttpServlet {
                 action_closeSurvey(request,response);
                 break;
             default:
+                action_getViewSurvey(request,response);
         }
 
+    }
+
+    private void action_getViewSurvey(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+
+        SurveyInterface surveyDao = new SurveyDao();
+
+        try {
+
+            ArrayList<SurveyModel> list = surveyDao.getSurveyByUser((Integer) session.getAttribute("userID"), "viewSurveys");
+            request.setAttribute("list", list);
+            request.setAttribute("pageCss", "./resources/dist/css/viewSurveys.css");
+            request.getRequestDispatcher("jsp/viewSurveys.jsp").forward(request, response);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void action_viewResult(HttpServletRequest request, HttpServletResponse response) {

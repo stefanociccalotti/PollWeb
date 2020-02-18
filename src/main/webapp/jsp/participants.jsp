@@ -20,6 +20,7 @@
                         <div class="card-body">
                         <c:forEach items="${lisparticipants}" var="item">
                             <form class="form-horizontal form-material" method="post" action="participantsEditor">
+                                <input name="action" type="hidden" value="updateparticipants" placeholder="" class="form-control form-control-line">
                                 <input name="idparticipants" type="hidden" value="${item.id}" placeholder="" class="form-control form-control-line">
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>

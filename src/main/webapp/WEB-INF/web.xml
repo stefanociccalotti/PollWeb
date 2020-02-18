@@ -8,7 +8,7 @@
   <servlet>
     <display-name>loginController</display-name>
     <servlet-name>loginController</servlet-name>
-    <servlet-class>it.univaq.disim.controller.loginController</servlet-class>
+    <servlet-class>it.univaq.disim.controller.LoginController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>loginController</servlet-name>
@@ -28,7 +28,7 @@
   <servlet>
     <display-name>homeController</display-name>
     <servlet-name>homeController</servlet-name>
-    <servlet-class>it.univaq.disim.controller.homeController</servlet-class>
+    <servlet-class>it.univaq.disim.controller.HomeController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>homeController</servlet-name>
@@ -38,7 +38,7 @@
   <servlet>
     <display-name>profileController</display-name>
     <servlet-name>profileController</servlet-name>
-    <servlet-class>it.univaq.disim.controller.profileController</servlet-class>
+    <servlet-class>it.univaq.disim.controller.ProfileController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>profileController</servlet-name>
@@ -85,7 +85,7 @@
 
   <servlet>
     <servlet-name>surveyClientController</servlet-name>
-    <servlet-class>it.univaq.disim.controller.surveyClientController</servlet-class>
+    <servlet-class>it.univaq.disim.controller.SurveyClientController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>surveyClientController</servlet-name>

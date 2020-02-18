@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "homeController")
-public class homeController extends HttpServlet {
+public class HomeController extends HttpServlet {
     SurveyInterface surveydao = new SurveyDao();
 
     @Override

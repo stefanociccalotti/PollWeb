@@ -19,17 +19,39 @@ import java.util.ArrayList;
 @WebServlet(name = "SurveyEditorController")
 public class SurveyEditorController extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+        processRequest(request,response,"");
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        processRequest(request,response,"updatesurvey");
+    }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
+        switch(action){
+            case "updatesurvey":
+                action_updateSurvey(request,response);
+                break;
+            default:
+                action_getSurveyEditor(request,response);
+        }
+
+    }
+
+    private void action_getSurveyEditor(HttpServletRequest request, HttpServletResponse response) {
         SurveyInterface surveyDao = new SurveyDao();
         String surveyId = request.getParameter("survey");
 
-        if (surveyId == null) {
+        if (surveyId == null ) {
 
-            request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
-            request.setAttribute("numberOfQuestions", 0);
-            request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
-            request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
+            try {
+                request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
+                request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
+                request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else {
 
@@ -49,14 +71,16 @@ public class SurveyEditorController extends HttpServlet {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }
-
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
+    private void action_updateSurvey(HttpServletRequest request, HttpServletResponse response) {
         String data = request.getParameter("data");
         SurveyInterface surveyDao = new SurveyDao();
         HttpSession s = request.getSession(true);

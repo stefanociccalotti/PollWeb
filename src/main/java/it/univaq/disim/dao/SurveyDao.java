@@ -212,8 +212,7 @@ public class SurveyDao implements SurveyInterface {
     }
 
     @Override
-    public Integer getSurveyId(String url) throws SQLException {
-
+    public Integer getSurveyId(String url){
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
@@ -223,12 +222,13 @@ public class SurveyDao implements SurveyInterface {
 
             //ritorno il sisultato della query
             ResultSet rs = st.executeQuery();
-            rs.next();
-            return rs.getInt("id");
+            while (rs.next()){
+              return rs.getInt("id");
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return -1;
     }
 
     @Override
@@ -257,13 +257,13 @@ public class SurveyDao implements SurveyInterface {
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
-            String sql="UPDATE survey SET status='chiuso' where id=?";
+            String sql="UPDATE survey SET status='chiuso', url='null' where id=?";
             st = conn.prepareStatement(sql);
             st.setInt(1,idsurvey);
 
             //ritorno il sisultato della query
             rs = st.executeUpdate();
-            //return rs.getInt("id");
+
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -15,29 +15,21 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "loginController")
-public class loginController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     private UserInterface dao = new UserDao();
     String uri ="";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        String surveyURL = request.getParameter("url");
-
-        if(surveyURL == null){
-            try {
-                response.sendRedirect("/web-engineering-pollweb/");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else{
-            request.setAttribute("url",surveyURL);
-            try {
-                request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        String action = "";
+        try {
+            processRequest(request,response,action);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -60,18 +52,42 @@ public class loginController extends HttpServlet {
             case "loginclient":
                 action_loginclient(request,response);
                 break;
-            default:
+            case "login":
                 action_login(request,response);
+                break;
+            default:
+                action_getLogin(request,response);
+        }
+    }
+
+    private void action_getLogin(HttpServletRequest request, HttpServletResponse response) {
+        String surveyURL = request.getParameter("survey");
+
+        if(surveyURL == null){
+            try {
+                response.sendRedirect("/web-engineering-pollweb/");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            request.setAttribute("survey",surveyURL);
+            try {
+                request.getRequestDispatcher("jsp/loginClient.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     protected void action_loginclient(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String mail = request.getParameter("mail");
         String pass = request.getParameter("pass");
-        String url = request.getParameter("url");
+        String url = request.getParameter("survey");
 
         //mi segno la uri della richiesta per poi riutilizzarla in caso di errore.
-        uri = "http://localhost:8080/web-engineering-pollweb/surveyClient?url="+url;
+        uri = "http://localhost:8080/web-engineering-pollweb/surveyClient?survey="+url;
 
         Integer iduser = dao.loginClientQuery(mail,pass,url);
         System.out.println(mail + " " +pass + " " + url);
@@ -80,7 +96,7 @@ public class loginController extends HttpServlet {
             //vai alla compilazione del sondaggio
             HttpSession session=request.getSession();
             session.setAttribute("client",mail);
-            response.sendRedirect("surveyClient?url=" + url);
+            response.sendRedirect("surveyClient?survey=" + url);
 
         }else{
             //errore nella login con messaggio

@@ -15,7 +15,6 @@ public class LogoutController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response){
         SecurityLayer.disposeSession(request);
-
         try {
             response.sendRedirect("/web-engineering-pollweb/");
         } catch (IOException e) {

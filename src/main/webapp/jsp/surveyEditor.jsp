@@ -30,6 +30,7 @@
                                 </div>
                             </div>
 
+                            <input name="action" type="hidden" value="updatesurvey"/>
                             <div class="form-group">
                                 <label>Titolo *</label>
                                 <input id="surveyTitle" type="text" class="form-control" placeholder="titolo del sondaggio ..." value="${survey.title}">
