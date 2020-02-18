@@ -44,7 +44,6 @@ public class SurveyEditorController extends HttpServlet {
         if (surveyId == null ) {
 
             try {
-                request.setAttribute("namebtn","Crea Sondaggio");
                 request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
                 request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
                 request.getRequestDispatcher("jsp/surveyEditor.jsp").forward(request, response);
@@ -60,7 +59,6 @@ public class SurveyEditorController extends HttpServlet {
 
                 ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById( Integer.parseInt(surveyId) );
 
-                request.setAttribute("namebtn","Modifica Sondaggio");
                 request.setAttribute("survey", fullSurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
                 request.setAttribute("questions",fullSurvey.get(1));
                 request.setAttribute("numberOfQuestions", fullSurvey.get(2));

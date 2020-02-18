@@ -80,7 +80,7 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-12" style="display:flex;justify-content: center;">
-                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="${namebtn}"/>
+                                            <input type="button" id="submit" class="btn btn-success submit" style="font-size:1.5em;" value="Crea Sondaggio"/>
                                         </div>
                                     </div>
                                 </c:otherwise>
