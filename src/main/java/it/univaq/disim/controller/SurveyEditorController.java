@@ -25,23 +25,17 @@ public class SurveyEditorController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
-        processRequest(request,response,action);
+        processRequest(request,response,"updatesurvey");
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
         switch(action){
             case "updatesurvey":
                 action_updateSurvey(request,response);
                 break;
-            case "createsurvey":
-                action_createSurvey(request,response);
-                break;
             default:
                 action_getSurveyEditor(request,response);
         }
 
-    }
-
-    private void action_createSurvey(HttpServletRequest request, HttpServletResponse response) {
     }
 
     private void action_getSurveyEditor(HttpServletRequest request, HttpServletResponse response) {
