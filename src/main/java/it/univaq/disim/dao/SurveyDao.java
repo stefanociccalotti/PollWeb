@@ -285,13 +285,33 @@ public class SurveyDao implements SurveyInterface {
             st = conn.prepareStatement(sql);
             st.setInt(1,idsurvey);
 
-            //ritorno il sisultato della query
+            //ritorno il risultato della query
             rs = st.executeUpdate();
 
         }catch (Exception e){
             e.printStackTrace();
         }
         return rs;
+    }
+
+    @Override
+    public Integer publishSurvey(Integer idsurvey) throws SQLException {
+        Integer rs =0;
+        try{
+            DataSource dataSource = connectionPool.setUpPool();
+            conn = dataSource.getConnection();
+            String sql="UPDATE survey SET status='pubblicato', url='null' where id=?";
+            st = conn.prepareStatement(sql);
+            st.setInt(1,idsurvey);
+
+            //ritorno il risultato della query
+            rs = st.executeUpdate();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+
     }
 
     @Override

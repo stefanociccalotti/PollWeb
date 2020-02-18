@@ -43,6 +43,9 @@ public class ViewSurveysController extends HttpServlet {
             case "closesurvey":
                 action_closeSurvey(request,response);
                 break;
+            case "publish":
+                action_publish(request,response);
+                break;
             default:
                 action_getViewSurvey(request,response);
         }
@@ -88,6 +91,18 @@ public class ViewSurveysController extends HttpServlet {
         Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
         try {
             surveyDao.surveyClose(idsurvey);
+            response.sendRedirect("viewSurveys");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void action_publish(HttpServletRequest request, HttpServletResponse response) {
+        Integer idsurvey = Integer.valueOf(request.getParameter("surveyid"));
+        try {
+            surveyDao.publishSurvey(idsurvey);
             response.sendRedirect("viewSurveys");
         } catch (SQLException e) {
             e.printStackTrace();

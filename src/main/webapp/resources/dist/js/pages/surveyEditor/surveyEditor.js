@@ -150,6 +150,10 @@ document.onreadystatechange = () => {
             if (http_request.readyState == 4) {
                 if (http_request.status == 200) {
                     alert(http_request.responseText);
+                    if(surveyIsCreated()) {
+                        alert('Stai per essere reindirizzato.');
+                        window.location.href = 'http://localhost:8080/web-engineering-pollweb/viewSurveys';
+                    }
                 } else {
                     alert('Si è verificato un problema con la richiesta');
                 }
@@ -262,6 +266,11 @@ document.onreadystatechange = () => {
                 answersArray.push(answers.item(i).value);
             }
             return answersArray;
+        }
+
+        function surveyIsCreated() {
+            if(document.getElementById('submit').value === 'Crea Sondaggio') return true
+            else return false;
         }
 
         function getQuestionFrame(newQuestionType,newID) {

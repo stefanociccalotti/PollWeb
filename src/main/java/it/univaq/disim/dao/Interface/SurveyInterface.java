@@ -17,5 +17,6 @@ public interface SurveyInterface {
     Integer surveyClose(Integer idsurvey)throws SQLException;
     Integer submitSurveyAndQuestions(String data, Integer id) throws SQLException;
     ArrayList<QuestionModel> getSurveyResult(Integer idsurvey)throws SQLException;
+    Integer publishSurvey(Integer idsurvey) throws SQLException;
 
 }
