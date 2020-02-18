@@ -6,7 +6,8 @@
     font-weight: 500;
 }
 .table{
-    font-size:1.2em!important;
+    font-size:1em!important;
+    font-weight:500;
 }
 .label{
     padding: .3rem .8rem;
