@@ -16,14 +16,26 @@ import java.util.ArrayList;
 public class CuratorsController extends HttpServlet {
     UserInterface userdao = new UserDao();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response){
         String action = "getgestori";
-        processRequest(request,response,action);
+        try {
+            processRequest(request,response,action);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
-        processRequest(request,response,action);
+        try {
+            processRequest(request,response,action);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response,String action) throws IOException, ServletException {

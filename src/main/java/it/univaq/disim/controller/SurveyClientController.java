@@ -30,34 +30,49 @@ public class SurveyClientController extends HttpServlet {
         HttpSession session=request.getSession();
         String logCheck = (String) session.getAttribute("client");
 
-        if(surveyURL != null) {
+        if(surveyURL != null && surveyURL != "null" && surveyURL!="") {
             try {
                 Integer surveyId = surveyDao.getSurveyId(surveyURL);
-                ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById(surveyId);
+                if(surveyId == -1){
+                    try {
+                        request.setAttribute("mex","SONDAGGIO NON DISPONIBILE!!");
+                        request.setAttribute("submex","IL SONDAGGIO E' STATO CHIUSO O URL SBAGLIATA!");
 
-                //cosi prendo il valore pubblico/privato per verificare se è necessario il login o meno
-                SurveyModel s = (SurveyModel) fullSurvey.get(0);
+                        request.getRequestDispatcher("jsp/message.jsp").forward(request, response);
+                    } catch (ServletException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                if (s.getPrivacy().equals("riservato") && logCheck == null) {
-                    //il sondaggio è privato quindi mando l'utente alla pagina di login
-                    request.setAttribute("survey", surveyURL);
-                    request.getRequestDispatcher("login").forward(request, response);
-                    //response.sendRedirect("loginclient?url="+surveyURL);
+                }else {
+                    ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById(surveyId);
 
-                } else {
-                    Integer idsurv = surveyDao.getSurveyId(surveyURL);
-                    ArrayList<Object> totalsurvey = surveyDao.getSurveyAndQuestionsById(idsurv);
 
-                    request.setAttribute("surveyid", idsurv);
-                    request.setAttribute("survey", totalsurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
-                    request.setAttribute("questions", totalsurvey.get(1));
-                    request.setAttribute("numberOfQuestions", totalsurvey.get(2));
-                    request.setAttribute("code", totalsurvey.get(3));//TODO: vedere se code serve e terminare la modifica aggiungendo error.jsp
-                    request.setAttribute("pageCss", "./resources/dist/css/viewSurvey.css");
-                    request.setAttribute("pageJs", "./resources/dist/js/pages/view-survey/view-survey.js");
-                    request.setAttribute("printAll", printFullSurvey(totalsurvey));
+                    //cosi prendo il valore pubblico/privato per verificare se è necessario il login o meno
+                    SurveyModel s = (SurveyModel) fullSurvey.get(0);
 
-                    request.getRequestDispatcher("jsp/surveyClient.jsp").forward(request, response);
+                    if (s.getPrivacy().equals("riservato") && logCheck == null) {
+                        //il sondaggio è privato quindi mando l'utente alla pagina di login
+                        request.setAttribute("survey", surveyURL);
+                        request.getRequestDispatcher("login").forward(request, response);
+                        //response.sendRedirect("loginclient?url="+surveyURL);
+
+                    } else {
+                        Integer idsurv = surveyDao.getSurveyId(surveyURL);
+                        ArrayList<Object> totalsurvey = surveyDao.getSurveyAndQuestionsById(idsurv);
+
+                        request.setAttribute("surveyid", idsurv);
+                        request.setAttribute("survey", totalsurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
+                        request.setAttribute("questions", totalsurvey.get(1));
+                        request.setAttribute("numberOfQuestions", totalsurvey.get(2));
+                        request.setAttribute("code", totalsurvey.get(3));//TODO: vedere se code serve e terminare la modifica aggiungendo error.jsp
+                        request.setAttribute("pageCss", "./resources/dist/css/viewSurvey.css");
+                        request.setAttribute("pageJs", "./resources/dist/js/pages/view-survey/view-survey.js");
+                        request.setAttribute("printAll", printFullSurvey(totalsurvey));
+
+                        request.getRequestDispatcher("jsp/surveyClient.jsp").forward(request, response);
+                    }
                 }
 
 
@@ -76,27 +91,16 @@ public class SurveyClientController extends HttpServlet {
                     "?" +                           // "?"
                     request.getQueryString();
         }else{
-            //stampo errore
-            PrintWriter out = null;
             try {
-                out = response.getWriter();
+                request.setAttribute("mex","ERROR 404 NOT FOUND!!");
+                request.setAttribute("submex","RISORSA NON DISPONIBILE!");
+                request.setAttribute("uri","http://localhost:8080/web-engineering-pollweb/");
+                request.getRequestDispatcher("jsp/message.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            out.println("<html>\n" +
-                    "<body onload=\"myFunction()\">\n" +
-                    "\n" +
-                    "<script>\n" +
-                    "function myFunction() {\n" +
-                    "  alert(\"ERROR 404!\");\n" +
-                    "  window.location.href =\"http://localhost:8080/web-engineering-pollweb/\";\n" +
-                    "}\n" +
-                    "</script>\n" +
-                    "\n" +
-                    "</body>\n" +
-                    "</html>");
-
         }
     }
 
@@ -122,13 +126,6 @@ public class SurveyClientController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
-        PrintWriter out = null;
-        try {
-            out = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         Enumeration<String> parameterNames = request.getParameterNames();
         HttpSession session = request.getSession();
@@ -162,7 +159,10 @@ public class SurveyClientController extends HttpServlet {
                 userDao.deleteParticipant((String) session.getAttribute("client"));
                 SecurityLayer.disposeSession(request);
 
-                request.getRequestDispatcher("jsp/success.jsp").forward(request, response);
+                request.setAttribute("mex","GRAZIE PER AVER RISPOSTO CORRETTAMENTE AL QUESTIONARIO");
+                request.setAttribute("submex","LE TUE RISPOSTE SONO STATE RICEVUTE CORRETTAMENTE!");
+
+                request.getRequestDispatcher("jsp/message.jsp").forward(request, response);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -172,19 +172,17 @@ public class SurveyClientController extends HttpServlet {
                 e.printStackTrace();
             }
         }else{
-            //riporto l'errore a schermo tramite javascript
-            out.println("<html>\n" +
-                    "<body onload=\"myFunction()\">\n" +
-                    "\n" +
-                    "<script>\n" +
-                    "function myFunction() {\n" +
-                    "  alert(\"Errore durante L'invio del questionario!Non ci devono essere campi vuoti\");\n" +
-                    "  window.location.href =\""+uri+"\";\n" +
-                    "}\n" +
-                    "</script>\n" +
-                    "\n" +
-                    "</body>\n" +
-                    "</html>");
+
+            try {
+                request.setAttribute("mex","ERRORE DURANTE L'INVIO DEL QUESTIONARIO!!");
+                request.setAttribute("submex","NON SONO AMMESSI CAMPI VUOTI!");
+                request.setAttribute("uri",uri);
+                request.getRequestDispatcher("jsp/message.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

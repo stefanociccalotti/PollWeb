@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ViewSurveysController extends HttpServlet {
     SurveyInterface surveyDao = new SurveyDao();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
 
@@ -36,6 +36,10 @@ public class ViewSurveysController extends HttpServlet {
             request.getRequestDispatcher("jsp/viewSurveys.jsp").forward(request, response);
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

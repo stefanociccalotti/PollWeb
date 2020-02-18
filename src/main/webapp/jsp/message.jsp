@@ -12,8 +12,9 @@
 
     <div class="error-box">
         <div class="error-body text-center">
-            <h3 class="text-uppercase error-subtitle">GRAZIE PER AVER RISPOSTO CORRETTAMENTE AL QUESTIONARIO</h3>
-            <p class="text-muted m-t-30 m-b-30">LE TUE RISPOSTE SONO STATE RICEVUTE CORRETTAMENTE!</p>
+            <h3 class="text-uppercase error-subtitle">${mex}</h3>
+            <p class="text-muted m-t-30 m-b-30">${submex}</p>
+            <c:if test="${not empty uri}"><a href="${uri}" class="btn btn-danger btn-rounded waves-effect waves-light m-b-40">BACK</a></div></c:if>
     </div>
 
 </div>

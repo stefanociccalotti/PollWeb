@@ -20,7 +20,7 @@ public class ParticipantsController extends HttpServlet {
     ArrayList<UserModel> lisparticipants;
     public static Integer questid = 0;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         Integer questid = Integer.valueOf(request.getParameter("surveyid"));
 
         //aggiorno l'id del survey per modificare i partecipanti
@@ -31,11 +31,15 @@ public class ParticipantsController extends HttpServlet {
             request.setAttribute("lisparticipants",lisparticipants);
             request.getRequestDispatcher("jsp/participants.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
         } catch (SQLException e) {
-            throw new ServletException("Retrieving products failed!", e);
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
         Integer idpart = Integer.valueOf(request.getParameter("idparticipants"));
@@ -57,7 +61,9 @@ public class ParticipantsController extends HttpServlet {
             }
 
         } catch (SQLException e) {
-            throw new ServletException("Retrieving products failed!", e);
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

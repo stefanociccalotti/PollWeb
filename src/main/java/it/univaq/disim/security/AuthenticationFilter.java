@@ -52,7 +52,7 @@ public class AuthenticationFilter implements Filter {
         boolean loginClient = currentReq.equals(req.getContextPath() + "/jsp/loginClient.jsp");
 
         /* Check if current request is for success */
-        boolean successClient = currentReq.equals(req.getContextPath() + "/jsp/success.jsp");
+        boolean successClient = currentReq.equals(req.getContextPath() + "/jsp/message.jsp");
 
         //cosi non blocca la resources
         String path= req.getRequestURI();

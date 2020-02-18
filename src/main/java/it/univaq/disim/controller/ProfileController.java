@@ -31,8 +31,11 @@ public class ProfileController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out;
+        try {
+            out = response.getWriter();
+
         HttpSession session=request.getSession();
 
         UserModel userup = new UserModel();
@@ -45,7 +48,7 @@ public class ProfileController extends HttpServlet {
 
         UserInterface userdao = new UserDao();
 
-        try {
+
             Integer result = userdao.updateUser(userup);
 
             if(result == 1){
@@ -62,8 +65,9 @@ public class ProfileController extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
     }
 
 }
