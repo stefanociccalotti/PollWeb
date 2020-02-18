@@ -24,7 +24,6 @@ public class SurveyEditorController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String action = request.getParameter("action");
         processRequest(request,response,"updatesurvey");
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, String action){
