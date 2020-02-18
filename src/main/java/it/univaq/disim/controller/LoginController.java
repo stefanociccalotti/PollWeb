@@ -24,11 +24,7 @@ public class LoginController extends HttpServlet {
         String action = "";
         try {
             processRequest(request,response,action);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (IOException | ServletException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -37,11 +33,7 @@ public class LoginController extends HttpServlet {
         String action = request.getParameter("action");
         try {
             processRequest(request,response,action);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (IOException | ServletException | SQLException e) {
             e.printStackTrace();
         }
     }
