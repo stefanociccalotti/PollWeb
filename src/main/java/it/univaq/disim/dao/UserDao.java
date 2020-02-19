@@ -233,6 +233,35 @@ public class UserDao implements UserInterface {
     }
 
     @Override
+    public Integer createParticipants(UserModel participants, Integer survey) throws SQLException {
+
+        try{
+        DataSource dataSource = connectionPool.setUpPool();
+        conn = dataSource.getConnection();
+
+        String sql ="{CALL spParticipant_insert(?,?,?)}";
+
+        CallableStatement stmt = conn.prepareCall(sql);
+
+        stmt.setString(1,participants.getMail());
+        stmt.setString(2,participants.getPassword());
+        stmt.setInt(3,survey);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+            if(rs.getInt("code") == 200){
+                return rs.getInt("code");
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        return null;
+    }
+
+    @Override
     public  Integer newUser(UserModel newuser) throws SQLException{
         try {
             DataSource dataSource = connectionPool.setUpPool();
