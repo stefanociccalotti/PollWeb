@@ -80,7 +80,7 @@ public class SurveyDao implements SurveyInterface {
         try {
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setString(1,"");
-            stmt.setInt(2,jsonData.getInt("privacy"));
+            stmt.setString(2,jsonData.getString("privacy"));
             stmt.setString(3,jsonData.getString("status"));
             stmt.setString(4,jsonData.getString("title"));
             stmt.setString(5,jsonData.getString("opening"));
@@ -103,7 +103,7 @@ public class SurveyDao implements SurveyInterface {
         try {
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setInt(1,jsonData.getInt("id"));
-            stmt.setInt(2,jsonData.getInt("privacy"));
+            stmt.setString(2,jsonData.getString("privacy"));
             stmt.setString(3,jsonData.getString("status"));
             stmt.setString(4,jsonData.getString("title"));
             stmt.setString(5,jsonData.getString("opening"));

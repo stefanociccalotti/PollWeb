@@ -228,8 +228,8 @@ document.onreadystatechange = () => {
         }
 
         function checkSurveyPrivacy() {
-            if(document.getElementById('surveyPrivacy').checked) return 1;
-            else return 0;
+            if(document.getElementById('surveyPrivacy').checked) return 'riservato';
+            else return 'pubblico';
         }
 
         function getSurveyId() {
