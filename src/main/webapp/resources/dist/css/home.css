@@ -13,3 +13,6 @@
     padding: .3rem .8rem;
     font-size:100%!important;
 }
+.user-dd {
+    min-width:0!important;
+}

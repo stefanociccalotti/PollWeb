@@ -31,3 +31,6 @@ input[type=button],[type=submit]:hover{
 div{
     transition: margin 1s;
 }
+.user-dd {
+    min-width:0!important;
+}
