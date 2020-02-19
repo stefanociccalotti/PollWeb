@@ -300,9 +300,10 @@ public class SurveyDao implements SurveyInterface {
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
-            String sql="UPDATE survey SET status='pubblicato', url='null' where id=?";
+            String sql="UPDATE survey SET status='pubblicato', url=?, privacy='pubblico' where id=?";
             st = conn.prepareStatement(sql);
-            st.setInt(1,idsurvey);
+            st.setString(1,"http://localhost:8080/web-engineering-pollweb/surveyClient?survey=sondaggio"+idsurvey);
+            st.setInt(2,idsurvey);
 
             //ritorno il risultato della query
             rs = st.executeUpdate();

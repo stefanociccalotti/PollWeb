@@ -8,7 +8,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center" >
-                    <h4 class="page-title" >Modifica Partecipanti:</h4>
+                    <h4 class="page-title" >${btnname} Partecipanti:</h4>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                         <div class="card-body">
                         <c:forEach items="${lisparticipants}" var="item">
                             <form class="form-horizontal form-material" method="post" action="participantsEditor">
-                                <input name="action" type="hidden" value="updateparticipants" placeholder="" class="form-control form-control-line">
+                                <input name="action" type="hidden" value="${action}" placeholder="" class="form-control form-control-line">
                                 <input name="idparticipants" type="hidden" value="${item.id}" placeholder="" class="form-control form-control-line">
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-success">Modifica</button>
+                                        <button class="btn btn-success">${btnname}</button>
                                     </div>
                                 </div>
                             </form>
