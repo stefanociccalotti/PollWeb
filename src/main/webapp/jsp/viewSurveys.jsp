@@ -27,7 +27,7 @@
                         <h4 class="card-title">Aiuto:</h4>
                         <h5 class="card-subtitle">Verde: pubblico-aperto | Viola: privato-aperto | Rosso: chiuso | Grigio chiaro: salvato | Blu: ?</h5>
                     </div>
-                    <div class="table-responsive table-hover">
+                    <div class="table-responsive table-hover" style="overflow: visible;">
                         <table class="table">
                             <thead>
                             <tr>

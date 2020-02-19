@@ -27,7 +27,7 @@
                                         <h4 class="card-title">Da qui puoi gestire tutti i gestori presenti sul sito.</h4>
                                         <h5 class="card-subtitle">Cliccando sul menu 'scegli', è possibile modificare o eliminare definitivamente il gestore.</h5>
                                     </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow: visible;">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
