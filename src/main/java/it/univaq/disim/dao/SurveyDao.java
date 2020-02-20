@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.json.*;
 import javax.sql.DataSource;
 import java.io.StringReader;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -221,7 +220,7 @@ public class SurveyDao implements SurveyInterface {
             conn = dataSource.getConnection();
             String sql="SELECT * from survey s join question q on(s.id=q.survey) WHERE s.url=?";
             st = conn.prepareStatement(sql);
-            st.setString(1,url);
+            st.setString(1,"http://localhost:8080/web-engineering-pollweb/surveyClient?survey="+url);
 
             //ritorno il sisultato della query
             ResultSet rs = st.executeQuery();
@@ -235,7 +234,7 @@ public class SurveyDao implements SurveyInterface {
     }
 
     @Override
-    public Integer setAnswerUser(TreeMap<String,JSONObject> answer, Integer ids) {
+    public Integer setAnswerUser(TreeMap<String,String> answer, Integer ids) {
         Integer rs =0;
         String idcompiler ="";
 
@@ -255,7 +254,7 @@ public class SurveyDao implements SurveyInterface {
                 return rs;
             }else{
                 answer.pollFirstEntry();
-                for(Map.Entry<String,JSONObject> entry : answer.entrySet() ) {
+                for(Map.Entry<String,String> entry : answer.entrySet() ) {
                     String key = entry.getKey();
                     String value = String.valueOf(entry.getValue());
                     System.out.println(value);
@@ -300,7 +299,7 @@ public class SurveyDao implements SurveyInterface {
         try{
             DataSource dataSource = connectionPool.setUpPool();
             conn = dataSource.getConnection();
-            String sql="UPDATE survey SET status='pubblicato', url=?, privacy='pubblico' where id=?";
+            String sql="UPDATE survey SET status='pubblicato', url=? where id=?";
             st = conn.prepareStatement(sql);
             st.setString(1,"http://localhost:8080/web-engineering-pollweb/surveyClient?survey=sondaggio"+idsurvey);
             st.setInt(2,idsurvey);
@@ -326,7 +325,8 @@ public class SurveyDao implements SurveyInterface {
             stmt.setInt(1, idsurvey);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                QuestionModel tmp = new QuestionModel(rs.getInt("id_compiler"),0,0,"",null,rs.getString("text"),"",rs.getInt("number"));
+                JSONObject jsn = new JSONObject(rs.getString("qtext"));
+                QuestionModel tmp = new QuestionModel(rs.getInt("id_compiler"),0,0,"",null,rs.getString("text"),String.valueOf(jsn.get("question")),rs.getInt("number"));
                 listanswer.add(tmp);
             }
         }catch (Exception e){

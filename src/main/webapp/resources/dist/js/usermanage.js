@@ -24,3 +24,10 @@ function updateGestore(ex){
     document.getElementById("gestoremail").value = mailg;
     document.getElementById("gestoreusername").value = usernameg;
 }
+
+function downloadfileCSV(txt) {
+    alert("File generato!!Clicca su ok per scaricare il file!")
+    var id =$(txt).prev('input').attr('value');
+    window.location = 'http://localhost:8080/web-engineering-pollweb/resources/csv/answerSurvey'+id+'.csv';
+}
+

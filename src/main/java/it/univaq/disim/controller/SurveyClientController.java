@@ -7,7 +7,6 @@ import it.univaq.disim.dao.UserDao;
 import it.univaq.disim.model.QuestionModel;
 import it.univaq.disim.model.SurveyModel;
 import it.univaq.disim.security.SecurityLayer;
-import org.json.JSONObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +22,7 @@ public class SurveyClientController extends HttpServlet {
     SurveyInterface surveyDao = new SurveyDao();
     UserInterface userDao = new UserDao();
     String uri ="";
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest("",request,response);
     }
@@ -43,9 +43,10 @@ public class SurveyClientController extends HttpServlet {
     private void action_sendAnswer(HttpServletRequest request, HttpServletResponse response) {
         Enumeration<String> parameterNames = request.getParameterNames();
         HttpSession session = request.getSession();
-        TreeMap<String, JSONObject> answer = new TreeMap<>();
-        String idsurv = "";
+        TreeMap<String, String> answer = new TreeMap<>();
+        Boolean trovato = false;
         Integer ids =0;
+        String answerClient ="";
 
 
         while (parameterNames.hasMoreElements()) {
@@ -57,19 +58,18 @@ public class SurveyClientController extends HttpServlet {
             if (paramValues[0] == null || paramValues[0].equals("")) {
                 break;
             }
-            if(paramName.equals("idans")){
-                idsurv = paramValues[0];
-                ids= Integer.parseInt(idsurv);
+            if(paramName.equals("idans") && trovato == false){
+                trovato = true;
+                ids= Integer.parseInt(paramValues[0]);
             }else {
-                JSONObject jsonObj = new JSONObject(parameterNames);
-                jsonObj.put(paramName, paramValues);
-                answer.put(paramName, jsonObj);
-            }
-
             for (int i = 0; i < paramValues.length; i++) {
                 String paramValue = paramValues[i];
+                answerClient +=paramValue;
+                answerClient+=';';
                 System.out.println(paramValue);
-
+            }
+            answer.put(paramName, answerClient);
+            answerClient="";
             }
         }
         //mando tutto al db
@@ -130,7 +130,6 @@ public class SurveyClientController extends HttpServlet {
 
                 }else {
                     ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById(surveyId);
-
 
                     //cosi prendo il valore pubblico/privato per verificare se è necessario il login o meno
                     SurveyModel s = (SurveyModel) fullSurvey.get(0);
