@@ -81,7 +81,7 @@ public class LoginController extends HttpServlet {
         //mi segno la uri della richiesta per poi riutilizzarla in caso di errore.
         uri = "http://localhost:8080/web-engineering-pollweb/surveyClient?survey="+url;
 
-        Integer iduser = dao.loginClientQuery(mail,pass,url);
+        Integer iduser = dao.loginClientQuery(mail,pass,uri);
         System.out.println(mail + " " +pass + " " + url);
 
         if(iduser != null){

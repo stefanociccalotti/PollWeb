@@ -64,6 +64,7 @@ public class SurveyClientController extends HttpServlet {
             }else {
             for (int i = 0; i < paramValues.length; i++) {
                 String paramValue = paramValues[i];
+
                 answerClient +=paramValue;
                 answerClient+=';';
                 System.out.println(paramValue);

@@ -33,17 +33,16 @@ document.onreadystatechange = function () {
                 document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
                 console.log(currentMargin+'%');
             }else{
-                var btninvia = document.getElementById('nextbutton');
+                let btninvia = document.getElementById('nextbutton');
                 btninvia.type = 'submit';
                 btninvia.size = 40;
             }
             if(currentMargin == -sizesurvey *100 -100){
-                var btninvia = document.getElementById('nextbutton');
+                let btninvia = document.getElementById('nextbutton');
                 btninvia.value = 'Invia';
 
             }
         }
-
     }
 }
 
