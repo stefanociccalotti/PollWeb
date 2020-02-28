@@ -1,7 +1,6 @@
 package it.univaq.disim.controller;
 
 
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
 import it.univaq.disim.dao.Interface.UserInterface;
 import it.univaq.disim.dao.UserDao;
 import it.univaq.disim.model.UserModel;

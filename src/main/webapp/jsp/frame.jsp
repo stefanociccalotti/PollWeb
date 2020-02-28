@@ -52,19 +52,20 @@
                 </a>
             </div>
 
-            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-
-                <ul class="navbar-nav float-left mr-auto">
-                    <li class="nav-item search-box">
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav float-right">
-
-                    <li class="nav-item dropdown">
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6" style="justify-content:space-between">
+                <p class="nav-item" style="margin:auto 0 auto 1em;font-size:1.5em;font-weight:100;">
+                    <c:choose>
+                        <c:when test="${sessionScope.user != null}">Crea, gestisci e monitora i tuoi sondaggi . . .</c:when>
+                        <c:otherwise>Benvenuto! Puoi procedere a compilare il sondaggio . . .</c:otherwise>
+                    </c:choose>
+                </p>
+                <div class="navbar-nav float-right">
+                    <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><c:choose><c:when test="${sessionScope.user!=null}"><c:out value="${sessionScope.user}"/></c:when><c:otherwise><c:out value="Guest"/></c:otherwise></c:choose></span>
-                            <i class="m-r-0 mdi mdi-menu-down"></i>
+                            <c:choose>
+                                <c:when test="${sessionScope.user!=null}"><span><c:out value="${sessionScope.user}"/></span><i class="m-r-0 mdi mdi-menu-down"></i></c:when>
+                                <c:otherwise><span><c:out value="Guest User"/></span></c:otherwise>
+                            </c:choose>
                         </a>
                         <c:if test="${sessionScope.user != null}">
                         <div class="dropdown-menu dropdown-menu-right user-dd animated" style="position: absolute;will-change: transform;top: 0px;left: 0px;transform: translate3d(0px, 62px, 0px)!important;">
@@ -72,15 +73,11 @@
                             <a class="dropdown-item" href="logout"><i class="ti-wallet m-r-5 m-l-5"></i> Logout</a>
                         </div>
                         </c:if>
-                    </li>
-
-                </ul>
-
-                <ul class="navbar-nav float-right">
-                    <li>
+                    </div>
+                    <div style="margin:auto">
                         <img src="https://image.flaticon.com/icons/svg/21/21104.svg" alt="user" class="rounded-circle" width="31">
-                    </li>
-                </ul>
+                    </div>
+                </div>
 
             </div>
         </nav>
@@ -88,42 +85,52 @@
 
     <aside class="left-sidebar" data-sidebarbg="skin5">
         <!-- Sidebar scroll-->
-        <c:if test="${sessionScope.user != null}">
-        <div class="scroll-sidebar">
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav">
-                <ul id="sidebarnav">
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="home" aria-expanded="false">
-                            <i class="mdi mdi-av-timer"></i>
-                            <span class="hide-menu">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile" aria-expanded="false">
-                            <i class="mdi mdi-account-network"></i>
-                            <span class="hide-menu">Profilo</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys" aria-expanded="false">
-                            <i class="mdi mdi-newspaper"></i>
-                            <span class="hide-menu">Sondaggi</span>
-                        </a>
-                    </li>
-                    <c:if test="${sessionScope.type.equals('administrator')}">
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="curators" aria-expanded="false">
-                            <i class="mdi mdi-account-key"></i>
-                            <span class="hide-menu">Modifica Gestori</span>
-                        </a>
-                    </li>
-                    </c:if>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
-        </div>
-        </c:if>
+        <c:choose>
+            <c:when test="${sessionScope.user != null}">
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="home" aria-expanded="false">
+                                    <i class="mdi mdi-av-timer"></i>
+                                    <span class="hide-menu">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile" aria-expanded="false">
+                                    <i class="mdi mdi-account-network"></i>
+                                    <span class="hide-menu">Profilo</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="viewSurveys" aria-expanded="false">
+                                    <i class="mdi mdi-newspaper"></i>
+                                    <span class="hide-menu">Sondaggi</span>
+                                </a>
+                            </li>
+                            <c:if test="${sessionScope.type.equals('administrator')}">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="curators" aria-expanded="false">
+                                    <i class="mdi mdi-account-key"></i>
+                                    <span class="hide-menu">Modifica Gestori</span>
+                                </a>
+                            </li>
+                            </c:if>
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div id="surveyInfo" class="scroll-sidebar" size="${requestScope.numberOfQuestions}" style="color:#fff;padding:1em 1em 0 1em;">
+                    <hr style="background-color:#fff;">
+                    <p style="font-size:1.2em;font-weight:100;">
+                        ${requestScope.opening}
+                    </p>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <!-- End Sidebar scroll-->
     </aside>
 

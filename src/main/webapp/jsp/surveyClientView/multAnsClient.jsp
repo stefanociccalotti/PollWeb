@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<h4 class="card-title" style="font-weight: bolder"> ${requestScope.question.question}</h4>
+<h4 class="card-title"> ${requestScope.question.question}</h4>
 <div class="col-sm-4 multiple-answers">
     <c:set var="answers" value="${requestScope.question.answers}"/>
     <c:forEach begin="0" end="${fn:length(answers)-1}" var="index">
@@ -12,4 +12,4 @@
         </div>
     </c:forEach>
 </div>
-
+<h5 class="card-subtitle" style="margin:1em 0 0 0">${requestScope.question.note} </h5>

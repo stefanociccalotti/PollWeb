@@ -1,59 +1,73 @@
-stylize();
-
 document.onreadystatechange = function () {
     if (document.readyState === 'complete') {
 
         let backbutton = document.getElementById('backbutton');
         let nextbutton = document.getElementById('nextbutton');
-        let sizesurvey = document.getElementById('sizesurvey').textContent;
-        console.log(sizesurvey);
-
-        console.log(-sizesurvey *100 -100);
+        let questionsNumber = parseInt(document.getElementById('surveyInfo').getAttribute('size'));
         let currentMargin = 0;
-        //let questionNumber =  6; //prendi il numero di domande e sottrai 2 per avere il limite alla possibilità di andare avanti con le domande.(!!!!!)
 
         backbutton.onclick = () => {
-            var btninvia = document.getElementById('nextbutton');
-            if(btninvia.value == "Invia"){
-                btninvia.value = 'Successiva';
-                btninvia.type = 'button';
-            }
-            if(currentMargin <= -100) {
-                let margin = currentMargin + 100;
-                currentMargin = margin;
-                document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
-                console.log(currentMargin+'%');
+
+            let margin = currentMargin + 100;
+
+            switch(true) {
+                case currentMargin === -100:
+                    backNotAllowed();
+                case currentMargin <= -100 && currentMargin !== -questionsNumber * 100:
+                    currentMargin = margin;
+                    document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
+                    console.log(currentMargin+'%');
+                    break;
+                case currentMargin === -questionsNumber * 100:
+                    currentMargin = margin;
+                    document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
+                    hideSubmit();
+                    console.log(currentMargin+'%');
+                    break;
             }
         }
 
         nextbutton.onclick = () => {
-            if(currentMargin >= -sizesurvey * 100) {
-                let margin = currentMargin - 100;
-                currentMargin = margin;
-                document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
-                console.log(currentMargin+'%');
-            }else{
-                let btninvia = document.getElementById('nextbutton');
-                btninvia.type = 'submit';
-                btninvia.size = 40;
-            }
-            if(currentMargin == -sizesurvey *100 -100){
-                let btninvia = document.getElementById('nextbutton');
-                btninvia.value = 'Invia';
 
+            let margin = currentMargin - 100;
+
+            switch(true) {
+                case currentMargin === 0:
+                    backAllowed();
+                case currentMargin >= -(questionsNumber - 2) * 100:
+                    currentMargin = margin;
+                    document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
+                    console.log(currentMargin+'%');
+                    break;
+                case currentMargin === -(questionsNumber - 1) * 100:
+                    currentMargin = margin;
+                    document.getElementById('slide').style.setProperty('margin-left',currentMargin+'%');
+                    showSubmit();
+                    console.log(currentMargin+'%');
             }
         }
+
+        function showSubmit() {
+            nextbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
+            nextbutton.style.setProperty('cursor','default');
+            document.getElementById('submitbutton').style.setProperty('display','unset');
+        }
+
+        function hideSubmit() {
+            nextbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
+            nextbutton.style.setProperty('cursor','pointer');
+            document.getElementById('submitbutton').style.setProperty('display','none');
+        }
+
+        function backAllowed() {
+            backbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
+            backbutton.style.setProperty('cursor','pointer');
+        }
+
+        function backNotAllowed() {
+            backbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
+            backbutton.style.setProperty('cursor','default');
+        }
+
     }
-}
-
-function stylize() {
-    let surveyContainer = document.getElementById('survey-container').style;
-    let buttonContainer = document.getElementById('button-container').style;
-
-    surveyContainer.setProperty('display','flex');
-    surveyContainer.setProperty('flex-direction','row');
-    buttonContainer.setProperty('display','flex');
-    buttonContainer.setProperty('flex-direction','row');
-    buttonContainer.setProperty('justify-content','center');
-
 }
