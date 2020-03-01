@@ -118,16 +118,26 @@
                             </li>
                             </c:if>
                         </ul>
+                        <c:if test="${requestScope.opening != null}">
+                            <div id="surveyInfo" size="${requestScope.numberOfQuestions}" style="color:#fff;padding:0em 1em 0 1em;">
+                                <hr style="background-color:#fff;">
+                                <p style="font-size:1.2em;font-weight:100;padding-left:.4em;">
+                                        ${requestScope.opening}
+                                </p>
+                                <hr style="background-color:#fff;">
+                            </div>
+                        </c:if>
                     </nav>
                     <!-- End Sidebar navigation -->
                 </div>
             </c:when>
             <c:otherwise>
-                <div id="surveyInfo" class="scroll-sidebar" size="${requestScope.numberOfQuestions}" style="color:#fff;padding:1em 1em 0 1em;">
+                <div id="surveyInfo" class="scroll-sidebar" size="${requestScope.numberOfQuestions}" style="color:#fff;padding:0em 1em 0 1em;">
                     <hr style="background-color:#fff;">
-                    <p style="font-size:1.2em;font-weight:100;">
+                    <p style="font-size:1.2em;font-weight:100;padding-left:.4em;">
                         ${requestScope.opening}
                     </p>
+                    <hr style="background-color:#fff;">
                 </div>
             </c:otherwise>
         </c:choose>
