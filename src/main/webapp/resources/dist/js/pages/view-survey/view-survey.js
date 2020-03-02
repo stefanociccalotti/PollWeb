@@ -1,12 +1,14 @@
 document.onreadystatechange = function () {
     if (document.readyState === 'complete') {
 
-        let backbutton = document.getElementById('backbutton');
-        let nextbutton = document.getElementById('nextbutton');
+        let backButton = document.getElementById('backbutton');
+        let nextButton = document.getElementById('nextbutton');
+        let submitButton = document.getElementById('submitbutton');
+        let form = document.getElementById('form');
         let questionsNumber = parseInt(document.getElementById('surveyInfo').getAttribute('size'));
         let currentMargin = 0;
 
-        backbutton.onclick = () => {
+        backButton.onclick = () => {
 
             let margin = currentMargin + 100;
 
@@ -27,7 +29,7 @@ document.onreadystatechange = function () {
             }
         }
 
-        nextbutton.onclick = () => {
+        nextButton.onclick = () => {
 
             let margin = currentMargin - 100;
 
@@ -47,6 +49,30 @@ document.onreadystatechange = function () {
             }
         }
 
+        submitButton.onclick = () => {
+
+            let missingMandatoryQuestions = getMissingMandatoryQuestions();
+
+            switch(missingMandatoryQuestions.length) {
+                case 0:
+                    form.submit();
+                    break;
+                case 1:
+                    alert('La domanda ' + missingMandatoryQuestions[0] + ' è obbligatoria!');
+                    break;
+                default:
+                    let msg = 'Le domande ' + missingMandatoryQuestions[0];
+
+                    for(let i = 1; i < missingMandatoryQuestions.length-1; i++) {
+                        msg += ', ' + missingMandatoryQuestions[i];
+                    }
+
+                    msg += ' e ' + missingMandatoryQuestions[missingMandatoryQuestions.length-1] + ' sono obbligatorie!';
+                    alert(msg);
+                    break;
+            }
+        }
+
         function showSubmit() {
             setNextbuttonNotAllowedStyle();
             document.getElementById('submitbutton').style.setProperty('display','unset');
@@ -58,39 +84,76 @@ document.onreadystatechange = function () {
         }
 
         function setBackbuttonAllowedStyle() {
-            backbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
-            backbutton.style.setProperty('cursor','pointer');
-            backbutton.onmouseenter = () => {
-                backbutton.style.backgroundColor = 'rgba(26, 46, 77, 0.911)';
+            backButton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
+            backButton.style.setProperty('cursor','pointer');
+            backButton.onmouseenter = () => {
+                backButton.style.backgroundColor = 'rgba(26, 46, 77, 0.911)';
             }
-            backbutton.onmouseleave = () => {
-                backbutton.style.backgroundColor = 'rgba(26, 46, 77, 0.747)';
+            backButton.onmouseleave = () => {
+                backButton.style.backgroundColor = 'rgba(26, 46, 77, 0.747)';
             }
         }
 
         function setBackbuttonNotAllowedStyle() {
-            backbutton.onmouseenter = () => {}
-            backbutton.onmouseleave = () => {}
-            backbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
-            backbutton.style.setProperty('cursor','default');
+            backButton.onmouseenter = () => {}
+            backButton.onmouseleave = () => {}
+            backButton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
+            backButton.style.setProperty('cursor','default');
         }
 
         function setNextbuttonAllowedStyle() {
-            nextbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
-            nextbutton.style.setProperty('cursor','pointer');
-            nextbutton.onmouseenter = () => {
-                nextbutton.style.backgroundColor = 'rgba(26, 46, 77, 0.911)';
+            nextButton.style.setProperty('background-color','rgba(26, 46, 77, 0.747)');
+            nextButton.style.setProperty('cursor','pointer');
+            nextButton.onmouseenter = () => {
+                nextButton.style.backgroundColor = 'rgba(26, 46, 77, 0.911)';
             }
-            nextbutton.onmouseleave = () => {
-                nextbutton.style.backgroundColor = 'rgba(26, 46, 77, 0.747)';
+            nextButton.onmouseleave = () => {
+                nextButton.style.backgroundColor = 'rgba(26, 46, 77, 0.747)';
             }
         }
 
         function setNextbuttonNotAllowedStyle() {
-            nextbutton.onmouseenter = () => {}
-            nextbutton.onmouseleave = () => {}
-            nextbutton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
-            nextbutton.style.setProperty('cursor','default');
+            nextButton.onmouseenter = () => {}
+            nextButton.onmouseleave = () => {}
+            nextButton.style.setProperty('background-color','rgba(26, 46, 77, 0.51)');
+            nextButton.style.setProperty('cursor','default');
+        }
+
+        function getMissingMandatoryQuestions() {
+            let questions = document.getElementsByClassName('question-info');
+            let missingMandatoryQuestions = [];
+
+            for(let i = 0; i < questions.length; i++) {
+                if( questions[i].getAttribute('mandatory') === '1' && isNotAnswered(questions[i]) ) missingMandatoryQuestions.push(i+1);
+            }
+            console.log(missingMandatoryQuestions);
+            return missingMandatoryQuestions;
+        }
+
+        function isNotAnswered(question) {
+            switch(question.getAttribute('questionType')) {
+                case 'date':
+                    if(question.getElementsByTagName('input')[0].value === '') return true;
+                    else return false;
+                case 'openQuest':
+                    if(question.getElementsByTagName('textarea')[0].value === '') return true;
+                    else return false;
+                case 'number':
+                    if(question.getElementsByTagName('input')[0].value === '') return true;
+                    else return false;
+                case 'multAns':
+                    let multAnswers = question.getElementsByTagName('input');
+                    for(let i = 0; i < multAnswers.length; i++) {
+                        if(multAnswers[i].checked) return false;
+                    }
+                    return true;
+                case 'singAns':
+                    let singAnswers = question.getElementsByTagName('input');
+                    for(let i = 0; i < singAnswers.length; i++) {
+                        if(singAnswers[i].checked) return false;
+                    }
+                    return true;
+            }
         }
 
     }

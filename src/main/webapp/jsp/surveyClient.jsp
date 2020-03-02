@@ -5,12 +5,13 @@
 <c:set var="numberOfQuestions" scope="request" value="${numberOfQuestions}"/>
 <jsp:include page="frame.jsp" />
 
-<form method="post" action="surveyClient">
+<form id="form" method="post" action="surveyClient">
     <div class="page-wrapper">
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
                     <h4 class="page-title" style="font-weight:400;font-size:1.7em">${survey.title}</h4>
+                    <h5 style="margin-top:1em;"><span style="color:#ffa869;">*</span>risposte obbligatorie</h5>
                 </div>
             </div>
         </div>
@@ -49,7 +50,7 @@
                     <input type="button" id="backbutton" value="Precedente"/>
                     <input type="button" id="nextbutton" value="Successiva"/>
                 </div>
-                    <input type="submit" id="submitbutton" value="Invia"/>
+                    <input type="button" id="submitbutton" value="Invia"/>
              </div>
         </div>
 
