@@ -73,14 +73,15 @@ public class SurveyClientController extends HttpServlet {
         }
         //mando tutto al db
 
-        if (answer != null) {
+        if (answer != null) {//TODO: mettere su message.jsp il css per la barra in alto.
+                            //TODO: togliere "Benvenuto! Puoi procedere a compilare il sondaggio . . ." dalla barra in alto.
             try {
                 surveyDao.setAnswerUser(answer, ids);
                 //cancello infine l'accesso visto che ha gia risposto al questionario
                 userDao.deleteParticipant((String) session.getAttribute("client"));
                 SecurityLayer.disposeSession(request);
 
-                request.setAttribute("mex","GRAZIE PER AVER RISPOSTO CORRETTAMENTE AL QUESTIONARIO");
+                request.setAttribute("mex","GRAZIE PER AVER RISPOSTO AL SONDAGGIO");
                 request.setAttribute("submex","LE TUE RISPOSTE SONO STATE RICEVUTE CORRETTAMENTE!");
 
                 request.getRequestDispatcher("jsp/message.jsp").forward(request, response);

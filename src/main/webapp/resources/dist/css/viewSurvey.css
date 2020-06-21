@@ -13,7 +13,7 @@
 .date-answer{
     width:12em;
 }
-input[type=button],[type=submit]{
+input[type=button]{
     cursor:pointer;
     border-style:hidden;
     background-color:rgba(26, 46, 77, 0.747);
@@ -22,7 +22,7 @@ input[type=button],[type=submit]{
     width:8em;
     margin:0 1em 0 0;
 }
-input[type=button],[type=submit]:hover{
+input[type=button]:hover{
     background-color:rgba(26, 46, 77, 0.911);
 }
 .button-container{
@@ -31,13 +31,43 @@ input[type=button],[type=submit]:hover{
 div{
     transition: margin 1s;
 }
-.user-dd {
+.user-dd{
     min-width:0!important;
 }
-.pro-pic {
+.pro-pic{
     display: flex;
     flex-direction: row;
     color: #4F5467!important;
     font-size: 1.5em!important;
     font-weight: 500;
+}
+.survey-container {
+    display: flex;
+    flex-direction: row;
+}
+.button-container{
+    display: flex;
+    flex-direction: column;
+}
+.backNextButtons{
+    display:flex;
+    justify-content: center;
+}
+#submitbutton{
+    display:none;
+    cursor:pointer;
+    border-style:hidden;
+    background-color: rgba(0, 185, 0, 0.71);
+    color:white;
+    height:3em;
+    width:8em;
+    margin:1em 1em 0 0;
+    align-self:center;
+}
+#submitbutton:hover{
+    background-color: rgb(0, 185, 0);
+}
+#backbutton {
+    background-color: rgba(26, 46, 77, 0.51);
+    cursor: default;
 }

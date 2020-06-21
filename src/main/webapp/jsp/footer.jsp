@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-            <footer class="footer text-center" style="background-color:#233242;height: 5.1em;font-size: 1em;padding: 2em;color:#6a7a8c;text-align:right!important;">
+            <footer class="footer text-center" style="position:fixed;bottom:0;background-color:#233242;height: 5.1em;font-size: 1em;padding: 2em;color:#6a7a8c;text-align:right!important;width:100%;">
                 No rights 2019, PollWeb.it, Stefano Ciccalotti e Raffaele Limongi.
             </footer>
         </div>
