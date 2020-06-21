@@ -47,8 +47,6 @@ public class SurveyClientController extends HttpServlet {
         Boolean trovato = false;
         Integer ids =0;
         String answerClient ="";
-
-
         while (parameterNames.hasMoreElements()) {
 
             String paramName = parameterNames.nextElement();
@@ -158,7 +156,6 @@ public class SurveyClientController extends HttpServlet {
                     }
                 }
 
-
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ServletException e) {
@@ -190,8 +187,7 @@ public class SurveyClientController extends HttpServlet {
             }
         }
     }
-
-
+    
     private String printFullSurvey(ArrayList<Object> fullSurvey) {
 
         String surveyP = "";

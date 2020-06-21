@@ -1,0 +1,16 @@
+ID compiler,Numero Domanda,Domanda,Risposta
+4,1,Sei laureato?,Si
+4,2,Che corso di laurea frequenti?,sdadsasda
+4,3,In che anno ti sei immatricolato?,2016
+4,4,Quando pensi di laurearti?,2040;2050
+4,5,Quando è il tuo compleanno? (survey 3),2020-02-07
+5,1,Sei laureato?,Si
+5,2,Che corso di laurea frequenti?,adsdad
+5,3,In che anno ti sei immatricolato?,2016
+5,4,Quando pensi di laurearti?,2040;2050
+5,5,Quando è il tuo compleanno? (survey 3),2020-02-07
+6,1,Sei laureato?,No
+6,2,Che corso di laurea frequenti?,sdadasds
+6,3,In che anno ti sei immatricolato?,2098
+6,4,Quando pensi di laurearti?,2030;2040;2060
+6,5,Quando è il tuo compleanno? (survey 3),2020-02-01
