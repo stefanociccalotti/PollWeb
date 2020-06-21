@@ -68,9 +68,7 @@ html[dir="ltr"] body .p-t-20{
 
     display: flex !important;
 }
-.selected{
-    background-color: aqua !important;
-}
+
 .btn-remove{
     background-color: #f44336 !important;
     color: white !important;

@@ -59,10 +59,10 @@ public class SurveyEditorController extends HttpServlet {
 
                 ArrayList<Object> fullSurvey = surveyDao.getSurveyAndQuestionsById( Integer.parseInt(surveyId) );
 
-                request.setAttribute("survey", fullSurvey.get(0));//TODO: se fullSurvey.get(0) == null => redirect su pagina di errore oppure messaggio di errore?
+                request.setAttribute("survey", fullSurvey.get(0));
                 request.setAttribute("questions",fullSurvey.get(1));
                 request.setAttribute("numberOfQuestions", fullSurvey.get(2));
-                request.setAttribute("code",fullSurvey.get(3));//TODO: vedere se code serve e terminare la modifica aggiungendo error.jsp
+                request.setAttribute("code",fullSurvey.get(3));
                 request.setAttribute("pageCss", "./resources/dist/css/surveyEditor.css");
                 request.setAttribute("pageJs","./resources/dist/js/pages/surveyEditor/surveyEditor.js");
 
@@ -86,7 +86,7 @@ public class SurveyEditorController extends HttpServlet {
         Integer userID = (Integer) s.getAttribute("userID");
 
         try {
-            Integer statusCode = surveyDao.submitSurveyAndQuestions(data,userID);//TODO: non fare update, cancella tutte le domande e mettile nuove
+            Integer statusCode = surveyDao.submitSurveyAndQuestions(data,userID);
             PrintWriter out = null;
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
